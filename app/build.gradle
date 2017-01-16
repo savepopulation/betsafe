@@ -5,14 +5,27 @@ apply plugin: 'realm-android'
 android {
     compileSdkVersion 25
     buildToolsVersion "23.0.3"
+
     defaultConfig {
         applicationId "net.betsafeapp.android"
         minSdkVersion 17
         targetSdkVersion 25
-        versionCode 1
-        versionName "1.0"
+        versionName "1.0.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
+    productFlavors {
+        prod {
+            versionCode 1
+        }
+
+        dev {
+            applicationIdSuffix ".dev"
+            versionCode 1
+            versionNameSuffix ".dev"
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
