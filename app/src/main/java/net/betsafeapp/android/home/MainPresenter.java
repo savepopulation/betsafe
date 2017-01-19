@@ -1,7 +1,6 @@
 package net.betsafeapp.android.home;
 
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 
 import net.betsafeapp.android.data.source.BankRollRepository;
 
@@ -14,11 +13,11 @@ import rx.subscriptions.CompositeSubscription;
  */
 
 final class MainPresenter implements MainContract.Presenter {
-    @Nullable
+    @NonNull
     private MainContract.View mView;
 
     @NonNull
-    private final BankRollRepository mSafeRepository;
+    private final BankRollRepository mBankRollRepository;
 
     @NonNull
     private final CompositeSubscription mCompositeSubscription;
@@ -26,8 +25,10 @@ final class MainPresenter implements MainContract.Presenter {
     @Inject
     MainPresenter(@NonNull MainContract.View view, @NonNull BankRollRepository safeRepository) {
         this.mView = view;
-        this.mSafeRepository = safeRepository;
+        this.mBankRollRepository = safeRepository;
         this.mCompositeSubscription = new CompositeSubscription();
+
+        mView.setPresenter(this);
     }
 
     @Override
@@ -51,7 +52,7 @@ final class MainPresenter implements MainContract.Presenter {
     }
 
     @Override
-    public void showNewSafeTypes() {
-
+    public void addBankRoll() {
+        mView.navigateToAddBankRoll();
     }
 }

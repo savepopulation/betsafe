@@ -14,5 +14,5 @@ import dagger.Component;
 @FragmentScoped
 @Component(dependencies = BankRollRepositoryComponent.class, modules = MainPresenterModule.class)
 interface MainComponent {
-    void inject(@NonNull MainActivity activity);
+    void inject(MainActivity activity);
 }

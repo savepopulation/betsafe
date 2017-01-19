@@ -1,4 +1,11 @@
 <resources>
+    <!-- App Strings -->
     <string name="app_name">BetSafe</string>
+
+    <!-- Action Strings -->
     <string name="action_settings">Settings</string>
+
+    <!-- Screen Titles -->
+    <string name="screen_title_add_bankroll">Add Bankroll</string>
+
 </resources>

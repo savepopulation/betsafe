@@ -1,18 +1,18 @@
-package net.betsafeapp.android.home;
+package net.betsafeapp.android.addbankroll;
 
 import net.betsafeapp.android.BasePresenter;
 import net.betsafeapp.android.BaseView;
 
 /**
- * Created by tyln on 17/01/2017.
+ * Created by tyln on 19/01/2017.
  */
 
-interface MainContract {
+interface AddBankRollContract {
     interface View extends BaseView<Presenter> {
-        void navigateToAddBankRoll();
+        // Empty
     }
 
     interface Presenter extends BasePresenter {
-        void addBankRoll();
+        // Empty
     }
 }
