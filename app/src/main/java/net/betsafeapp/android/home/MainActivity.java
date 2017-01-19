@@ -68,7 +68,7 @@ public final class MainActivity extends BaseActivity {
         }
 
         DaggerMainComponent.builder()
-                .safeRepositoryComponent(((BetSafeApp) getApplication()).getSafeRepositoryComponent())
+                .bankRollRepositoryComponent(((BetSafeApp) getApplication()).getBankRollRepositoryComponent())
                 .mainPresenterModule(new MainPresenterModule(mainFragment))
                 .build()
                 .inject(this);

@@ -3,9 +3,9 @@ package net.betsafeapp.android;
 import android.app.Application;
 import android.support.annotation.NonNull;
 
-import net.betsafeapp.android.data.source.DaggerSafeRepositoryComponent;
-import net.betsafeapp.android.data.source.SafeRepositoryComponent;
-import net.betsafeapp.android.data.source.SafeRepositoryModule;
+import net.betsafeapp.android.data.source.DaggerBankRollRepositoryComponent;
+import net.betsafeapp.android.data.source.BankRollRepositoryComponent;
+import net.betsafeapp.android.data.source.BankRollRepositoryModule;
 
 /**
  * Created by tyln on 16/01/2017.
@@ -13,19 +13,19 @@ import net.betsafeapp.android.data.source.SafeRepositoryModule;
 
 public class BetSafeApp extends Application {
     @NonNull
-    private SafeRepositoryComponent mSafeRepositoryComponent;
+    private BankRollRepositoryComponent mBankRollRepositoryComponent;
 
     @Override
     public void onCreate() {
         super.onCreate();
-        mSafeRepositoryComponent = DaggerSafeRepositoryComponent.builder()
+        mBankRollRepositoryComponent = DaggerBankRollRepositoryComponent.builder()
                 .applicationModule(new ApplicationModule((this)))
-                .safeRepositoryModule(new SafeRepositoryModule())
+                .bankRollRepositoryModule(new BankRollRepositoryModule())
                 .build();
     }
 
     @NonNull
-    public SafeRepositoryComponent getSafeRepositoryComponent() {
-        return mSafeRepositoryComponent;
+    public BankRollRepositoryComponent getBankRollRepositoryComponent() {
+        return mBankRollRepositoryComponent;
     }
 }

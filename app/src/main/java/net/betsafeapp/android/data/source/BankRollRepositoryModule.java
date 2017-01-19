@@ -3,7 +3,7 @@ package net.betsafeapp.android.data.source;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
-import net.betsafeapp.android.data.source.local.SafeLocalDataSource;
+import net.betsafeapp.android.data.source.local.BankRollLocalDataSource;
 
 import javax.inject.Singleton;
 
@@ -15,15 +15,15 @@ import dagger.Provides;
  */
 
 @Module
-public class SafeRepositoryModule {
-    public SafeRepositoryModule() {
+public class BankRollRepositoryModule {
+    public BankRollRepositoryModule() {
         // Empty Constructor
     }
 
     @Singleton
     @Provides
     @Local
-    SafeLocalDataSource provideSafeLocalDataSource(@NonNull Context context) {
-        return new SafeLocalDataSource(context);
+    BankRollLocalDataSource provideSafeLocalDataSource(@NonNull Context context) {
+        return new BankRollLocalDataSource(context);
     }
 }

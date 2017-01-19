@@ -3,8 +3,7 @@ package net.betsafeapp.android.home;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import net.betsafeapp.android.BasePresenter;
-import net.betsafeapp.android.data.source.SafeRepository;
+import net.betsafeapp.android.data.source.BankRollRepository;
 
 import javax.inject.Inject;
 
@@ -19,13 +18,13 @@ final class MainPresenter implements MainContract.Presenter {
     private MainContract.View mView;
 
     @NonNull
-    private final SafeRepository mSafeRepository;
+    private final BankRollRepository mSafeRepository;
 
     @NonNull
     private final CompositeSubscription mCompositeSubscription;
 
     @Inject
-    MainPresenter(@NonNull MainContract.View view, @NonNull SafeRepository safeRepository) {
+    MainPresenter(@NonNull MainContract.View view, @NonNull BankRollRepository safeRepository) {
         this.mView = view;
         this.mSafeRepository = safeRepository;
         this.mCompositeSubscription = new CompositeSubscription();
