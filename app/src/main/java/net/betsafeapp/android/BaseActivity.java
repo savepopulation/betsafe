@@ -30,6 +30,9 @@ public abstract class BaseActivity extends AppCompatActivity {
     @StringRes
     protected abstract int getScreenName();
 
+    @StringRes
+    protected abstract int getTitleRes();
+
     protected abstract int getNavigationType();
 
     @Override
@@ -70,6 +73,11 @@ public abstract class BaseActivity extends AppCompatActivity {
     private void setupActionBar() {
         final ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
+            if (getTitleRes() != Constants.NO_RES) {
+                final String title = getString(getTitleRes());
+                setActionbarTitle(title);
+            }
+
             switch (getNavigationType()) {
                 case NAVIGATION_BACK:
                     actionBar.setDisplayHomeAsUpEnabled(true);

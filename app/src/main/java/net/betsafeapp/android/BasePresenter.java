@@ -5,6 +5,8 @@ package net.betsafeapp.android;
  */
 
 public interface BasePresenter {
+    void start();
+
     void subscribe();
 
     void unsubscribe();

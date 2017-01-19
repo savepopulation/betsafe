@@ -9,10 +9,10 @@ import net.betsafeapp.android.BaseView;
 
 interface MainContract {
     interface View extends BaseView<Presenter> {
-
+        // Empty interface
     }
 
     interface Presenter extends BasePresenter {
-
+        void showNewSafeTypes();
     }
 }

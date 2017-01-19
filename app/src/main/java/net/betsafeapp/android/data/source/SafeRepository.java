@@ -13,7 +13,7 @@ import javax.inject.Singleton;
  */
 
 @Singleton
-class SafeRepository implements SafeDataSource {
+public class SafeRepository implements SafeDataSource {
     @NonNull
     private SafeLocalDataSource mSafeLocalDataSource;
 
