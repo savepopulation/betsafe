@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -12,12 +12,40 @@
         android:layout_height="wrap_content"
         android:text="this is home fragment" />
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
+    <com.getbase.floatingactionbutton.FloatingActionsMenu
+        android:id="@+id/multiple_actions_left"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@mipmap/ic_add_white_24dp" />
+        android:layout_gravity="bottom|right"
+        android:layout_margin="@dimen/default_margin"
+        fab:fab_addButtonColorNormal="@color/colorAccent"
+        fab:fab_addButtonColorPressed="@color/colorAccent"
+        fab:fab_addButtonPlusIconColor="@android:color/white"
+        fab:fab_addButtonSize="normal"
+        fab:fab_addButtonStrokeVisible="false"
+        fab:fab_expandDirection="up"
+        fab:fab_labelStyle="@style/ActionButtonMenuLabelStyle">
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/action_add_bet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            fab:fab_colorNormal="@color/colorPrimary"
+            fab:fab_colorPressed="@color/colorPrimaryDark"
+            fab:fab_icon="@mipmap/ic_add_white_24dp"
+            fab:fab_size="mini"
+            fab:fab_title="@string/action_add_bet" />
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/action_new_bankroll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            fab:fab_colorNormal="@color/colorPrimary"
+            fab:fab_colorPressed="@color/colorPrimaryDark"
+            fab:fab_icon="@mipmap/ic_account_balance_wallet_white_18dp"
+            fab:fab_size="mini"
+            fab:fab_title="@string/action_create_bankroll" />
+
+    </com.getbase.floatingactionbutton.FloatingActionsMenu>
 
 </android.support.design.widget.CoordinatorLayout>

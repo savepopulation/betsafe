@@ -70,4 +70,5 @@ dependencies {
 
     // Other
     compile 'com.google.code.gson:gson:2.4'
+    compile 'com.getbase:floatingactionbutton:1.10.1'
 }

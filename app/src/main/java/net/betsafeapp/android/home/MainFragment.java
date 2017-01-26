@@ -39,8 +39,8 @@ public final class MainFragment extends BaseFragment implements MainContract.Vie
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        final FloatingActionButton floatingAcionButton = (FloatingActionButton) view.findViewById(R.id.fab);
-        floatingAcionButton.setOnClickListener(this);
+        view.findViewById(R.id.action_add_bet).setOnClickListener(this);
+        view.findViewById(R.id.action_new_bankroll).setOnClickListener(this);
     }
 
     @Override
@@ -56,7 +56,10 @@ public final class MainFragment extends BaseFragment implements MainContract.Vie
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.fab:
+            case R.id.action_add_bet:
+                break;
+
+            case R.id.action_new_bankroll:
                 mPresenter.addBankRoll();
                 break;
         }
