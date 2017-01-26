@@ -1,4 +1,4 @@
-package net.betsafeapp.android.addbankroll;
+package net.betsafeapp.android.addbet;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,22 +14,22 @@ import net.betsafeapp.android.R;
 import javax.inject.Inject;
 
 /**
- * Created by tyln on 19/01/2017.
+ * Created by tyln on 26/01/2017.
  */
 
-public final class AddBankRollActivity extends BaseActivity {
+public final class AddBetActivity extends BaseActivity {
     @NonNull
     @Inject
-    AddBankRollPresenter mAddBankRollPresenter;
+    AddBetPresenter mAddBetPresenter;
 
     @NonNull
     public static Intent newIntent(@NonNull Context context) {
-        return new Intent(context, AddBankRollActivity.class);
+        return new Intent(context, AddBetActivity.class);
     }
 
     @Override
     protected int getLayoutRes() {
-        return R.layout.activity_add_bankroll;
+        return R.layout.activity_add_bet;
     }
 
     @Override
@@ -44,7 +44,7 @@ public final class AddBankRollActivity extends BaseActivity {
 
     @Override
     protected int getTitleRes() {
-        return R.string.screen_title_add_bankroll;
+        return R.string.screen_title_add_bet;
     }
 
     @Override
@@ -56,19 +56,19 @@ public final class AddBankRollActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        AddBankRollFragment addBankRollFragment = (AddBankRollFragment) getSupportFragmentManager()
+        AddBetFragment addBetFragment = (AddBetFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.framelayout_main);
 
-        if (addBankRollFragment == null) {
-            addBankRollFragment = AddBankRollFragment.newInstance();
+        if (addBetFragment == null) {
+            addBetFragment = AddBetFragment.newInstance();
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.framelayout_main, addBankRollFragment)
+                    .replace(R.id.framelayout_main, addBetFragment)
                     .commit();
         }
 
-        DaggerAddBankRollComponent.builder()
+        DaggerAddBetComponent.builder()
                 .bankRollRepositoryComponent(((BetSafeApp) getApplication()).getBankRollRepositoryComponent())
-                .addBankRollPresenterModule(new AddBankRollPresenterModule(addBankRollFragment))
+                .addBetPresenterModule(new AddBetPresenterModule(addBetFragment))
                 .build()
                 .inject(this);
     }

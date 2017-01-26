@@ -10,9 +10,13 @@ import net.betsafeapp.android.BaseView;
 interface MainContract {
     interface View extends BaseView<Presenter> {
         void navigateToAddBankRoll();
+
+        void navigateToAddBet();
     }
 
     interface Presenter extends BasePresenter {
         void addBankRoll();
+
+        void addBet();
     }
 }

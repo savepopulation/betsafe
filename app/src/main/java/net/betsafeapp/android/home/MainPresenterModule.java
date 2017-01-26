@@ -18,6 +18,7 @@ final class MainPresenterModule {
         this.mView = view;
     }
 
+    @NonNull
     @Provides
     MainContract.View provideMainView() {
         return mView;

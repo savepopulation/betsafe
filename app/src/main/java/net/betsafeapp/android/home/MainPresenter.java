@@ -55,4 +55,9 @@ final class MainPresenter implements MainContract.Presenter {
     public void addBankRoll() {
         mView.navigateToAddBankRoll();
     }
+
+    @Override
+    public void addBet() {
+        mView.navigateToAddBet();
+    }
 }

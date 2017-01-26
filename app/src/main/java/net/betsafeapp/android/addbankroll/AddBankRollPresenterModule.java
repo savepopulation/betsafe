@@ -10,14 +10,15 @@ import dagger.Provides;
  */
 
 @Module
-final class AddBankRollModule {
+final class AddBankRollPresenterModule {
     @NonNull
     private AddBankRollContract.View mView;
 
-    AddBankRollModule(@NonNull AddBankRollContract.View view) {
+    AddBankRollPresenterModule(@NonNull AddBankRollContract.View view) {
         this.mView = view;
     }
 
+    @NonNull
     @Provides
     AddBankRollContract.View provideAddBankRollView() {
         return this.mView;

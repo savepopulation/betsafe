@@ -9,5 +9,6 @@
 
     <!-- Screen Titles -->
     <string name="screen_title_add_bankroll">Add Bankroll</string>
+    <string name="screen_title_add_bet">Add Bet</string>
 
 </resources>

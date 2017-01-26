@@ -10,6 +10,7 @@ import net.betsafeapp.android.BaseFragment;
 import net.betsafeapp.android.Constants;
 import net.betsafeapp.android.R;
 import net.betsafeapp.android.addbankroll.AddBankRollActivity;
+import net.betsafeapp.android.addbet.AddBetActivity;
 import net.betsafeapp.android.util.AlertUtil;
 
 /**
@@ -57,6 +58,7 @@ public final class MainFragment extends BaseFragment implements MainContract.Vie
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.action_add_bet:
+                mPresenter.addBet();
                 break;
 
             case R.id.action_new_bankroll:
@@ -68,5 +70,10 @@ public final class MainFragment extends BaseFragment implements MainContract.Vie
     @Override
     public void navigateToAddBankRoll() {
         startActivity(AddBankRollActivity.newIntent(getActivity()));
+    }
+
+    @Override
+    public void navigateToAddBet() {
+        startActivity(AddBetActivity.newIntent(getApplicationContext()));
     }
 }
