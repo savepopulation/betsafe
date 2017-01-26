@@ -1,4 +1,4 @@
-package net.betsafeapp.android.utils;
+package net.betsafeapp.android.util;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;

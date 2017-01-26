@@ -10,7 +10,7 @@ import net.betsafeapp.android.BaseFragment;
 import net.betsafeapp.android.Constants;
 import net.betsafeapp.android.R;
 import net.betsafeapp.android.addbankroll.AddBankRollActivity;
-import net.betsafeapp.android.utils.AlertUtil;
+import net.betsafeapp.android.util.AlertUtil;
 
 /**
  * Created by tyln on 19/01/2017.

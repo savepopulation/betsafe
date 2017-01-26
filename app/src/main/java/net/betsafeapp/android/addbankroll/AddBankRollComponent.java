@@ -1,10 +1,7 @@
 package net.betsafeapp.android.addbankroll;
 
-import android.support.annotation.NonNull;
-
-import net.betsafeapp.android.data.source.BankRollRepository;
 import net.betsafeapp.android.data.source.BankRollRepositoryComponent;
-import net.betsafeapp.android.utils.FragmentScoped;
+import net.betsafeapp.android.util.FragmentScoped;
 
 import dagger.Component;
 

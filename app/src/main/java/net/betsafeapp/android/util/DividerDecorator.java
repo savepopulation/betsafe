@@ -1,4 +1,4 @@
-package net.betsafeapp.android.utils;
+package net.betsafeapp.android.util;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -7,8 +7,6 @@ import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-
-import net.betsafeapp.android.R;
 
 
 /**

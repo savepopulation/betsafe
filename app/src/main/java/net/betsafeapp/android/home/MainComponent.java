@@ -1,9 +1,7 @@
 package net.betsafeapp.android.home;
 
-import android.support.annotation.NonNull;
-
 import net.betsafeapp.android.data.source.BankRollRepositoryComponent;
-import net.betsafeapp.android.utils.FragmentScoped;
+import net.betsafeapp.android.util.FragmentScoped;
 
 import dagger.Component;
 

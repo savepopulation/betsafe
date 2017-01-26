@@ -63,7 +63,7 @@ public final class MainActivity extends BaseActivity {
         if (mainFragment == null) {
             mainFragment = MainFragment.newInstance();
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.framelayout_main, mainFragment)
+                    .replace(R.id.framelayout_main, mainFragment)
                     .commit();
         }
 

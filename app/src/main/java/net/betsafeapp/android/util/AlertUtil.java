@@ -1,4 +1,4 @@
-package net.betsafeapp.android.utils;
+package net.betsafeapp.android.util;
 
 import android.content.Context;
 import android.content.DialogInterface;
