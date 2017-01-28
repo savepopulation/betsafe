@@ -4,7 +4,7 @@ import android.support.annotation.NonNull;
 
 import net.betsafeapp.android.data.BankRoll;
 import net.betsafeapp.android.data.source.BankRollRepository;
-import net.betsafeapp.android.factory.BankRollFactory;
+import net.betsafeapp.android.data.factory.BankRollFactory;
 
 import javax.inject.Inject;
 

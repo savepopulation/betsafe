@@ -1,4 +1,4 @@
-package net.betsafeapp.android.factory;
+package net.betsafeapp.android.data.factory;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -34,7 +34,6 @@ public final class BankRollFactory {
         bankRoll.setCreateDate(System.currentTimeMillis());
         bankRoll.setUpdateDate(System.currentTimeMillis());
 
-        Log.e("generated uuid", bankRoll.getId());
         return bankRoll;
     }
 }
