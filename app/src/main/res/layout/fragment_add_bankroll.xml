@@ -1,12 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    style="@style/LinearRootLayoutStyle">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <android.support.design.widget.TextInputLayout
+        style="@style/BaseTextInputLayoutStyle"
+        android:layout_marginTop="0dp">
+
+        <EditText
+            android:id="@+id/edittext_bankroll_name"
+            style="@style/BaseEditTextStyle"
+            android:hint="@string/hint_banroll_name"
+            android:inputType="text"
+            android:maxLength="@integer/max_len_bankroll_name"
+            android:nextFocusDown="@+id/edittext_bankroll_initial_amount"
+            android:nextFocusForward="@+id/edittext_bankroll_initial_amount" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout style="@style/BaseTextInputLayoutStyle">
+
+        <EditText
+            android:id="@+id/edittext_bankroll_initial_amount"
+            style="@style/BaseEditTextStyle"
+            android:hint="@string/hint_bankroll_initial_amount"
+            android:inputType="number"
+            android:maxLength="@integer/max_len_bankroll_initial_amount"
+            android:nextFocusDown="@+id/spinner_bankroll_privacy"
+            android:nextFocusForward="@+id/spinner_bankroll_privacy" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="this is add banroll screen" />
+        android:layout_marginLeft="@dimen/size_small"
+        android:layout_marginTop="@dimen/size_half"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/TextViewTitle"
+            android:text="@string/label_bankroll_privacy"
+            android:textStyle="normal" />
+
+        <Spinner
+            android:id="@+id/spinner_bankroll_privacy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_small"
+            android:entries="@array/bankroll_privacy_types" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/button_add_bankroll"
+        style="@style/BaseButtonStyle"
+        android:layout_marginTop="@dimen/size_large"
+        android:text="@string/button_name_add_bankroll" />
 
 </LinearLayout>

@@ -11,4 +11,7 @@ public final class Constants {
 
     // RES
     public static final int NO_RES = 0;
+
+    // DEFAULT VALUES
+    public static final String DEFAULT_AMOUNT = "0";
 }

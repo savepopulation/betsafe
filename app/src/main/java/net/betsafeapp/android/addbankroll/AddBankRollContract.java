@@ -1,5 +1,7 @@
 package net.betsafeapp.android.addbankroll;
 
+import android.support.annotation.NonNull;
+
 import net.betsafeapp.android.BasePresenter;
 import net.betsafeapp.android.BaseView;
 
@@ -9,10 +11,12 @@ import net.betsafeapp.android.BaseView;
 
 interface AddBankRollContract {
     interface View extends BaseView<Presenter> {
-        // Empty
+        void errorOnCreatingBankRoll();
+
+        void onBankRollCreated();
     }
 
     interface Presenter extends BasePresenter {
-        // Empty
+        void addBankroll(@NonNull String name, double initialAmount, int privacy);
     }
 }
