@@ -14,4 +14,8 @@ public final class Constants {
 
     // DEFAULT VALUES
     public static final String DEFAULT_AMOUNT = "0";
+
+    // BANKROLL PRIVACY
+    public static final int BANKROLL_PRIVACY_PRIVATE = 0;
+    public static final int BANKROLL_PRIVACY_PUBLIC = 1;
 }

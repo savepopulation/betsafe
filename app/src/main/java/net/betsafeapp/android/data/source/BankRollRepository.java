@@ -10,6 +10,10 @@ import net.betsafeapp.android.data.source.local.BankRollLocalDataSource;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+import rx.Observable;
+import rx.functions.Action0;
+import rx.functions.Action1;
+
 /**
  * Created by tyln on 17/01/2017.
  */
@@ -28,16 +32,37 @@ public final class BankRollRepository implements BankRollDataSource {
     }
 
     @Override
+    public Observable<BankRoll> getBankRolls() {
+        if (mBankrollCache != null && mBankrollCache.size() > 0) {
+            return Observable.from(mBankrollCache.values());
+        } else {
+            return mBankRollLocalDataSource.getBankRolls()
+                    .doOnNext(new Action1<BankRoll>() {
+                        @Override
+                        public void call(BankRoll bankRoll) {
+                            initCacheIfNeededAndPutBankroll(bankRoll);
+                        }
+                    });
+        }
+    }
+
+    @Override
     public void createNewBankroll(@NonNull BankRoll bankRoll) {
         initCacheIfNeededAndPutBankroll(bankRoll);
         mBankRollLocalDataSource.createNewBankroll(bankRoll);
     }
 
     private void initCacheIfNeededAndPutBankroll(@NonNull BankRoll bankRoll) {
+        if (bankRoll == null) {
+            return;
+        }
+
         if (mBankrollCache == null) {
             mBankrollCache = new ArrayMap<>();
         }
 
-        mBankrollCache.put(bankRoll.getId(), bankRoll);
+        if (!mBankrollCache.containsKey(bankRoll.getId())) {
+            mBankrollCache.put(bankRoll.getId(), bankRoll);
+        }
     }
 }

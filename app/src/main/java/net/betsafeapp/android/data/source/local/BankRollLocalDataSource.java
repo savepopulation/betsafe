@@ -3,14 +3,22 @@ package net.betsafeapp.android.data.source.local;
 import android.content.Context;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
+import android.support.annotation.WorkerThread;
 
 import net.betsafeapp.android.data.BankRoll;
 import net.betsafeapp.android.data.source.BankRollDataSource;
+
+import java.util.List;
 
 import javax.inject.Singleton;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
+import io.realm.RealmResults;
+import io.realm.Sort;
+import rx.Observable;
+import rx.Subscriber;
+import rx.functions.Func1;
 
 /**
  * Created by tyln on 17/01/2017.
@@ -30,10 +38,16 @@ public class BankRollLocalDataSource implements BankRollDataSource {
     }
 
     @Override
+    public Observable<BankRoll> getBankRolls() {
+        return Observable.from(getAllBankRolls());
+    }
+
+    @Override
     public void createNewBankroll(@NonNull BankRoll bankRoll) {
         saveBankroll(bankRoll);
     }
 
+    @WorkerThread
     private void saveBankroll(@NonNull final BankRoll bankRoll) {
         new Thread(new Runnable() {
             @Override
@@ -56,5 +70,20 @@ public class BankRollLocalDataSource implements BankRollDataSource {
                 realm.close();
             }
         }).start();
+    }
+
+    @WorkerThread
+    private List<BankRoll> getAllBankRolls() {
+        final Realm realm = Realm.getInstance(mRealmConfiguration);
+        realm.beginTransaction();
+
+        final RealmResults<BankRoll> realmResults = realm.where(BankRoll.class)
+                .findAllSorted("createDate", Sort.DESCENDING);
+
+        final List<BankRoll> bankRolls = realm.copyFromRealm(realmResults);
+        realm.commitTransaction();
+        realm.close();
+
+        return bankRolls;
     }
 }

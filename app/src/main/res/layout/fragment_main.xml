@@ -7,10 +7,10 @@
     android:fitsSystemWindows="true"
     tools:context="net.betsafeapp.android.home.MainActivity">
 
-    <TextView
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerview_bankrolls"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="this is home fragment" />
+        android:layout_height="match_parent"/>
 
     <com.getbase.floatingactionbutton.FloatingActionsMenu
         android:id="@+id/multiple_actions_left"
