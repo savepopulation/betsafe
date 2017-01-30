@@ -26,7 +26,7 @@
         <item name="android:background">@color/colorPrimary</item>
         <item name="android:theme">@style/ThemeOverlay.MyApp.ActionBar</item>
         <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
-        <item name="elevation">4dp</item>
+        <item name="elevation">2dp</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/abc_action_bar_default_height_material</item>
         <item name="titleTextStyle">@style/AppTheme.Styled.ActionBar.TitleTextStyle</item>
