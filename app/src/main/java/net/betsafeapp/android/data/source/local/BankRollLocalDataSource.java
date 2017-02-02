@@ -58,6 +58,7 @@ public class BankRollLocalDataSource implements BankRollDataSource {
                 final BankRoll realmBankRoll = realm.createObject(BankRoll.class);
                 realmBankRoll.setId(bankRoll.getId());
                 realmBankRoll.setName(bankRoll.getName());
+                realmBankRoll.setType(bankRoll.getType());
                 realmBankRoll.setInitialCapital(bankRoll.getInitialCapital());
                 realmBankRoll.setCurrentCapital(bankRoll.getCurrentCapital());
                 realmBankRoll.setStatus(bankRoll.getStatus());

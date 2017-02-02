@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,6 +15,7 @@ import net.betsafeapp.android.BaseFragment;
 import net.betsafeapp.android.Constants;
 import net.betsafeapp.android.R;
 import net.betsafeapp.android.util.AlertUtil;
+import net.betsafeapp.android.util.Utils;
 
 /**
  * Created by tyln on 19/01/2017.
@@ -47,14 +50,52 @@ public final class AddBankRollFragment extends BaseFragment implements AddBankRo
         super.onViewCreated(view, savedInstanceState);
 
         mEditTextBankRollName = (EditText) view.findViewById(R.id.edittext_bankroll_name);
+        mEditTextBankRollName.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                mPresenter.checkBankRollName(editable.toString());
+            }
+        });
 
         mEditTextBankRollInitialAmount = (EditText) view.findViewById(R.id.edittext_bankroll_initial_amount);
         mEditTextBankRollInitialAmount.setText(Constants.DEFAULT_AMOUNT);
+        mEditTextBankRollInitialAmount.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                mPresenter.checkBankRollInitialCapital(Utils.convertStringToDouble(editable.toString()));
+            }
+        });
 
         mSpinnerBankRollPrivacy = (Spinner) view.findViewById(R.id.spinner_bankroll_privacy);
 
         mButtonAddBankRoll = (Button) view.findViewById(R.id.button_add_bankroll);
         mButtonAddBankRoll.setOnClickListener(this);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        mPresenter.start();
     }
 
     @Override
@@ -76,6 +117,11 @@ public final class AddBankRollFragment extends BaseFragment implements AddBankRo
                         mSpinnerBankRollPrivacy.getSelectedItemPosition());
                 break;
         }
+    }
+
+    @Override
+    public void enableOrDisableCreateBankRoll(boolean isEnabled) {
+        mButtonAddBankRoll.setEnabled(isEnabled);
     }
 
     @Override

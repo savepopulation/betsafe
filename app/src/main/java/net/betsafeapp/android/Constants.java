@@ -18,4 +18,7 @@ public final class Constants {
     // BANKROLL PRIVACY
     public static final int BANKROLL_PRIVACY_PRIVATE = 0;
     public static final int BANKROLL_PRIVACY_PUBLIC = 1;
+
+    // BANKROLL TYPES
+    public static final int BANKROLL_TYPE_DEFAULT = 0;
 }

@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
+import net.betsafeapp.android.Constants;
 import net.betsafeapp.android.data.BankRoll;
 import net.betsafeapp.android.util.ValidationUtil;
 
@@ -27,6 +28,7 @@ public final class BankRollFactory {
         final BankRoll bankRoll = new BankRoll();
         bankRoll.setId(UUID.randomUUID().toString());
         bankRoll.setName(name);
+        bankRoll.setType(Constants.BANKROLL_TYPE_DEFAULT);
         bankRoll.setPrivacy(privacy);
         bankRoll.setInitialCapital(initialCapital);
         bankRoll.setCurrentCapital(initialCapital);

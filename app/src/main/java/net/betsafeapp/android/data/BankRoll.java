@@ -19,6 +19,8 @@ public class BankRoll extends RealmObject {
     private String id;
     @SerializedName("name")
     private String name;
+    @SerializedName("type")
+    private int type;
     @SerializedName("initialCapital")
     private double initialCapital;
     @SerializedName("currentCapital")
@@ -38,6 +40,7 @@ public class BankRoll extends RealmObject {
 
     public BankRoll(String id,
                     String name,
+                    int type,
                     double initialCapital,
                     double currentCapital,
                     int status,
@@ -46,22 +49,7 @@ public class BankRoll extends RealmObject {
                     long updateDate) {
         this.id = id;
         this.name = name;
-        this.initialCapital = initialCapital;
-        this.currentCapital = currentCapital;
-        this.status = status;
-        this.privacy = privacy;
-        this.createDate = createDate;
-        this.updateDate = updateDate;
-    }
-
-    public BankRoll(String name,
-                    double initialCapital,
-                    double currentCapital,
-                    int status,
-                    int privacy,
-                    long createDate,
-                    long updateDate) {
-        this.name = name;
+        this.type = type;
         this.initialCapital = initialCapital;
         this.currentCapital = currentCapital;
         this.status = status;
@@ -84,6 +72,14 @@ public class BankRoll extends RealmObject {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
     }
 
     public double getInitialCapital() {

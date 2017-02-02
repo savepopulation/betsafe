@@ -1,6 +1,7 @@
 package net.betsafeapp.android.util;
 
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.text.TextUtils;
 
 /**
@@ -12,7 +13,7 @@ public final class ValidationUtil {
         // Private Emptry Constructor
     }
 
-    public static boolean isNullOrEmpty(@NonNull String s) {
+    public static boolean isNullOrEmpty(@Nullable String s) {
         return TextUtils.isEmpty(s) || s.trim().length() == 0;
     }
 
