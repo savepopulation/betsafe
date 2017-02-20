@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.widget.Button;
 
 import net.betsafeapp.android.BaseActivity;
 import net.betsafeapp.android.BetSafeApp;
@@ -18,13 +19,21 @@ import javax.inject.Inject;
  */
 
 public final class AddBetActivity extends BaseActivity {
+    private static final String BUNDLE_BANKROLL_ID = "bankroll_id";
+
     @NonNull
     @Inject
     AddBetPresenter mAddBetPresenter;
 
+    @Nullable
+    @Inject
+    String mBankrollId;
+
     @NonNull
-    public static Intent newIntent(@NonNull Context context) {
-        return new Intent(context, AddBetActivity.class);
+    public static Intent newIntent(@NonNull Context context, @Nullable String bankrollId) {
+        final Intent intent = new Intent(context, AddBetActivity.class);
+        intent.putExtra(BUNDLE_BANKROLL_ID, bankrollId);
+        return intent;
     }
 
     @Override
@@ -56,6 +65,13 @@ public final class AddBetActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        final Bundle bundle = getIntent().getExtras();
+
+        String bankrollId = null;
+        if (bundle != null) {
+            bankrollId = bundle.getString(BUNDLE_BANKROLL_ID, null);
+        }
+
         AddBetFragment addBetFragment = (AddBetFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.framelayout_main);
 
@@ -68,7 +84,7 @@ public final class AddBetActivity extends BaseActivity {
 
         DaggerAddBetComponent.builder()
                 .bankRollRepositoryComponent(((BetSafeApp) getApplication()).getBankRollRepositoryComponent())
-                .addBetPresenterModule(new AddBetPresenterModule(addBetFragment))
+                .addBetPresenterModule(new AddBetPresenterModule(addBetFragment, bankrollId))
                 .build()
                 .inject(this);
     }

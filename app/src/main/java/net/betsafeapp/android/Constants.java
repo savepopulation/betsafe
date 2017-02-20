@@ -21,4 +21,12 @@ public final class Constants {
 
     // BANKROLL TYPES
     public static final int BANKROLL_TYPE_DEFAULT = 0;
+
+    // BET RESULTS
+    public static final int BET_STATUS_PENDING = 0;
+    public static final int BET_STATUS_WON = 1;
+    public static final int BET_STATUS_LOSE = 2;
+    public static final int BET_STATUS_DRAW = 3;
+    public static final int BET_STATUS_CANCEL = 4;
+    public static final int BET_STATUS_POSTPORNED = 5;
 }

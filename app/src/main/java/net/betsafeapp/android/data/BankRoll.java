@@ -17,20 +17,28 @@ public class BankRoll extends RealmObject {
     @PrimaryKey
     @SerializedName("id")
     private String id;
+
     @SerializedName("name")
     private String name;
+
     @SerializedName("type")
     private int type;
+
     @SerializedName("initialCapital")
     private double initialCapital;
+
     @SerializedName("currentCapital")
     private double currentCapital;
+
     @SerializedName("status")
     private int status;
+
     @SerializedName("privacy")
     private int privacy;
+
     @SerializedName("createDate")
     private long createDate;
+
     @SerializedName("updateDate")
     private long updateDate;
 

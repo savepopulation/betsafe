@@ -129,7 +129,7 @@ public final class MainFragment extends BaseFragment
 
     @Override
     public void navigateToAddBet() {
-        startActivity(AddBetActivity.newIntent(getApplicationContext()));
+        startActivity(AddBetActivity.newIntent(getActivity(), null));
     }
 
     @Override

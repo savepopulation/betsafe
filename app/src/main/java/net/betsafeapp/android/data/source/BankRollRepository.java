@@ -26,6 +26,10 @@ public final class BankRollRepository implements BankRollDataSource {
     @Nullable
     private ArrayMap<String, BankRoll> mBankrollCache;
 
+    public BankRollRepository() {
+        // Public empty constructor
+    }
+
     @Inject
     BankRollRepository(@NonNull @Local BankRollLocalDataSource bankRollLocalDataSource) {
         this.mBankRollLocalDataSource = bankRollLocalDataSource;
