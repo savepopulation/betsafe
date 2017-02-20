@@ -1,5 +1,7 @@
 package net.betsafeapp.android.data;
 
+import android.support.annotation.NonNull;
+
 import com.google.gson.annotations.SerializedName;
 
 import io.realm.RealmObject;
@@ -35,11 +37,26 @@ public class Bet extends RealmObject {
     @SerializedName("result")
     private int result;
 
+    @SerializedName("createDate")
+    private long createDate;
+
+    @SerializedName("updateDate")
+    private long updateDate;
+
     public Bet() {
         // Public Empty Consructor
     }
 
-    public Bet(String id, String event, String bankrollId, String bookMaker, int sport, double odds, double stake, int result) {
+    public Bet(@NonNull String id,
+               @NonNull String event,
+               @NonNull String bankrollId,
+               @NonNull String bookMaker,
+               int sport,
+               double odds,
+               double stake,
+               int result,
+               long createDate,
+               long updateDate) {
         this.id = id;
         this.event = event;
         this.bankrollId = bankrollId;
@@ -48,6 +65,8 @@ public class Bet extends RealmObject {
         this.odds = odds;
         this.stake = stake;
         this.result = result;
+        this.createDate = createDate;
+        this.updateDate = updateDate;
     }
 
     public String getId() {
@@ -112,5 +131,21 @@ public class Bet extends RealmObject {
 
     public void setResult(int result) {
         this.result = result;
+    }
+
+    public long getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(long createDate) {
+        this.createDate = createDate;
+    }
+
+    public long getUpdateDate() {
+        return updateDate;
+    }
+
+    public void setUpdateDate(long updateDate) {
+        this.updateDate = updateDate;
     }
 }
