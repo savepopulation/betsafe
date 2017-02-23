@@ -12,25 +12,55 @@
     <string name="screen_title_add_bet">Add Bet</string>
 
     <!-- Hints -->
-    <string name="hint_banroll_name">Bankroll Name</string>
+    <string name="hint_bankroll_name">Bankroll Name</string>
     <string name="hint_bankroll_initial_amount">Initial Amount</string>
+    <string name="hint_bet_name">Event Title</string>
+    <string name="hint_bookmaker_name">Bookmaker</string>
+    <string name="hint_stake">Stake</string>
+    <string name="hint_odd">Odd</string>
 
     <!-- Labels -->
-    <string name="label_bankroll_privacy">Bankroll Privacy</string>
+    <string name="label_bankroll_privacy">Bankroll Privacy:</string>
+    <string name="label_sports">Sports:</string>
+    <string name="label_bankrolls">Bankroll:</string>
+    <string name="label_status">Status:</string>
 
     <!-- Button Names -->
     <string name="button_name_add_bankroll">Create Bankroll</string>
+    <string name="button_name_add_bet">Add Bet</string>
+
+    <!-- Snackbar Button Names -->
+    <string name="snackbar_button_add">Add</string>
 
     <!-- Success Messages -->
     <string name="success_message_new_bankroll_created">New Bankroll created successfully!</string>
 
     <!-- Error Messages -->
     <string name="error_message_cannot_create_bankroll">An unknown error occurred!</string>
+    <string name="error_message_empty_bankrolls">You need to add a Bankroll first.</string>
 
     <!-- Banroll Privacy Types -->
     <string-array name="bankroll_privacy_types">
         <item>Private</item>
         <item>Public</item>
+    </string-array>
+
+    <!-- Sport -->
+    <string-array name="sports">
+        <item>Football</item>
+        <item>Basketball</item>
+        <item>Tennis</item>
+        <item>Other</item>
+    </string-array>
+
+    <!-- Bet Status -->
+    <string-array name="bet_status">
+        <item>Pending</item>
+        <item>Won</item>
+        <item>Lost</item>
+        <item>Draw</item>
+        <item>Cancelled</item>
+        <item>Postponed</item>
     </string-array>
 
 </resources>

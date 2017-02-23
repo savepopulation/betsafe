@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 
 import net.betsafeapp.android.data.BankRoll;
 import net.betsafeapp.android.data.source.BankRollRepository;
+import net.betsafeapp.android.util.ValidationUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,7 +46,7 @@ final class MainPresenter implements MainContract.Presenter {
 
     @Override
     public void start() {
-        mView.initBankRollsAdater(mBankRolls);
+        mView.initBankRollsAdapter(mBankRolls);
     }
 
     @Override
@@ -58,6 +59,7 @@ final class MainPresenter implements MainContract.Presenter {
         if (mCompositeSubscription.hasSubscriptions()) {
             mCompositeSubscription.clear();
         }
+        mView.collapseFloatingActionsMenu();
     }
 
     @Override
@@ -72,7 +74,12 @@ final class MainPresenter implements MainContract.Presenter {
 
     @Override
     public void addBet() {
-        mView.navigateToAddBet();
+        if (ValidationUtil.isNullOrEmpty(mBankRolls)) {
+            mView.collapseFloatingActionsMenu();
+            mView.emptyBankroll();
+        } else {
+            mView.navigateToAddBet();
+        }
     }
 
     private void getBankRolls() {

@@ -32,7 +32,7 @@ public final class BankRollFactory {
         bankRoll.setPrivacy(privacy);
         bankRoll.setInitialCapital(initialCapital);
         bankRoll.setCurrentCapital(initialCapital);
-        bankRoll.setStatus(0);
+        bankRoll.setStatus(Constants.BANKROLL_STATUS_OPEN);
         bankRoll.setCreateDate(System.currentTimeMillis());
         bankRoll.setUpdateDate(System.currentTimeMillis());
 

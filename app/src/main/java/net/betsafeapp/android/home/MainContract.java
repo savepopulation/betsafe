@@ -14,13 +14,17 @@ import java.util.List;
 
 interface MainContract {
     interface View extends BaseView<Presenter> {
-        void initBankRollsAdater(@NonNull List<BankRoll> bankrolls);
+        void initBankRollsAdapter(@NonNull List<BankRoll> bankrolls);
 
         void notifyBankRollDataChanged();
 
         void navigateToAddBankRoll();
 
         void navigateToAddBet();
+
+        void emptyBankroll();
+
+        void collapseFloatingActionsMenu();
     }
 
     interface Presenter extends BasePresenter {

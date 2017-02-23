@@ -3,10 +3,14 @@ package net.betsafeapp.android.home;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+
+import com.getbase.floatingactionbutton.FloatingActionsMenu;
 
 import net.betsafeapp.android.BaseFragment;
 import net.betsafeapp.android.Constants;
@@ -35,6 +39,12 @@ public final class MainFragment extends BaseFragment
     private BankRollAdapter mBankRollAdapter;
 
     @NonNull
+    private CoordinatorLayout mCoordinatorLayoutMain;
+
+    @NonNull
+    private FloatingActionsMenu mFloatingActionsMenu;
+
+    @NonNull
     public static MainFragment newInstance() {
         return new MainFragment();
     }
@@ -52,6 +62,9 @@ public final class MainFragment extends BaseFragment
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        mCoordinatorLayoutMain = (CoordinatorLayout) view.findViewById(R.id.coordinator_layout_main);
+        mFloatingActionsMenu = (FloatingActionsMenu) view.findViewById(R.id.multiple_actions_left);
 
         mRecyclerViewBankRolls = (RecyclerView) view.findViewById(R.id.recyclerview_bankrolls);
         final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
@@ -112,7 +125,7 @@ public final class MainFragment extends BaseFragment
     }
 
     @Override
-    public void initBankRollsAdater(@NonNull List<BankRoll> bankrolls) {
+    public void initBankRollsAdapter(@NonNull List<BankRoll> bankrolls) {
         mBankRollAdapter = new BankRollAdapter(bankrolls, this);
         mRecyclerViewBankRolls.setAdapter(mBankRollAdapter);
     }
@@ -130,6 +143,23 @@ public final class MainFragment extends BaseFragment
     @Override
     public void navigateToAddBet() {
         startActivity(AddBetActivity.newIntent(getActivity(), null));
+    }
+
+    @Override
+    public void emptyBankroll() {
+        Snackbar.make(mCoordinatorLayoutMain, getString(R.string.error_message_empty_bankrolls), Snackbar.LENGTH_LONG)
+                .setAction(getString(R.string.snackbar_button_add), new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        mPresenter.addBankRoll();
+                    }
+                })
+                .show();
+    }
+
+    @Override
+    public void collapseFloatingActionsMenu() {
+        mFloatingActionsMenu.collapse();
     }
 
     @Override

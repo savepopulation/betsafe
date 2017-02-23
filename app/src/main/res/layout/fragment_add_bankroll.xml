@@ -9,7 +9,7 @@
         <EditText
             android:id="@+id/edittext_bankroll_name"
             style="@style/BaseEditTextStyle"
-            android:hint="@string/hint_banroll_name"
+            android:hint="@string/hint_bankroll_name"
             android:inputType="text"
             android:maxLength="@integer/max_len_bankroll_name"
             android:nextFocusDown="@+id/edittext_bankroll_initial_amount"

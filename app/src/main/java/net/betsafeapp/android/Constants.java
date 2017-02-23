@@ -19,6 +19,11 @@ public final class Constants {
     public static final int BANKROLL_PRIVACY_PRIVATE = 0;
     public static final int BANKROLL_PRIVACY_PUBLIC = 1;
 
+    // BANKROLL STATUS
+    public static final int BANKROLL_STATUS_OPEN = 0;
+    public static final int BANKROLL_STATUS_CLOSED = 1;
+    public static final int BANKROLL_STATUS_COMPLETED = 2;
+
     // BANKROLL TYPES
     public static final int BANKROLL_TYPE_DEFAULT = 0;
 
@@ -28,5 +33,5 @@ public final class Constants {
     public static final int BET_STATUS_LOSE = 2;
     public static final int BET_STATUS_DRAW = 3;
     public static final int BET_STATUS_CANCEL = 4;
-    public static final int BET_STATUS_POSTPORNED = 5;
+    public static final int BET_STATUS_POSTPONED = 5;
 }
