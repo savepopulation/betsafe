@@ -1,127 +1,156 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/LinearRootLayoutStyle">
-
-    <android.support.design.widget.TextInputLayout
-        style="@style/BaseTextInputLayoutStyle"
-        android:layout_marginTop="0dp">
-
-        <EditText
-            android:id="@+id/edittext_bet_name"
-            style="@style/BaseEditTextStyle"
-            android:hint="@string/hint_bankroll_name"
-            android:inputType="text"
-            android:maxLength="@integer/max_len_bet_name" />
-
-    </android.support.design.widget.TextInputLayout>
-
-    <android.support.design.widget.TextInputLayout
-        style="@style/BaseTextInputLayoutStyle"
-        android:layout_marginTop="0dp">
-
-        <EditText
-            android:id="@+id/edittext_bookmaker_name"
-            style="@style/BaseEditTextStyle"
-            android:hint="@string/hint_bookmaker_name"
-            android:inputType="text"
-            android:maxLength="@integer/max_len_bet_name" />
-
-    </android.support.design.widget.TextInputLayout>
-
-    <android.support.design.widget.TextInputLayout
-        style="@style/BaseTextInputLayoutStyle"
-        android:layout_marginTop="0dp">
-
-        <EditText
-            android:id="@+id/edittext_bet_odd"
-            style="@style/BaseEditTextStyle"
-            android:hint="@string/hint_odd"
-            android:inputType="text"
-            android:maxLength="@integer/max_len_bet_name" />
-
-    </android.support.design.widget.TextInputLayout>
-
-    <android.support.design.widget.TextInputLayout
-        style="@style/BaseTextInputLayoutStyle"
-        android:layout_marginTop="0dp">
-
-        <EditText
-            android:id="@+id/edittext_bet_stake"
-            style="@style/BaseEditTextStyle"
-            android:hint="@string/hint_stake"
-            android:inputType="text"
-            android:maxLength="@integer/max_len_bet_name" />
-
-    </android.support.design.widget.TextInputLayout>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <LinearLayout
-        android:id="@+id/linearlayout_bankrolls"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/size_small"
-        android:layout_marginTop="@dimen/size_half"
-        android:orientation="vertical">
+        style="@style/LinearRootLayoutStyle"
+        android:layout_height="wrap_content">
 
-        <TextView
-            style="@style/TextViewTitle"
-            android:text="@string/label_bankrolls"
-            android:textStyle="normal" />
+        <android.support.design.widget.TextInputLayout
+            style="@style/BaseTextInputLayoutStyle"
+            android:layout_marginTop="0dp">
 
-        <Spinner
-            android:id="@+id/spinner_bankrolls"
+            <EditText
+                android:id="@+id/edittext_bet_name"
+                style="@style/BaseEditTextStyle"
+                android:hint="@string/hint_bankroll_name"
+                android:inputType="text"
+                android:maxLength="@integer/max_len_bet_name" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            style="@style/BaseTextInputLayoutStyle"
+            android:layout_marginTop="0dp">
+
+            <EditText
+                android:id="@+id/edittext_bookmaker_name"
+                style="@style/BaseEditTextStyle"
+                android:hint="@string/hint_bookmaker_name"
+                android:inputType="text"
+                android:maxLength="@integer/max_len_bet_name" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            style="@style/BaseTextInputLayoutStyle"
+            android:layout_marginTop="0dp">
+
+            <EditText
+                android:id="@+id/edittext_bet_odd"
+                style="@style/BaseEditTextStyle"
+                android:hint="@string/hint_odd"
+                android:inputType="text"
+                android:maxLength="@integer/max_len_bet_name" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            style="@style/BaseTextInputLayoutStyle"
+            android:layout_marginTop="0dp">
+
+            <EditText
+                android:id="@+id/edittext_bet_stake"
+                style="@style/BaseEditTextStyle"
+                android:hint="@string/hint_stake"
+                android:inputType="text"
+                android:maxLength="@integer/max_len_bet_name" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <LinearLayout
+            android:id="@+id/linearlayout_bankrolls"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/size_small"
-            android:entries="@array/sports" />
+            android:layout_marginLeft="@dimen/size_small"
+            android:layout_marginTop="@dimen/size_half"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/TextViewTitle"
+                android:text="@string/label_bankrolls"
+                android:textStyle="normal" />
+
+            <Spinner
+                android:id="@+id/spinner_bankrolls"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_small" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/size_small"
+            android:layout_marginTop="@dimen/size_half"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/TextViewTitle"
+                android:text="@string/label_sports"
+                android:textStyle="normal" />
+
+            <Spinner
+                android:id="@+id/spinner_sports"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_small"
+                android:entries="@array/sports" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearlayout_picks"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/size_small"
+            android:layout_marginTop="@dimen/size_half"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/TextViewTitle"
+                android:text="@string/label_pick"
+                android:textStyle="normal" />
+
+            <Spinner
+                android:id="@+id/spinner_picks"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_small"
+                android:entries="@array/picks" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/size_small"
+            android:layout_marginTop="@dimen/size_half"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/TextViewTitle"
+                android:text="@string/label_status"
+                android:textStyle="normal" />
+
+            <Spinner
+                android:id="@+id/spinner_status"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_small"
+                android:entries="@array/bet_status" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/button_add_bet"
+            style="@style/BaseButtonStyle"
+            android:layout_marginTop="@dimen/size_large"
+            android:text="@string/button_name_add_bet" />
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/size_small"
-        android:layout_marginTop="@dimen/size_half"
-        android:orientation="vertical">
+</ScrollView>
 
-        <TextView
-            style="@style/TextViewTitle"
-            android:text="@string/label_sports"
-            android:textStyle="normal" />
-
-        <Spinner
-            android:id="@+id/spinner_sports"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/size_small"
-            android:entries="@array/sports" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/size_small"
-        android:layout_marginTop="@dimen/size_half"
-        android:orientation="vertical">
-
-        <TextView
-            style="@style/TextViewTitle"
-            android:text="@string/label_status"
-            android:textStyle="normal" />
-
-        <Spinner
-            android:id="@+id/spinner_status"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/size_small"
-            android:entries="@array/bet_status" />
-
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/button_add_bet"
-        style="@style/BaseButtonStyle"
-        android:layout_marginTop="@dimen/size_large"
-        android:text="@string/button_name_add_bet" />
-
-</LinearLayout>

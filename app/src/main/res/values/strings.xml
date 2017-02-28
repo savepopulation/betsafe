@@ -20,10 +20,11 @@
     <string name="hint_odd">Odd</string>
 
     <!-- Labels -->
-    <string name="label_bankroll_privacy">Bankroll Privacy:</string>
-    <string name="label_sports">Sports:</string>
-    <string name="label_bankrolls">Bankroll:</string>
-    <string name="label_status">Status:</string>
+    <string name="label_bankroll_privacy">Bankroll Privacy</string>
+    <string name="label_sports">Sports</string>
+    <string name="label_bankrolls">Bankroll</string>
+    <string name="label_status">Status</string>
+    <string name="label_pick">Pick</string>
 
     <!-- Button Names -->
     <string name="button_name_add_bankroll">Create Bankroll</string>
@@ -61,6 +62,14 @@
         <item>Draw</item>
         <item>Cancelled</item>
         <item>Postponed</item>
+    </string-array>
+
+    <!-- Picks -->
+    <string-array name="picks">
+        <item>Home</item>
+        <item>Away</item>
+        <item>Over 2.5</item>
+        <item>Under 2.5</item>
     </string-array>
 
 </resources>

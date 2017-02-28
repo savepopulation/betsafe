@@ -11,7 +11,7 @@ import net.betsafeapp.android.data.source.BankRollRepositoryModule;
  * Created by tyln on 16/01/2017.
  */
 
-public class BetSafeApp extends Application {
+public final class BetSafeApp extends Application {
     @NonNull
     private BankRollRepositoryComponent mBankRollRepositoryComponent;
 

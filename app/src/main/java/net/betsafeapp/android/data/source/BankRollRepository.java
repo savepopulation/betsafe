@@ -5,7 +5,11 @@ import android.support.annotation.Nullable;
 import android.support.v4.util.ArrayMap;
 
 import net.betsafeapp.android.data.BankRoll;
+import net.betsafeapp.android.data.Pick;
 import net.betsafeapp.android.data.source.local.BankRollLocalDataSource;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -54,6 +58,11 @@ public final class BankRollRepository implements BankRollDataSource {
     public void createNewBankroll(@NonNull BankRoll bankRoll) {
         initCacheIfNeededAndPutBankroll(bankRoll);
         mBankRollLocalDataSource.createNewBankroll(bankRoll);
+    }
+
+    @Override
+    public Observable<Pick> getPicks() {
+        return mBankRollLocalDataSource.getPicks();
     }
 
     private void initCacheIfNeededAndPutBankroll(@NonNull BankRoll bankRoll) {

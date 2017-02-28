@@ -5,9 +5,14 @@ import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.WorkerThread;
 
+import net.betsafeapp.android.R;
 import net.betsafeapp.android.data.BankRoll;
+import net.betsafeapp.android.data.Pick;
 import net.betsafeapp.android.data.source.BankRollDataSource;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.inject.Singleton;
@@ -45,6 +50,20 @@ public class BankRollLocalDataSource implements BankRollDataSource {
     @Override
     public void createNewBankroll(@NonNull BankRoll bankRoll) {
         saveBankroll(bankRoll);
+    }
+
+    @Override
+    public Observable<Pick> getPicks() {
+        return Observable.create(new Observable.OnSubscribe<Pick>() {
+            @Override
+            public void call(Subscriber<? super Pick> subscriber) {
+                final String[] picksArray = mContext.getResources().getStringArray(R.array.picks);
+                for (int i = 0; i < picksArray.length; i++) {
+                    subscriber.onNext(new Pick(i, picksArray[i]));
+                }
+                subscriber.onCompleted();
+            }
+        });
     }
 
     @WorkerThread
