@@ -2,6 +2,7 @@ package net.betsafeapp.android.home;
 
 import android.support.annotation.NonNull;
 
+import net.betsafeapp.android.RxPresenter;
 import net.betsafeapp.android.data.BankRoll;
 import net.betsafeapp.android.data.source.BankRollRepository;
 import net.betsafeapp.android.util.ValidationUtil;
@@ -21,7 +22,7 @@ import rx.subscriptions.CompositeSubscription;
  * Created by tyln on 17/01/2017.
  */
 
-final class MainPresenter implements MainContract.Presenter {
+final class MainPresenter extends RxPresenter implements MainContract.Presenter {
     @NonNull
     private MainContract.View mView;
 
@@ -29,16 +30,13 @@ final class MainPresenter implements MainContract.Presenter {
     private final BankRollRepository mBankRollRepository;
 
     @NonNull
-    private final CompositeSubscription mCompositeSubscription;
-
-    @NonNull
     private final List<BankRoll> mBankRolls;
 
     @Inject
     MainPresenter(@NonNull MainContract.View view, @NonNull BankRollRepository safeRepository) {
+        super();
         this.mView = view;
         this.mBankRollRepository = safeRepository;
-        this.mCompositeSubscription = new CompositeSubscription();
         this.mBankRolls = new ArrayList<>();
 
         mView.setPresenter(this);
@@ -56,9 +54,7 @@ final class MainPresenter implements MainContract.Presenter {
 
     @Override
     public void unsubscribe() {
-        if (mCompositeSubscription.hasSubscriptions()) {
-            mCompositeSubscription.clear();
-        }
+        super.clearSubscriptions();
         mView.collapseFloatingActionsMenu();
     }
 
@@ -83,7 +79,7 @@ final class MainPresenter implements MainContract.Presenter {
     }
 
     private void getBankRolls() {
-        mCompositeSubscription.clear();
+        clearSubscriptions();
         mBankRolls.clear();
         final Subscription subscription = mBankRollRepository.getBankRolls()
                 .subscribeOn(Schedulers.io())

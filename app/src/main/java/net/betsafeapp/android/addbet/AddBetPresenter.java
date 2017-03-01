@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import net.betsafeapp.android.BasePresenter;
+import net.betsafeapp.android.RxPresenter;
 import net.betsafeapp.android.data.BankRoll;
 import net.betsafeapp.android.data.source.BankRollRepository;
 
@@ -23,7 +24,7 @@ import rx.subscriptions.Subscriptions;
  * Created by tyln on 26/01/2017.
  */
 
-final class AddBetPresenter implements AddBetContract.Presenter {
+final class AddBetPresenter extends RxPresenter implements AddBetContract.Presenter {
     @NonNull
     private AddBetContract.View mView;
 
@@ -33,17 +34,14 @@ final class AddBetPresenter implements AddBetContract.Presenter {
     @Nullable
     private final String mBankrollId;
 
-    @NonNull
-    private final CompositeSubscription mCompositeSubscriptions;
-
     @Inject
     AddBetPresenter(@NonNull AddBetContract.View view,
                     @NonNull BankRollRepository bankRollRepository,
                     @Nullable String bankrollId) {
+        super();
         this.mView = view;
         this.mBankRollRepository = bankRollRepository;
         this.mBankrollId = bankrollId;
-        this.mCompositeSubscriptions = new CompositeSubscription();
 
         mView.setPresenter(this);
     }
@@ -60,9 +58,7 @@ final class AddBetPresenter implements AddBetContract.Presenter {
 
     @Override
     public void unsubscribe() {
-        if (!mCompositeSubscriptions.isUnsubscribed()) {
-            mCompositeSubscriptions.unsubscribe();
-        }
+        clearSubscriptions();
     }
 
     @Override
@@ -91,6 +87,6 @@ final class AddBetPresenter implements AddBetContract.Presenter {
                         bankRolls.add(item);
                     }
                 });
-        mCompositeSubscriptions.add(bankrollSubscription);
+        mCompositeSubscription.add(bankrollSubscription);
     }
 }

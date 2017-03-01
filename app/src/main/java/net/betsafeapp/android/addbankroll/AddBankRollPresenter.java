@@ -3,6 +3,7 @@ package net.betsafeapp.android.addbankroll;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
+import net.betsafeapp.android.RxPresenter;
 import net.betsafeapp.android.data.BankRoll;
 import net.betsafeapp.android.data.source.BankRollRepository;
 import net.betsafeapp.android.data.factory.BankRollFactory;
