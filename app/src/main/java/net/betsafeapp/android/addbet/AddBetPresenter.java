@@ -87,6 +87,6 @@ final class AddBetPresenter extends RxPresenter implements AddBetContract.Presen
                         bankRolls.add(item);
                     }
                 });
-        mCompositeSubscription.add(bankrollSubscription);
+        addSubscription(bankrollSubscription);
     }
 }

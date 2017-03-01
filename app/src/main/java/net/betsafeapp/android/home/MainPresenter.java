@@ -54,7 +54,7 @@ final class MainPresenter extends RxPresenter implements MainContract.Presenter 
 
     @Override
     public void unsubscribe() {
-        super.clearSubscriptions();
+        clearSubscriptions();
         mView.collapseFloatingActionsMenu();
     }
 
@@ -81,7 +81,7 @@ final class MainPresenter extends RxPresenter implements MainContract.Presenter 
     private void getBankRolls() {
         clearSubscriptions();
         mBankRolls.clear();
-        final Subscription subscription = mBankRollRepository.getBankRolls()
+        final Subscription bankrollSubscription = mBankRollRepository.getBankRolls()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<BankRoll>() {
@@ -100,6 +100,6 @@ final class MainPresenter extends RxPresenter implements MainContract.Presenter 
                         mBankRolls.add(item);
                     }
                 });
-        mCompositeSubscription.add(subscription);
+        addSubscription(bankrollSubscription);
     }
 }

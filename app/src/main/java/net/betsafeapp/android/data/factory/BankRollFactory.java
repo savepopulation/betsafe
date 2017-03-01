@@ -15,10 +15,12 @@ import java.util.UUID;
  */
 
 public final class BankRollFactory {
+
     private BankRollFactory() {
         // Empty Private Constructor
     }
 
+    // Creates an initial bankroll
     @Nullable
     public static BankRoll newInstance(@NonNull String name, double initialCapital, int privacy) {
         if (ValidationUtil.isNullOrEmpty(name) || !ValidationUtil.isInitialAmountValid(initialCapital)) {
