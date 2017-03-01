@@ -37,7 +37,7 @@ public final class AddBetFragment extends BaseFragment implements AddBetContract
 
     @Override
     protected int getMenuRes() {
-        return Constants.NO_RES;
+        return R.menu.menu_add_bet;
     }
 
     @Override

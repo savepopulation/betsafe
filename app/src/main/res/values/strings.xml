@@ -18,6 +18,7 @@
     <string name="hint_bookmaker_name">Bookmaker</string>
     <string name="hint_stake">Stake</string>
     <string name="hint_odd">Odd</string>
+    <string name="hint_event_name">Event Name</string>
 
     <!-- Labels -->
     <string name="label_bankroll_privacy">Bankroll Privacy</string>

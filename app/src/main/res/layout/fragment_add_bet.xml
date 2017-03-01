@@ -14,7 +14,7 @@
             <EditText
                 android:id="@+id/edittext_bet_name"
                 style="@style/BaseEditTextStyle"
-                android:hint="@string/hint_bankroll_name"
+                android:hint="@string/hint_event_name"
                 android:inputType="text"
                 android:maxLength="@integer/max_len_bet_name" />
 
@@ -123,6 +123,7 @@
 
         </LinearLayout>
 
+        <!--
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -149,6 +150,8 @@
             style="@style/BaseButtonStyle"
             android:layout_marginTop="@dimen/size_large"
             android:text="@string/button_name_add_bet" />
+
+            -->
 
     </LinearLayout>
 
