@@ -17,6 +17,7 @@ import net.betsafeapp.android.Constants;
 import net.betsafeapp.android.R;
 import net.betsafeapp.android.addbankroll.AddBankRollActivity;
 import net.betsafeapp.android.addbet.AddBetActivity;
+import net.betsafeapp.android.bankroll.BankRollActivity;
 import net.betsafeapp.android.data.BankRoll;
 import net.betsafeapp.android.util.AlertUtil;
 import net.betsafeapp.android.util.DividerDecorator;
@@ -163,7 +164,12 @@ public final class MainFragment extends BaseFragment
     }
 
     @Override
-    public void onItemClicked(@Nullable String query) {
-        // Empty method
+    public void navigateToBankRollDetail(@NonNull String bankRollId) {
+        startActivity(BankRollActivity.newIntent(getActivity(), bankRollId));
+    }
+
+    @Override
+    public void onItemClicked(@Nullable String bankrollId) {
+        mPresenter.showBankRoll(bankrollId);
     }
 }

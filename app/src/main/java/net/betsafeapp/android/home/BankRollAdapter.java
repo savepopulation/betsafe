@@ -69,6 +69,6 @@ final class BankRollAdapter extends RecyclerView.Adapter<BankRollAdapter.ViewHol
     }
 
     interface ItemClickListener {
-        void onItemClicked(@Nullable String query);
+        void onItemClicked(@Nullable String bankRollId);
     }
 }

@@ -6,7 +6,10 @@ import android.support.annotation.Nullable;
 import net.betsafeapp.android.BasePresenter;
 import net.betsafeapp.android.RxPresenter;
 import net.betsafeapp.android.data.BankRoll;
+import net.betsafeapp.android.data.Bet;
+import net.betsafeapp.android.data.factory.BetFactory;
 import net.betsafeapp.android.data.source.BankRollRepository;
+import net.betsafeapp.android.util.ValidationUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -87,6 +90,25 @@ final class AddBetPresenter extends RxPresenter implements AddBetContract.Presen
                         bankRolls.add(item);
                     }
                 });
+
         addSubscription(bankrollSubscription);
+    }
+
+    @Override
+    public void addBet(@NonNull String bankrollId,
+                       @NonNull String eventName,
+                       @NonNull String bookmaker,
+                       double odd,
+                       double stake,
+                       int sport,
+                       int pick) {
+        final Bet bet = BetFactory.newInstance(eventName, bookmaker, bankrollId, odd, stake, sport, pick);
+        if (bet == null) {
+            mView.addBetError();
+            return;
+        }
+
+        mBankRollRepository.addBet(bankrollId, bet);
+        mView.betAddedSuccessfully();
     }
 }

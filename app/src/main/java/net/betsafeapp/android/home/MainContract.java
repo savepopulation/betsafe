@@ -25,11 +25,15 @@ interface MainContract {
         void emptyBankroll();
 
         void collapseFloatingActionsMenu();
+
+        void navigateToBankRollDetail(@NonNull String bankRollId);
     }
 
     interface Presenter extends BasePresenter {
         void addBankRoll();
 
         void addBet();
+
+        void showBankRoll(@NonNull String bankRollId);
     }
 }

@@ -4,8 +4,11 @@ import android.support.annotation.NonNull;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
+import io.realm.RealmList;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
@@ -41,6 +44,9 @@ public class BankRoll extends RealmObject {
 
     @SerializedName("updateDate")
     private long updateDate;
+
+    @SerializedName("bets")
+    private RealmList<Bet> bets;
 
     public BankRoll() {
         // Empty
@@ -136,5 +142,13 @@ public class BankRoll extends RealmObject {
 
     public void setUpdateDate(long updateDate) {
         this.updateDate = updateDate;
+    }
+
+    public RealmList<Bet> getBets() {
+        return bets;
+    }
+
+    public void setBets(RealmList<Bet> bets) {
+        this.bets = bets;
     }
 }

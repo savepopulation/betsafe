@@ -1,6 +1,7 @@
 package net.betsafeapp.android.home;
 
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import net.betsafeapp.android.RxPresenter;
 import net.betsafeapp.android.data.BankRoll;
@@ -76,6 +77,14 @@ final class MainPresenter extends RxPresenter implements MainContract.Presenter 
         } else {
             mView.navigateToAddBet();
         }
+    }
+
+    @Override
+    public void showBankRoll(@NonNull String bankRollId) {
+        if (ValidationUtil.isNullOrEmpty(bankRollId)) {
+            return;
+        }
+        mView.navigateToBankRollDetail(bankRollId);
     }
 
     private void getBankRolls() {

@@ -15,9 +15,19 @@ import java.util.List;
 interface AddBetContract {
     interface View extends BaseView<Presenter> {
         void showBankrolls(@NonNull List<BankRoll> bankrolls);
+
+        void addBetError();
+
+        void betAddedSuccessfully();
     }
 
     interface Presenter extends BasePresenter {
-        // Empty
+        void addBet(@NonNull String bankrollId,
+                    @NonNull String eventName,
+                    @NonNull String bookmaker,
+                    double odd,
+                    double stake,
+                    int sport,
+                    int pick);
     }
 }

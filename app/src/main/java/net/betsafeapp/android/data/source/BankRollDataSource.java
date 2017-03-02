@@ -1,8 +1,10 @@
 package net.betsafeapp.android.data.source;
 
 import android.support.annotation.NonNull;
+import android.support.annotation.StringDef;
 
 import net.betsafeapp.android.data.BankRoll;
+import net.betsafeapp.android.data.Bet;
 import net.betsafeapp.android.data.Pick;
 
 import rx.Observable;

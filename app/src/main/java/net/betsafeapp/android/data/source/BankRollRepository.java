@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.util.ArrayMap;
 
 import net.betsafeapp.android.data.BankRoll;
+import net.betsafeapp.android.data.Bet;
 import net.betsafeapp.android.data.Pick;
 import net.betsafeapp.android.data.source.local.BankRollLocalDataSource;
 
@@ -43,15 +44,15 @@ public final class BankRollRepository implements BankRollDataSource {
     public Observable<BankRoll> getBankRolls() {
         if (mBankrollCache != null && mBankrollCache.size() > 0) {
             return Observable.from(mBankrollCache.values());
-        } else {
-            return mBankRollLocalDataSource.getBankRolls()
-                    .doOnNext(new Action1<BankRoll>() {
-                        @Override
-                        public void call(BankRoll bankRoll) {
-                            initCacheIfNeededAndPutBankroll(bankRoll);
-                        }
-                    });
         }
+
+        return mBankRollLocalDataSource.getBankRolls()
+                .doOnNext(new Action1<BankRoll>() {
+                    @Override
+                    public void call(BankRoll bankRoll) {
+                        initCacheIfNeededAndPutBankroll(bankRoll);
+                    }
+                });
     }
 
     @Override
@@ -63,6 +64,21 @@ public final class BankRollRepository implements BankRollDataSource {
     @Override
     public Observable<Pick> getPicks() {
         return mBankRollLocalDataSource.getPicks();
+    }
+
+
+    public void addBet(@NonNull String bankrollId, @NonNull Bet bet) {
+        final BankRoll bankRoll = mBankrollCache.get(bankrollId);
+        if (bankRoll == null || bet == null) {
+            return;
+        }
+
+        List<Bet> bets = bankRoll.getBets();
+        if (bets == null) {
+            bets = new ArrayList<>();
+        }
+        bets.add(bet);
+        mBankRollLocalDataSource.saveBankroll(bankRoll);
     }
 
     private void initCacheIfNeededAndPutBankroll(@NonNull BankRoll bankRoll) {

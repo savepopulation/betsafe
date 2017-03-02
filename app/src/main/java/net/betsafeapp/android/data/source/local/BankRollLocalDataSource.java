@@ -7,6 +7,7 @@ import android.support.annotation.WorkerThread;
 
 import net.betsafeapp.android.R;
 import net.betsafeapp.android.data.BankRoll;
+import net.betsafeapp.android.data.Bet;
 import net.betsafeapp.android.data.Pick;
 import net.betsafeapp.android.data.source.BankRollDataSource;
 
@@ -67,23 +68,15 @@ public class BankRollLocalDataSource implements BankRollDataSource {
     }
 
     @WorkerThread
-    private void saveBankroll(@NonNull final BankRoll bankRoll) {
+    public void saveBankroll(@NonNull final BankRoll bankRoll) {
         new Thread(new Runnable() {
             @Override
             public void run() {
                 final Realm realm = Realm.getInstance(mRealmConfiguration);
                 realm.beginTransaction();
 
-                final BankRoll realmBankRoll = realm.createObject(BankRoll.class);
-                realmBankRoll.setId(bankRoll.getId());
-                realmBankRoll.setName(bankRoll.getName());
-                realmBankRoll.setType(bankRoll.getType());
-                realmBankRoll.setInitialCapital(bankRoll.getInitialCapital());
-                realmBankRoll.setCurrentCapital(bankRoll.getCurrentCapital());
-                realmBankRoll.setStatus(bankRoll.getStatus());
-                realmBankRoll.setPrivacy(bankRoll.getPrivacy());
-                realmBankRoll.setCreateDate(bankRoll.getCreateDate());
-                realmBankRoll.setUpdateDate(System.currentTimeMillis());
+                final BankRoll realmBankRoll = new BankRoll();
+                fillBankRoll(realmBankRoll, bankRoll);
 
                 realm.copyToRealmOrUpdate(realmBankRoll);
                 realm.commitTransaction();
@@ -105,5 +98,18 @@ public class BankRollLocalDataSource implements BankRollDataSource {
         realm.close();
 
         return bankRolls;
+    }
+
+    private void fillBankRoll(@NonNull BankRoll realmBankRoll, @NonNull BankRoll bankRoll) {
+        realmBankRoll.setId(bankRoll.getId());
+        realmBankRoll.setName(bankRoll.getName());
+        realmBankRoll.setType(bankRoll.getType());
+        realmBankRoll.setInitialCapital(bankRoll.getInitialCapital());
+        realmBankRoll.setCurrentCapital(bankRoll.getCurrentCapital());
+        realmBankRoll.setStatus(bankRoll.getStatus());
+        realmBankRoll.setPrivacy(bankRoll.getPrivacy());
+        realmBankRoll.setCreateDate(bankRoll.getCreateDate());
+        realmBankRoll.setUpdateDate(System.currentTimeMillis());
+        realmBankRoll.setBets(bankRoll.getBets());
     }
 }
