@@ -41,8 +41,6 @@ final class AddBetPresenter extends RxPresenter implements AddBetContract.Presen
     @Nullable
     private final String mBankrollId;
 
-    private int mDefaultBankRollPosition;
-
     @Inject
     AddBetPresenter(@NonNull AddBetContract.View view,
                     @NonNull BankRollRepository bankRollRepository,
@@ -52,7 +50,6 @@ final class AddBetPresenter extends RxPresenter implements AddBetContract.Presen
         this.mBankRollRepository = bankRollRepository;
         this.mBankRolls = new ArrayList<>();
         this.mBankrollId = bankrollId;
-        this.mDefaultBankRollPosition = -1;
 
         mView.setPresenter(this);
     }
@@ -78,16 +75,21 @@ final class AddBetPresenter extends RxPresenter implements AddBetContract.Presen
     }
 
     private void getBankrolls() {
-        // TODO improve rx implementation.
         final Subscription bankrollSubscription = mBankRollRepository.getBankRolls()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
+                .filter(new Func1<BankRoll, Boolean>() {
+                    @Override
+                    public Boolean call(BankRoll bankRoll) {
+                        return ValidationUtil.isNullOrEmpty(mBankrollId) || mBankrollId.equals(bankRoll.getId());
+                    }
+                })
                 .subscribe(new Observer<BankRoll>() {
                     @Override
                     public void onCompleted() {
                         mView.showBankrolls(mBankRolls);
-                        if (mDefaultBankRollPosition != -1) {
-                            mView.selectBankroll(mDefaultBankRollPosition);
+                        if (!ValidationUtil.isNullOrEmpty(mBankrollId) && mBankRolls.size() == 1) {
+                            mView.enableOrDisableBankRollSelection(false);
                         }
                     }
 
@@ -99,9 +101,6 @@ final class AddBetPresenter extends RxPresenter implements AddBetContract.Presen
                     @Override
                     public void onNext(BankRoll item) {
                         mBankRolls.add(item);
-                        if (!ValidationUtil.isNullOrEmpty(mBankrollId) && mBankrollId.equals(item.getId())) {
-                            mDefaultBankRollPosition = mBankRolls.size() - 1;
-                        }
                     }
                 });
 

@@ -123,8 +123,7 @@ public final class AddBetFragment extends BaseFragment implements AddBetContract
     }
 
     @Override
-    public void selectBankroll(int position) {
-        mSpinnerBankrolls.setSelection(position);
-        mSpinnerBankrolls.setEnabled(false);
+    public void enableOrDisableBankRollSelection(boolean isEnabled) {
+        mSpinnerBankrolls.setEnabled(isEnabled);
     }
 }

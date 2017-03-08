@@ -20,7 +20,7 @@ interface AddBetContract {
 
         void betAddedSuccessfully();
 
-        void selectBankroll(final int position);
+        void enableOrDisableBankRollSelection(final boolean isEnabled);
     }
 
     interface Presenter extends BasePresenter {
