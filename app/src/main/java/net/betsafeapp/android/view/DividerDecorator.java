@@ -1,4 +1,4 @@
-package net.betsafeapp.android.util;
+package net.betsafeapp.android.view;
 
 import android.content.Context;
 import android.graphics.Canvas;
