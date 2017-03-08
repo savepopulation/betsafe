@@ -56,7 +56,8 @@ public final class MainFragment extends BaseFragment
 
     @Override
     protected int getMenuRes() {
-        return Constants.NO_RES;
+        // TODO add xxxhdpi for settings and search icon
+        return R.menu.menu_main;
     }
 
     @Override

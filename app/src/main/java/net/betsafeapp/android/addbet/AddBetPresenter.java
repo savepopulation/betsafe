@@ -19,6 +19,7 @@ import javax.inject.Inject;
 import rx.Observer;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 import rx.subscriptions.CompositeSubscription;
 import rx.subscriptions.Subscriptions;
@@ -77,6 +78,7 @@ final class AddBetPresenter extends RxPresenter implements AddBetContract.Presen
     }
 
     private void getBankrolls() {
+        // TODO improve rx implementation.
         final Subscription bankrollSubscription = mBankRollRepository.getBankRolls()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

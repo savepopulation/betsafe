@@ -36,7 +36,7 @@ public final class MainActivity extends BaseActivity {
 
     @Override
     protected int getMenuRes() {
-        return R.menu.menu_main;
+        return Constants.NO_RES;
     }
 
     @Override
