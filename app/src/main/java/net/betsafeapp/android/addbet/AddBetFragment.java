@@ -113,7 +113,7 @@ public final class AddBetFragment extends BaseFragment implements AddBetContract
 
     @Override
     public void addBetError() {
-        AlertUtil.alert(getApplicationContext(), getString(R.string.error_message_add_bet));
+        AlertUtil.alert(getApplicationContext(), getString(R.string.error_message_validate_add_bet_inputs));
     }
 
     @Override
