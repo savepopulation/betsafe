@@ -85,6 +85,7 @@
     <style name="TextViewInformation" parent="TextViewDefault">
         <item name="android:color">@color/secondaryTextColor</item>
         <item name="android:textSize">@dimen/small_text_size</item>
+        <item name="android:maxLines">1</item>
     </style>
 
     <style name="BaseIndicator" parent="Widget.AppCompat.ProgressBar">

@@ -2,10 +2,12 @@ package net.betsafeapp.android.home;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import net.betsafeapp.android.R;
@@ -13,7 +15,6 @@ import net.betsafeapp.android.data.BankRoll;
 import net.betsafeapp.android.util.DateUtil;
 import net.betsafeapp.android.util.ValidationUtil;
 
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -21,6 +22,7 @@ import java.util.List;
  */
 
 final class BankRollAdapter extends RecyclerView.Adapter<BankRollAdapter.ViewHolder> {
+
     @NonNull
     private final List<BankRoll> mItems;
 
@@ -42,12 +44,31 @@ final class BankRollAdapter extends RecyclerView.Adapter<BankRollAdapter.ViewHol
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         final BankRoll bankRoll = mItems.get(position);
-        holder.mTextViewQuery.setText(bankRoll.getName());
-        String date = DateUtil.convertTime(bankRoll.getCreateDate());
+
+        holder.mTextViewBankrollName.setText(bankRoll.getName());
+        holder.mTextViewBalance.setText(String.valueOf(bankRoll.getCurrentCapital()));
+
+        int betCount = 0;
         if (!ValidationUtil.isNullOrEmpty(bankRoll.getBets())) {
-            date = date + " Bets Count: " + bankRoll.getBets().size();
+            betCount = bankRoll.getBets().size();
         }
-        holder.mTextViewDate.setText(date);
+        holder.mTextViewBetCount.setText(String.valueOf(betCount));
+
+        final String date = DateUtil.convertTime(bankRoll.getCreateDate());
+        holder.mTextViewCreateDate.setText(date);
+
+        int backgroundDrawableId = R.drawable.background_bankroll_profit_equal;
+        int imageResId = R.mipmap.ic_trending_neutral_white_24dp;
+        if (bankRoll.getInitialCapital() < bankRoll.getCurrentCapital()) {
+            backgroundDrawableId = R.drawable.background_bankroll_profit_plus;
+            imageResId = R.mipmap.ic_trending_up_white_24dp;
+        } else if (bankRoll.getInitialCapital() > bankRoll.getCurrentCapital()) {
+            backgroundDrawableId = R.drawable.background_bankroll_profit_negative;
+            imageResId = R.mipmap.ic_trending_down_white_24dp;
+        }
+        holder.mImageViewBankroll.setBackground(ContextCompat.getDrawable(holder.itemView.getContext(), backgroundDrawableId));
+        holder.mImageViewBankroll.setImageResource(imageResId);
+
         if (mItemClickListener != null) {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -63,14 +84,20 @@ final class BankRollAdapter extends RecyclerView.Adapter<BankRollAdapter.ViewHol
         return mItems.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
-        private final TextView mTextViewQuery;
-        private final TextView mTextViewDate;
+    final class ViewHolder extends RecyclerView.ViewHolder {
+        private final TextView mTextViewBankrollName;
+        private final TextView mTextViewCreateDate;
+        private final TextView mTextViewBalance;
+        private final TextView mTextViewBetCount;
+        private final ImageView mImageViewBankroll;
 
         ViewHolder(View itemView) {
             super(itemView);
-            mTextViewQuery = (TextView) itemView.findViewById(R.id.textview_bankroll_name);
-            mTextViewDate = (TextView) itemView.findViewById(R.id.textview_create_date);
+            mTextViewBankrollName = (TextView) itemView.findViewById(R.id.textview_bankroll_name);
+            mTextViewCreateDate = (TextView) itemView.findViewById(R.id.textview_create_date);
+            mTextViewBalance = (TextView) itemView.findViewById(R.id.textview_balance);
+            mTextViewBetCount = (TextView) itemView.findViewById(R.id.textview_bet_count);
+            mImageViewBankroll = (ImageView) itemView.findViewById(R.id.imageview_bakroll);
         }
     }
 

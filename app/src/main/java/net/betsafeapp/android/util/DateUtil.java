@@ -7,11 +7,12 @@ import java.text.SimpleDateFormat;
  */
 
 public final class DateUtil {
+
     private DateUtil() {
         // Empty Private Constructor
     }
 
-    private static final String DEFAULT_DATE_FORMAT = "dd.MM.yyyy - HH:mm";
+    private static final String DEFAULT_DATE_FORMAT = "dd.MM.yyyy";
 
     public static String convertTime(long timeInMilis) {
         final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DEFAULT_DATE_FORMAT);

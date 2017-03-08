@@ -7,4 +7,7 @@
     <color name="secondaryTextColor">#757575</color>
     <color name="colorPrimaryLight">#C8E6C9</color>
     <color name="colorDivider">#EEEEEE</color>
+    <color name="colorPositiveGreen">#4CAF50</color>
+    <color name="colorNegativeRed">#F44336</color>
+    <color name="colorNotrYellow">#FFC107</color>
 </resources>

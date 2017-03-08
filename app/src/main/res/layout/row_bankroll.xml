@@ -1,21 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/background_row_history"
-    android:orientation="vertical"
     android:padding="@dimen/default_padding">
 
-    <TextView
-        android:id="@+id/textview_bankroll_name"
-        style="@style/TextViewTitle"
-        android:textStyle="normal"
-        android:maxLines="1"/>
+    <ImageView
+        android:id="@+id/imageview_bakroll"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:padding="@dimen/size_small" />
 
-    <TextView
-        android:id="@+id/textview_create_date"
-        style="@style/TextViewInformation"
-        android:drawableLeft="@mipmap/ic_access_time_grey600_18dp"
-        android:layout_marginTop="4dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/size_default"
+        android:layout_toRightOf="@+id/imageview_bakroll"
+        android:orientation="vertical">
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/textview_bankroll_name"
+            style="@style/TextViewTitle"
+            android:maxLines="1"
+            android:textStyle="normal" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_small"
+            android:orientation="horizontal"
+            android:weightSum="100">
+
+            <TextView
+                android:id="@+id/textview_create_date"
+                style="@style/TextViewInformation"
+                android:layout_width="0dp"
+                android:layout_weight="33"
+                android:drawableLeft="@mipmap/ic_access_time_grey600_18dp" />
+
+            <TextView
+                android:id="@+id/textview_balance"
+                style="@style/TextViewInformation"
+                android:layout_width="0dp"
+                android:layout_weight="33"
+                android:drawableLeft="@mipmap/ic_account_balance_wallet_grey600_18dp" />
+
+            <TextView
+                android:id="@+id/textview_bet_count"
+                style="@style/TextViewInformation"
+                android:layout_width="0dp"
+                android:layout_weight="33"
+                android:drawableLeft="@mipmap/ic_shopping_cart_grey600_18dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>
