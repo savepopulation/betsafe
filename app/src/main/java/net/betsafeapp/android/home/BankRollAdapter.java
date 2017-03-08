@@ -54,7 +54,7 @@ final class BankRollAdapter extends RecyclerView.Adapter<BankRollAdapter.ViewHol
         }
         holder.mTextViewBetCount.setText(String.valueOf(betCount));
 
-        final String date = DateUtil.convertTime(bankRoll.getCreateDate());
+        final String date = DateUtil.convertTime(bankRoll.getUpdateDate());
         holder.mTextViewCreateDate.setText(date);
 
         int backgroundDrawableId = R.drawable.background_bankroll_profit_equal;
