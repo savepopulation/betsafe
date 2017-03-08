@@ -65,10 +65,10 @@ public final class AddBetActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        String bankrollId = null;
+        String bankrollId = "";
         final Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
-            bankrollId = bundle.getString(BUNDLE_BANKROLL_ID, null);
+            bankrollId = bundle.getString(BUNDLE_BANKROLL_ID);
         }
 
         AddBetFragment addBetFragment = (AddBetFragment) getSupportFragmentManager()

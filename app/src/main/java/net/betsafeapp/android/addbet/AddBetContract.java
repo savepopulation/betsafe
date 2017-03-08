@@ -19,6 +19,8 @@ interface AddBetContract {
         void addBetError();
 
         void betAddedSuccessfully();
+
+        void selectBankroll(final int position);
     }
 
     interface Presenter extends BasePresenter {

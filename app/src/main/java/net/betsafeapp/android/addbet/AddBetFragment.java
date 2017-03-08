@@ -87,7 +87,7 @@ public final class AddBetFragment extends BaseFragment implements AddBetContract
                         Utils.convertStringToDouble(mEditTextStake.getText().toString().trim()),
                         mSpinnerSports.getSelectedItemPosition(),
                         mSpinnerPicks.getSelectedItemPosition());
-                break;
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -120,5 +120,11 @@ public final class AddBetFragment extends BaseFragment implements AddBetContract
     public void betAddedSuccessfully() {
         AlertUtil.alert(getApplicationContext(), getString(R.string.success_message_new_bet_added_to_bankroll));
         getActivity().finish();
+    }
+
+    @Override
+    public void selectBankroll(int position) {
+        mSpinnerBankrolls.setSelection(position);
+        mSpinnerBankrolls.setEnabled(false);
     }
 }

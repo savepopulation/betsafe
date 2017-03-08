@@ -3,8 +3,10 @@ package net.betsafeapp.android.bankroll;
 import android.support.annotation.NonNull;
 
 import net.betsafeapp.android.RxPresenter;
+import net.betsafeapp.android.addbet.AddBetActivity;
 import net.betsafeapp.android.data.BankRoll;
 import net.betsafeapp.android.data.source.BankRollRepository;
+import net.betsafeapp.android.util.ValidationUtil;
 
 import javax.inject.Inject;
 
@@ -53,5 +55,14 @@ final class BankRollPresenter extends RxPresenter implements BankRollContract.Pr
     @Override
     public void destroy() {
         this.mView = null;
+    }
+
+    @Override
+    public void addBet() {
+        if (ValidationUtil.isNullOrEmpty(mBankRollId)) {
+            return;
+        }
+
+        mView.navigateToAddBet(mBankRollId);
     }
 }

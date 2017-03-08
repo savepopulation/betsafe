@@ -11,7 +11,9 @@ import android.widget.TextView;
 import net.betsafeapp.android.R;
 import net.betsafeapp.android.data.BankRoll;
 import net.betsafeapp.android.util.DateUtil;
+import net.betsafeapp.android.util.ValidationUtil;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -41,7 +43,11 @@ final class BankRollAdapter extends RecyclerView.Adapter<BankRollAdapter.ViewHol
     public void onBindViewHolder(ViewHolder holder, int position) {
         final BankRoll bankRoll = mItems.get(position);
         holder.mTextViewQuery.setText(bankRoll.getName());
-        holder.mTextViewDate.setText(DateUtil.convertTime(bankRoll.getCreateDate()));
+        String date = DateUtil.convertTime(bankRoll.getCreateDate());
+        if (!ValidationUtil.isNullOrEmpty(bankRoll.getBets())) {
+            date = date + " Bets Count: " + bankRoll.getBets().size();
+        }
+        holder.mTextViewDate.setText(date);
         if (mItemClickListener != null) {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

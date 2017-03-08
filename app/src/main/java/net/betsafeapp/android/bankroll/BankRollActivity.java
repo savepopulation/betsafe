@@ -42,7 +42,7 @@ public final class BankRollActivity extends BaseActivity {
 
     @Override
     protected int getMenuRes() {
-        return R.menu.menu_bankroll;
+        return Constants.NO_RES;
     }
 
     @Override
@@ -65,13 +65,13 @@ public final class BankRollActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
 
         String bankrollId = "";
-
         final Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             bankrollId = bundle.getString(BUNDLE_BANKROLL_ID, "");
         }
 
-        BankRollFragment bankRollFragment = (BankRollFragment) getSupportFragmentManager().findFragmentById(R.id.framelayout_main);
+        BankRollFragment bankRollFragment = (BankRollFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.framelayout_main);
 
         if (bankRollFragment == null) {
             bankRollFragment = BankRollFragment.newInstance();
