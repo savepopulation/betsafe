@@ -15,6 +15,7 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+import io.realm.RealmList;
 import rx.Observable;
 import rx.functions.Action0;
 import rx.functions.Action1;
@@ -66,22 +67,19 @@ public final class BankRollRepository implements BankRollDataSource {
         return mBankRollLocalDataSource.getPicks();
     }
 
-
-    public void addBet(@NonNull String bankrollId, @NonNull Bet bet) {
+    public void addBet(@Nullable String bankrollId, @Nullable Bet bet) {
         final BankRoll bankRoll = mBankrollCache.get(bankrollId);
         if (bankRoll == null || bet == null) {
             return;
         }
-
-        List<Bet> bets = bankRoll.getBets();
-        if (bets == null) {
-            bets = new ArrayList<>();
+        if (bankRoll.getBets() == null) {
+            bankRoll.setBets(new RealmList<Bet>());
         }
-        bets.add(bet);
+        bankRoll.getBets().add(bet);
         mBankRollLocalDataSource.saveBankroll(bankRoll);
     }
 
-    private void initCacheIfNeededAndPutBankroll(@NonNull BankRoll bankRoll) {
+    private void initCacheIfNeededAndPutBankroll(@Nullable BankRoll bankRoll) {
         if (bankRoll == null) {
             return;
         }
