@@ -27,6 +27,8 @@ interface MainContract {
         void collapseFloatingActionsMenu();
 
         void navigateToBankRollDetail(@NonNull String bankRollId);
+
+        void navigateToSettings();
     }
 
     interface Presenter extends BasePresenter {
@@ -35,5 +37,7 @@ interface MainContract {
         void addBet();
 
         void showBankRoll(@NonNull String bankRollId);
+
+        void showSettings();
     }
 }

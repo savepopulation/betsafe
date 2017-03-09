@@ -7,6 +7,7 @@ import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.getbase.floatingactionbutton.FloatingActionsMenu;
@@ -18,6 +19,7 @@ import net.betsafeapp.android.addbankroll.AddBankRollActivity;
 import net.betsafeapp.android.addbet.AddBetActivity;
 import net.betsafeapp.android.bankroll.BankRollActivity;
 import net.betsafeapp.android.data.BankRoll;
+import net.betsafeapp.android.settings.SettingsActivity;
 import net.betsafeapp.android.util.AlertUtil;
 import net.betsafeapp.android.view.DividerDecorator;
 
@@ -27,8 +29,9 @@ import java.util.List;
  * Created by tyln on 19/01/2017.
  */
 
-public final class MainFragment extends BaseFragment
-        implements MainContract.View, View.OnClickListener, BankRollAdapter.ItemClickListener {
+public final class MainFragment extends BaseFragment implements
+        MainContract.View, View.OnClickListener,
+        BankRollAdapter.ItemClickListener {
     @NonNull
     private MainContract.Presenter mPresenter;
 
@@ -103,6 +106,16 @@ public final class MainFragment extends BaseFragment
     }
 
     @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+                mPresenter.showSettings();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
     public void setPresenter(@NonNull MainContract.Presenter presenter) {
         this.mPresenter = presenter;
     }
@@ -166,6 +179,11 @@ public final class MainFragment extends BaseFragment
     @Override
     public void navigateToBankRollDetail(@NonNull String bankRollId) {
         startActivity(BankRollActivity.newIntent(getActivity(), bankRollId));
+    }
+
+    @Override
+    public void navigateToSettings() {
+        startActivity(SettingsActivity.newIntent(getActivity()));
     }
 
     @Override

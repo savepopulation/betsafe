@@ -87,6 +87,11 @@ final class MainPresenter extends RxPresenter implements MainContract.Presenter 
         mView.navigateToBankRollDetail(bankRollId);
     }
 
+    @Override
+    public void showSettings() {
+        mView.navigateToSettings();
+    }
+
     private void getBankRolls() {
         clearSubscriptions();
         mBankRolls.clear();
