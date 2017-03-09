@@ -1,6 +1,7 @@
 package net.betsafeapp.android.home;
 
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import net.betsafeapp.android.BasePresenter;
 import net.betsafeapp.android.BaseView;
@@ -39,5 +40,7 @@ interface MainContract {
         void showBankRoll(@NonNull String bankRollId);
 
         void showSettings();
+
+        void search(@Nullable String query);
     }
 }

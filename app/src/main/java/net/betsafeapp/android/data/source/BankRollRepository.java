@@ -8,6 +8,7 @@ import net.betsafeapp.android.data.BankRoll;
 import net.betsafeapp.android.data.Bet;
 import net.betsafeapp.android.data.Pick;
 import net.betsafeapp.android.data.source.local.BankRollLocalDataSource;
+import net.betsafeapp.android.util.ValidationUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +20,7 @@ import io.realm.RealmList;
 import rx.Observable;
 import rx.functions.Action0;
 import rx.functions.Action1;
+import rx.functions.Func1;
 
 /**
  * Created by tyln on 17/01/2017.
@@ -42,6 +44,7 @@ public final class BankRollRepository implements BankRollDataSource {
     }
 
     @Override
+    @NonNull
     public Observable<BankRoll> getBankRolls() {
         if (mBankrollCache != null && mBankrollCache.size() > 0) {
             return Observable.from(mBankrollCache.values());
@@ -63,6 +66,20 @@ public final class BankRollRepository implements BankRollDataSource {
     }
 
     @Override
+    @NonNull
+    public Observable<BankRoll> searchBankroll(@Nullable final String query) {
+        return getBankRolls().filter(new Func1<BankRoll, Boolean>() {
+            @Override
+            public Boolean call(BankRoll bankRoll) {
+                return ValidationUtil.isNullOrEmpty(query)
+                        || ValidationUtil.isNullOrEmpty(bankRoll.getName())
+                        || bankRoll.getName().contains(query);
+            }
+        });
+    }
+
+    @Override
+    @NonNull
     public Observable<Pick> getPicks() {
         return mBankRollLocalDataSource.getPicks();
     }

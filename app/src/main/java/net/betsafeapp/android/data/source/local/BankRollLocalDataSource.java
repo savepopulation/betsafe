@@ -3,6 +3,7 @@ package net.betsafeapp.android.data.source.local;
 import android.content.Context;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.annotation.WorkerThread;
 
 import net.betsafeapp.android.R;
@@ -54,6 +55,12 @@ public class BankRollLocalDataSource implements BankRollDataSource {
     }
 
     @Override
+    public Observable<BankRoll> searchBankroll(@Nullable String query) {
+        // TODO implement db search
+        return Observable.empty();
+    }
+
+    @Override
     public Observable<Pick> getPicks() {
         return Observable.create(new Observable.OnSubscribe<Pick>() {
             @Override
@@ -69,6 +76,7 @@ public class BankRollLocalDataSource implements BankRollDataSource {
 
     @WorkerThread
     public void saveBankroll(@NonNull final BankRoll bankRoll) {
+        // TODO implement Realm async
         new Thread(new Runnable() {
             @Override
             public void run() {

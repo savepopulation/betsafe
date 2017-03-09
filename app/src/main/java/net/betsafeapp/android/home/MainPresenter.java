@@ -1,6 +1,7 @@
 package net.betsafeapp.android.home;
 
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
 
 import net.betsafeapp.android.RxPresenter;
@@ -16,6 +17,7 @@ import javax.inject.Inject;
 import rx.Observer;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 import rx.subscriptions.CompositeSubscription;
 
@@ -33,8 +35,12 @@ final class MainPresenter extends RxPresenter implements MainContract.Presenter 
     @NonNull
     private final List<BankRoll> mBankRolls;
 
+    @Nullable
+    private String mQuery;
+
     @Inject
-    MainPresenter(@NonNull MainContract.View view, @NonNull BankRollRepository safeRepository) {
+    MainPresenter(@NonNull MainContract.View view,
+                  @NonNull BankRollRepository safeRepository) {
         super();
         this.mView = view;
         this.mBankRollRepository = safeRepository;
@@ -50,7 +56,11 @@ final class MainPresenter extends RxPresenter implements MainContract.Presenter 
 
     @Override
     public void subscribe() {
-        getBankRolls();
+        if (ValidationUtil.isNullOrEmpty(mQuery)) {
+            getBankRolls();
+        } else {
+            searchBankRollsByName();
+        }
     }
 
     @Override
@@ -92,28 +102,49 @@ final class MainPresenter extends RxPresenter implements MainContract.Presenter 
         mView.navigateToSettings();
     }
 
+    @Override
+    public void search(@Nullable String query) {
+        this.mQuery = query;
+        searchBankRollsByName();
+    }
+
     private void getBankRolls() {
         clearSubscriptions();
         mBankRolls.clear();
         final Subscription bankrollSubscription = mBankRollRepository.getBankRolls()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<BankRoll>() {
-                    @Override
-                    public void onCompleted() {
-                        mView.notifyBankRollDataChanged();
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        mView.alert(e.getMessage());
-                    }
-
-                    @Override
-                    public void onNext(BankRoll item) {
-                        mBankRolls.add(item);
-                    }
-                });
+                .subscribe(getBankRollObserver());
         addSubscription(bankrollSubscription);
+    }
+
+    private void searchBankRollsByName() {
+        clearSubscriptions();
+        mBankRolls.clear();
+        final Subscription searchSubscription = mBankRollRepository.searchBankroll(mQuery)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(getBankRollObserver());
+        addSubscription(searchSubscription);
+    }
+
+    @NonNull
+    private Observer<BankRoll> getBankRollObserver() {
+        return new Observer<BankRoll>() {
+            @Override
+            public void onCompleted() {
+                mView.notifyBankRollDataChanged();
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                mView.alert(e.getMessage());
+            }
+
+            @Override
+            public void onNext(BankRoll bankRoll) {
+                mBankRolls.add(bankRoll);
+            }
+        };
     }
 }
