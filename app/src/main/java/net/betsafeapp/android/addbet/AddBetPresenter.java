@@ -28,9 +28,7 @@ import rx.subscriptions.Subscriptions;
  * Created by tyln on 26/01/2017.
  */
 
-final class AddBetPresenter extends RxPresenter implements AddBetContract.Presenter {
-    @NonNull
-    private AddBetContract.View mView;
+final class AddBetPresenter extends RxPresenter<AddBetContract.View> implements AddBetContract.Presenter {
 
     @NonNull
     private final BankRollRepository mBankRollRepository;
@@ -45,7 +43,7 @@ final class AddBetPresenter extends RxPresenter implements AddBetContract.Presen
     AddBetPresenter(@NonNull AddBetContract.View view,
                     @NonNull BankRollRepository bankRollRepository,
                     @Nullable String bankrollId) {
-        super();
+        super(view);
         this.mView = view;
         this.mBankRollRepository = bankRollRepository;
         this.mBankRolls = new ArrayList<>();
@@ -62,16 +60,6 @@ final class AddBetPresenter extends RxPresenter implements AddBetContract.Presen
     @Override
     public void subscribe() {
         getBankrolls();
-    }
-
-    @Override
-    public void unsubscribe() {
-        clearSubscriptions();
-    }
-
-    @Override
-    public void destroy() {
-        this.mView = null;
     }
 
     private void getBankrolls() {

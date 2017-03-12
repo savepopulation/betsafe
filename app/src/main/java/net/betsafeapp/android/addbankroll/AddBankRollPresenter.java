@@ -15,9 +15,8 @@ import javax.inject.Inject;
  * Created by tyln on 19/01/2017.
  */
 
-final class AddBankRollPresenter implements AddBankRollContract.Presenter {
-    @NonNull
-    private AddBankRollContract.View mView;
+final class AddBankRollPresenter extends RxPresenter<AddBankRollContract.View>
+        implements AddBankRollContract.Presenter {
 
     @NonNull
     private BankRollRepository mBankRollRepository;
@@ -27,7 +26,7 @@ final class AddBankRollPresenter implements AddBankRollContract.Presenter {
 
     @Inject
     AddBankRollPresenter(@NonNull AddBankRollContract.View view, @NonNull BankRollRepository bankRollRepository) {
-        this.mView = view;
+        super(view);
         this.mBankRollRepository = bankRollRepository;
         this.isInitialCapitalValid = false;
         this.isInitialCapitalValid = false;
@@ -43,16 +42,6 @@ final class AddBankRollPresenter implements AddBankRollContract.Presenter {
     @Override
     public void subscribe() {
         // Empty method
-    }
-
-    @Override
-    public void unsubscribe() {
-        // Empty method
-    }
-
-    @Override
-    public void destroy() {
-        this.mView = null;
     }
 
     @Override

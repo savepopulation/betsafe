@@ -10,12 +10,30 @@ import rx.subscriptions.CompositeSubscription;
  * Created by tyln on 01/03/2017.
  */
 
-public abstract class RxPresenter {
+public abstract class RxPresenter<T extends BaseView> implements BasePresenter {
+    @Nullable
+    protected T mView;
+
     @NonNull
     private final CompositeSubscription mCompositeSubscription;
 
-    protected RxPresenter() {
+    protected RxPresenter(@NonNull T view) {
+        this.mView = view;
         this.mCompositeSubscription = new CompositeSubscription();
+    }
+
+    public abstract void start();
+
+    public abstract void subscribe();
+
+    @Override
+    public void unsubscribe() {
+        clearSubscriptions();
+    }
+
+    @Override
+    public void destroy() {
+        this.mView = null;
     }
 
     protected void clearSubscriptions() {

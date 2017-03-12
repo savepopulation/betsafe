@@ -1,5 +1,6 @@
 package net.betsafeapp.android.home;
 
+import android.support.annotation.CallSuper;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -25,9 +26,8 @@ import rx.subscriptions.CompositeSubscription;
  * Created by tyln on 17/01/2017.
  */
 
-final class MainPresenter extends RxPresenter implements MainContract.Presenter {
-    @NonNull
-    private MainContract.View mView;
+final class MainPresenter extends RxPresenter<MainContract.View> implements
+        MainContract.Presenter {
 
     @NonNull
     private final BankRollRepository mBankRollRepository;
@@ -41,8 +41,8 @@ final class MainPresenter extends RxPresenter implements MainContract.Presenter 
     @Inject
     MainPresenter(@NonNull MainContract.View view,
                   @NonNull BankRollRepository safeRepository) {
-        super();
-        this.mView = view;
+        super(view);
+        mView = view;
         this.mBankRollRepository = safeRepository;
         this.mBankRolls = new ArrayList<>();
 
@@ -63,15 +63,11 @@ final class MainPresenter extends RxPresenter implements MainContract.Presenter 
         }
     }
 
+    @CallSuper
     @Override
     public void unsubscribe() {
-        clearSubscriptions();
+        super.unsubscribe();
         mView.collapseFloatingActionsMenu();
-    }
-
-    @Override
-    public void destroy() {
-        this.mView = null;
     }
 
     @Override
