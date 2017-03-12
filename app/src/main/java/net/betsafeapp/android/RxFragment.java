@@ -27,8 +27,8 @@ public abstract class RxFragment<T extends BasePresenter> extends BaseFragment i
 
     @Override
     public void onPause() {
-        super.onPause();
         mPresenter.unsubscribe();
+        super.onPause();
     }
 
     @Override
@@ -38,12 +38,12 @@ public abstract class RxFragment<T extends BasePresenter> extends BaseFragment i
     }
 
     @Override
-    public void alert(@Nullable String message) {
-        AlertUtil.alert(getApplicationContext(), message);
+    public void setPresenter(@NonNull T presenter) {
+        this.mPresenter = presenter;
     }
 
     @Override
-    public void setPresenter(@NonNull T presenter) {
-        this.mPresenter = presenter;
+    public void alert(@Nullable String message) {
+        AlertUtil.alert(getApplicationContext(), message);
     }
 }
