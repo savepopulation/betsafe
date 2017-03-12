@@ -12,6 +12,7 @@ import android.view.View;
 import net.betsafeapp.android.BaseActivity;
 import net.betsafeapp.android.BaseFragment;
 import net.betsafeapp.android.R;
+import net.betsafeapp.android.RxFragment;
 import net.betsafeapp.android.addbet.AddBetActivity;
 import net.betsafeapp.android.util.AlertUtil;
 
@@ -19,9 +20,8 @@ import net.betsafeapp.android.util.AlertUtil;
  * Created by tyln on 02/03/2017.
  */
 
-public final class BankRollFragment extends BaseFragment implements BankRollContract.View {
-    @NonNull
-    private BankRollContract.Presenter mPresenter;
+public final class BankRollFragment extends RxFragment<BankRollContract.Presenter>
+        implements BankRollContract.View {
 
     //Views
     private Toolbar mToolbar;
@@ -58,12 +58,6 @@ public final class BankRollFragment extends BaseFragment implements BankRollCont
     }
 
     @Override
-    public void onStart() {
-        super.onStart();
-        mPresenter.start();
-    }
-
-    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_add_bet:
@@ -71,16 +65,6 @@ public final class BankRollFragment extends BaseFragment implements BankRollCont
                 return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void setPresenter(@NonNull BankRollContract.Presenter presenter) {
-        this.mPresenter = presenter;
-    }
-
-    @Override
-    public void alert(@Nullable String message) {
-        AlertUtil.alert(getApplicationContext(), message);
     }
 
     @Override

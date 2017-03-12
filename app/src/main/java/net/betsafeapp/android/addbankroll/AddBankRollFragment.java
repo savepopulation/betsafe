@@ -14,6 +14,7 @@ import android.widget.Spinner;
 import net.betsafeapp.android.BaseFragment;
 import net.betsafeapp.android.Constants;
 import net.betsafeapp.android.R;
+import net.betsafeapp.android.RxFragment;
 import net.betsafeapp.android.util.AlertUtil;
 import net.betsafeapp.android.util.Utils;
 
@@ -21,9 +22,9 @@ import net.betsafeapp.android.util.Utils;
  * Created by tyln on 19/01/2017.
  */
 
-public final class AddBankRollFragment extends BaseFragment implements AddBankRollContract.View, View.OnClickListener {
-    @NonNull
-    private AddBankRollContract.Presenter mPresenter;
+public final class AddBankRollFragment extends RxFragment<AddBankRollContract.Presenter>
+        implements AddBankRollContract.View,
+        View.OnClickListener {
 
     private EditText mEditTextBankRollName;
     private EditText mEditTextBankRollInitialAmount;
@@ -90,22 +91,6 @@ public final class AddBankRollFragment extends BaseFragment implements AddBankRo
 
         mButtonAddBankRoll = (Button) view.findViewById(R.id.button_add_bankroll);
         mButtonAddBankRoll.setOnClickListener(this);
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        mPresenter.start();
-    }
-
-    @Override
-    public void setPresenter(@NonNull AddBankRollContract.Presenter presenter) {
-        this.mPresenter = presenter;
-    }
-
-    @Override
-    public void alert(@Nullable String message) {
-        AlertUtil.alert(getApplicationContext(), message);
     }
 
     @Override

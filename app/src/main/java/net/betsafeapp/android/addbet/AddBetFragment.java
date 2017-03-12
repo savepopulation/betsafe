@@ -10,6 +10,7 @@ import android.widget.Spinner;
 
 import net.betsafeapp.android.BaseFragment;
 import net.betsafeapp.android.R;
+import net.betsafeapp.android.RxFragment;
 import net.betsafeapp.android.data.BankRoll;
 import net.betsafeapp.android.util.AlertUtil;
 import net.betsafeapp.android.util.Utils;
@@ -20,9 +21,8 @@ import java.util.List;
  * Created by tyln on 26/01/2017.
  */
 
-public final class AddBetFragment extends BaseFragment implements AddBetContract.View {
-    @NonNull
-    private AddBetContract.Presenter mPresenter;
+public final class AddBetFragment extends RxFragment<AddBetContract.Presenter>
+        implements AddBetContract.View {
 
     // Views
     private EditText mEditTextEventName;
@@ -64,18 +64,6 @@ public final class AddBetFragment extends BaseFragment implements AddBetContract
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-        mPresenter.subscribe();
-    }
-
-    @Override
-    public void onPause() {
-        mPresenter.unsubscribe();
-        super.onPause();
-    }
-
-    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_add_bet:
@@ -90,16 +78,6 @@ public final class AddBetFragment extends BaseFragment implements AddBetContract
                 return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void setPresenter(@NonNull AddBetContract.Presenter presenter) {
-        this.mPresenter = presenter;
-    }
-
-    @Override
-    public void alert(@Nullable String message) {
-        AlertUtil.alert(getApplicationContext(), message);
     }
 
     @Override

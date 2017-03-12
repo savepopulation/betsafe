@@ -17,6 +17,7 @@ import com.getbase.floatingactionbutton.FloatingActionsMenu;
 import net.betsafeapp.android.BaseFragment;
 import net.betsafeapp.android.Constants;
 import net.betsafeapp.android.R;
+import net.betsafeapp.android.RxFragment;
 import net.betsafeapp.android.addbankroll.AddBankRollActivity;
 import net.betsafeapp.android.addbet.AddBetActivity;
 import net.betsafeapp.android.bankroll.BankRollActivity;
@@ -31,11 +32,10 @@ import java.util.List;
  * Created by tyln on 19/01/2017.
  */
 
-public final class MainFragment extends BaseFragment implements
-        MainContract.View, View.OnClickListener,
+public final class MainFragment extends RxFragment<MainContract.Presenter> implements
+        MainContract.View,
+        View.OnClickListener,
         BankRollAdapter.ItemClickListener {
-    @NonNull
-    private MainContract.Presenter mPresenter;
 
     @NonNull
     private RecyclerView mRecyclerViewBankRolls;
@@ -83,29 +83,6 @@ public final class MainFragment extends BaseFragment implements
         view.findViewById(R.id.action_new_bankroll).setOnClickListener(this);
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        mPresenter.start();
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        mPresenter.subscribe();
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        mPresenter.unsubscribe();
-    }
-
-    @Override
-    public void onDestroy() {
-        mPresenter.destroy();
-        super.onDestroy();
-    }
 
     @Override
     public void onPrepareOptionsMenu(Menu menu) {
@@ -135,16 +112,6 @@ public final class MainFragment extends BaseFragment implements
                 return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void setPresenter(@NonNull MainContract.Presenter presenter) {
-        this.mPresenter = presenter;
-    }
-
-    @Override
-    public void alert(@Nullable String message) {
-        AlertUtil.alert(getApplicationContext(), message);
     }
 
     @Override

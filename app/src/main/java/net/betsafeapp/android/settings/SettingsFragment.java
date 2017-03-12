@@ -6,15 +6,15 @@ import android.support.annotation.Nullable;
 import net.betsafeapp.android.BaseFragment;
 import net.betsafeapp.android.Constants;
 import net.betsafeapp.android.R;
+import net.betsafeapp.android.RxFragment;
 import net.betsafeapp.android.util.AlertUtil;
 
 /**
  * Created by tyln on 09/03/2017.
  */
 
-public final class SettingsFragment extends BaseFragment implements SettingsContract.View {
-    @NonNull
-    private SettingsContract.Presenter mPresenter;
+public final class SettingsFragment extends RxFragment<SettingsContract.Presenter>
+        implements SettingsContract.View {
 
     @NonNull
     public static SettingsFragment newInstance() {
@@ -29,21 +29,5 @@ public final class SettingsFragment extends BaseFragment implements SettingsCont
     @Override
     protected int getMenuRes() {
         return Constants.NO_RES;
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        mPresenter.start();
-    }
-
-    @Override
-    public void setPresenter(@NonNull SettingsContract.Presenter presenter) {
-        this.mPresenter = presenter;
-    }
-
-    @Override
-    public void alert(@Nullable String message) {
-        AlertUtil.alert(getApplicationContext(), message);
     }
 }
