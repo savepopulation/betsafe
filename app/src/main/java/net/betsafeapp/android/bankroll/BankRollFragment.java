@@ -3,13 +3,15 @@ package net.betsafeapp.android.bankroll;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 
+import net.betsafeapp.android.BaseActivity;
 import net.betsafeapp.android.BaseFragment;
-import net.betsafeapp.android.Constants;
 import net.betsafeapp.android.R;
-import net.betsafeapp.android.addbankroll.AddBankRollActivity;
 import net.betsafeapp.android.addbet.AddBetActivity;
 import net.betsafeapp.android.util.AlertUtil;
 
@@ -20,6 +22,9 @@ import net.betsafeapp.android.util.AlertUtil;
 public final class BankRollFragment extends BaseFragment implements BankRollContract.View {
     @NonNull
     private BankRollContract.Presenter mPresenter;
+
+    //Views
+    private Toolbar mToolbar;
 
     @NonNull
     public static BankRollFragment newInstance() {
@@ -39,6 +44,17 @@ public final class BankRollFragment extends BaseFragment implements BankRollCont
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        mToolbar = (Toolbar) view.findViewById(R.id.toolbar_main);
+        mToolbar.setNavigationIcon(R.mipmap.ic_arrow_back_white_24dp);
+        ((BaseActivity) getActivity()).setSupportActionBar(mToolbar);
+
+        final ViewPager viewPagerBankRollTabs = (ViewPager) view.findViewById(R.id.viewpager_bankroll);
+        final TabLayout tabLayout = (TabLayout) view.findViewById(R.id.tabs);
+        final BankRollTabsAdapter bankRollTabsAdapter = new BankRollTabsAdapter(getChildFragmentManager(),
+                getResources().getStringArray(R.array.tabs_bankroll));
+        viewPagerBankRollTabs.setAdapter(bankRollTabsAdapter);
+        tabLayout.setupWithViewPager(viewPagerBankRollTabs);
     }
 
     @Override
@@ -70,5 +86,10 @@ public final class BankRollFragment extends BaseFragment implements BankRollCont
     @Override
     public void navigateToAddBet(@NonNull String defaultBankRollId) {
         startActivity(AddBetActivity.newIntent(getActivity(), defaultBankRollId));
+    }
+
+    @Override
+    public void initToolbar() {
+        //TODO set bankroll name to title
     }
 }

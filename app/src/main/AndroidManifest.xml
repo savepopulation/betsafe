@@ -20,8 +20,13 @@
         </activity>
 
         <activity android:name=".addbankroll.AddBankRollActivity" />
+
         <activity android:name=".addbet.AddBetActivity" />
-        <activity android:name=".bankroll.BankRollActivity" />
+
+        <activity
+            android:name=".bankroll.BankRollActivity"
+            android:theme="@style/AppThemeNoActionBar" />
+
         <activity android:name=".settings.SettingsActivity" />
 
     </application>

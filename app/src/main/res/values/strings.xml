@@ -8,6 +8,11 @@
     <string name="action_add_bet">Add Bet</string>
     <string name="action_search">Search</string>
     <string name="action_filter">Filter</string>
+    <string name="action_edit">Edit</string>
+    <string name="action_options">Options</string>
+    <string name="action_share">Share</string>
+    <string name="action_close">Close</string>
+    <string name="action_delete">Delete</string>
 
     <!-- Screen Titles -->
     <string name="screen_title_add_bankroll">Add Bankroll</string>
@@ -46,6 +51,12 @@
     <string name="error_message_empty_bankrolls">You need to add a Bankroll first.</string>
     <string name="error_message_add_bet">Bet could not be added. Please try again!</string>
     <string name="error_message_validate_add_bet_inputs">All fields are required. Please check your inputs.</string>
+
+    <!-- Tab Titles -->
+    <string-array name="tabs_bankroll">
+        <item>Details</item>
+        <item>History</item>
+    </string-array>
 
     <!-- Banroll Privacy Types -->
     <string-array name="bankroll_privacy_types">

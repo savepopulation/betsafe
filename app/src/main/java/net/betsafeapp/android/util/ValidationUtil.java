@@ -23,6 +23,10 @@ public final class ValidationUtil {
         return initialAmount > 0;
     }
 
+    public static boolean isNullOrEmpty(@Nullable CharSequence s) {
+        return s == null || s.length() == 0;
+    }
+
     public static boolean isNullOrEmpty(@Nullable Collection collection) {
         return collection == null || collection.size() == 0;
     }

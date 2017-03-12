@@ -13,6 +13,8 @@ import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import net.betsafeapp.android.util.ValidationUtil;
+
 /**
  * Created by tyln on 16/01/2017.
  */
@@ -62,7 +64,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     @UiThread
     protected final void setActionbarTitle(@Nullable CharSequence title) {
-        if (!TextUtils.isEmpty(title)) {
+        if (!ValidationUtil.isNullOrEmpty(title)) {
             final ActionBar actionBar = getSupportActionBar();
             if (actionBar != null) {
                 actionBar.setTitle(title);
@@ -70,6 +72,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
     }
 
+    @UiThread
     private void setupActionBar() {
         final ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {

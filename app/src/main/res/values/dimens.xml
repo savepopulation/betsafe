@@ -8,6 +8,7 @@
     <dimen name="size_default">16dp</dimen>
     <dimen name="size_half">8dp</dimen>
     <dimen name="size_small">4dp</dimen>
+    <dimen name="default_toolbar_content_inset">16dp</dimen>
 
     <!-- Text Sizes -->
     <dimen name="default_text_size">14sp</dimen>
