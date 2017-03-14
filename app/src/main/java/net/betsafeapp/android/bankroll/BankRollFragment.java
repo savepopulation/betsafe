@@ -23,9 +23,6 @@ import net.betsafeapp.android.util.AlertUtil;
 public final class BankRollFragment extends RxFragment<BankRollContract.Presenter>
         implements BankRollContract.View {
 
-    //Views
-    private Toolbar mToolbar;
-
     @NonNull
     public static BankRollFragment newInstance() {
         return new BankRollFragment();
@@ -45,9 +42,9 @@ public final class BankRollFragment extends RxFragment<BankRollContract.Presente
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        mToolbar = (Toolbar) view.findViewById(R.id.toolbar_main);
-        mToolbar.setNavigationIcon(R.mipmap.ic_arrow_back_white_24dp);
-        ((BaseActivity) getActivity()).setSupportActionBar(mToolbar);
+        final Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar_main);
+        toolbar.setNavigationIcon(R.mipmap.ic_arrow_back_white_24dp);
+        ((BaseActivity) getActivity()).setSupportActionBar(toolbar);
 
         final ViewPager viewPagerBankRollTabs = (ViewPager) view.findViewById(R.id.viewpager_bankroll);
         final TabLayout tabLayout = (TabLayout) view.findViewById(R.id.tabs);
@@ -63,6 +60,10 @@ public final class BankRollFragment extends RxFragment<BankRollContract.Presente
             case R.id.action_add_bet:
                 mPresenter.addBet();
                 return true;
+
+            case R.id.action_delete:
+                mPresenter.deleteBankRoll();
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -75,5 +76,11 @@ public final class BankRollFragment extends RxFragment<BankRollContract.Presente
     @Override
     public void initToolbar(@NonNull String bankRollName) {
         ((BaseActivity) getActivity()).setActionbarTitle(bankRollName);
+    }
+
+    @Override
+    public void bankRollDeleted(@NonNull String bankRollName) {
+        alert(getString(R.string.success_message_bankroll_deleted, bankRollName));
+        getActivity().finish();
     }
 }

@@ -67,6 +67,18 @@ public class BankRollLocalDataSource implements BankRollDataSource {
     }
 
     @Override
+    public void deleteBankRoll(@NonNull final String bankRollId) {
+        final Realm realm = Realm.getInstance(mRealmConfiguration);
+        realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                final RealmResults<BankRoll> bankRolls = realm.where(BankRoll.class).equalTo("id", bankRollId).findAll();
+                bankRolls.deleteAllFromRealm();
+            }
+        });
+    }
+
+    @Override
     public Observable<Pick> getPicks() {
         return Observable.create(new Observable.OnSubscribe<Pick>() {
             @Override

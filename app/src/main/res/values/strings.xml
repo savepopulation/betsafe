@@ -45,6 +45,7 @@
     <!-- Success Messages -->
     <string name="success_message_new_bankroll_created">New Bankroll created successfully!</string>
     <string name="success_message_new_bet_added_to_bankroll">Your bet added. Good luck!</string>
+    <string name="success_message_bankroll_deleted">%1$s deleted successfully!</string>
 
     <!-- Error Messages -->
     <string name="error_message_cannot_create_bankroll">An unknown error occurred!</string>

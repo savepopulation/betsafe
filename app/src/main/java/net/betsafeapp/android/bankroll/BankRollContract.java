@@ -14,9 +14,13 @@ interface BankRollContract {
         void navigateToAddBet(@NonNull String defaultBankRollId);
 
         void initToolbar(@NonNull String bankRollName);
+
+        void bankRollDeleted(@NonNull String bankRollName);
     }
 
     interface Presenter extends BasePresenter {
         void addBet();
+
+        void deleteBankRoll();
     }
 }

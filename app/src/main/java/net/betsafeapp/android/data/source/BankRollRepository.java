@@ -80,12 +80,9 @@ public final class BankRollRepository implements BankRollDataSource {
 
     @Override
     public Observable<BankRoll> getBankRoll(@NonNull String bankRollId) {
-        if (mBankrollCache != null && mBankrollCache.containsKey(bankRollId)) {
-            final BankRoll bankRoll = mBankrollCache.get(bankRollId);
-            if (bankRoll == null) {
-                return Observable.empty();
-            }
-            return Observable.just(mBankrollCache.get(bankRollId));
+        final BankRoll bankRoll = getBankRollFromCache(bankRollId);
+        if (bankRoll != null) {
+            return Observable.just(bankRoll);
         }
 
         return mBankRollLocalDataSource.getBankRoll(bankRollId)
@@ -99,6 +96,12 @@ public final class BankRollRepository implements BankRollDataSource {
                         return bankRoll;
                     }
                 });
+    }
+
+    @Override
+    public void deleteBankRoll(@NonNull String bankRollId) {
+        removeBankRollFromCache(bankRollId);
+        mBankRollLocalDataSource.deleteBankRoll(bankRollId);
     }
 
     @Override
@@ -131,5 +134,33 @@ public final class BankRollRepository implements BankRollDataSource {
         if (!mBankrollCache.containsKey(bankRoll.getId())) {
             mBankrollCache.put(bankRoll.getId(), bankRoll);
         }
+    }
+
+    private boolean isCacheHasBankkRoll(@NonNull String bankRollId) {
+        return mBankrollCache != null && mBankrollCache.containsKey(bankRollId);
+    }
+
+    private BankRoll getBankRollFromCache(@NonNull String bankRollId) {
+        if (ValidationUtil.isNullOrEmpty(bankRollId)) {
+            return null;
+        }
+
+        if (!isCacheHasBankkRoll(bankRollId)) {
+            return null;
+        }
+
+        return mBankrollCache.get(bankRollId);
+    }
+
+    private void removeBankRollFromCache(@NonNull String bankRollId) {
+        if (ValidationUtil.isNullOrEmpty(bankRollId)) {
+            return;
+        }
+
+        if (!isCacheHasBankkRoll(bankRollId)) {
+            return;
+        }
+
+        mBankrollCache.remove(bankRollId);
     }
 }

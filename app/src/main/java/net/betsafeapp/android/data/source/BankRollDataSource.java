@@ -23,5 +23,7 @@ public interface BankRollDataSource {
 
     Observable<BankRoll> getBankRoll(@NonNull String bankRollId);
 
+    void deleteBankRoll(@NonNull String bankRollId);
+
     Observable<Pick> getPicks();
 }
