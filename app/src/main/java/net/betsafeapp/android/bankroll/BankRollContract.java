@@ -16,10 +16,14 @@ interface BankRollContract {
         void initToolbar(@NonNull String bankRollName);
 
         void bankRollDeleted(@NonNull String bankRollName);
+
+        void showBankRollDeleteConfirmDialog();
     }
 
     interface Presenter extends BasePresenter {
         void addBet();
+
+        void deleteBankRollRequested();
 
         void deleteBankRoll();
     }

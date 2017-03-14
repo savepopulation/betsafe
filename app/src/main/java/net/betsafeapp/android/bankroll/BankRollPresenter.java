@@ -62,6 +62,13 @@ final class BankRollPresenter extends RxPresenter<BankRollContract.View> impleme
     }
 
     @Override
+    public void deleteBankRollRequested() {
+        if (!ValidationUtil.isNullOrEmpty(mBankRollId)) {
+            mView.showBankRollDeleteConfirmDialog();
+        }
+    }
+
+    @Override
     public void deleteBankRoll() {
         final String bankRollName = mBankRoll.getName();
         mBankRollRepository.deleteBankRoll(mBankRollId);

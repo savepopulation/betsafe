@@ -38,6 +38,8 @@
     <!-- Button Names -->
     <string name="button_name_add_bankroll">Create Bankroll</string>
     <string name="button_name_add_bet">Add Bet</string>
+    <string name="button_continue">Continue</string>
+    <string name="button_cancel">Cancel</string>
 
     <!-- Snackbar Button Names -->
     <string name="snackbar_button_add">Add</string>
@@ -52,6 +54,9 @@
     <string name="error_message_empty_bankrolls">You need to add a Bankroll first.</string>
     <string name="error_message_add_bet">Bet could not be added. Please try again!</string>
     <string name="error_message_validate_add_bet_inputs">All fields are required. Please check your inputs.</string>
+
+    <!-- Dialog Messages -->
+    <string name="dialog_message_delete_bankroll">Are you sure to delete this BankRoll? Your data will be deleted permanently.</string>
 
     <!-- Tab Titles -->
     <string-array name="tabs_bankroll">

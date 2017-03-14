@@ -20,8 +20,9 @@ import net.betsafeapp.android.util.AlertUtil;
  * Created by tyln on 02/03/2017.
  */
 
-public final class BankRollFragment extends RxFragment<BankRollContract.Presenter>
-        implements BankRollContract.View {
+public final class BankRollFragment extends RxFragment<BankRollContract.Presenter> implements
+        BankRollContract.View,
+        DeleteBankRollConfirmDialog.DeleteConfirmationDialogListener {
 
     @NonNull
     public static BankRollFragment newInstance() {
@@ -62,7 +63,7 @@ public final class BankRollFragment extends RxFragment<BankRollContract.Presente
                 return true;
 
             case R.id.action_delete:
-                mPresenter.deleteBankRoll();
+                mPresenter.deleteBankRollRequested();
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -82,5 +83,16 @@ public final class BankRollFragment extends RxFragment<BankRollContract.Presente
     public void bankRollDeleted(@NonNull String bankRollName) {
         alert(getString(R.string.success_message_bankroll_deleted, bankRollName));
         getActivity().finish();
+    }
+
+    @Override
+    public void showBankRollDeleteConfirmDialog() {
+        final DeleteBankRollConfirmDialog deleteBankRollConfirmDialog = DeleteBankRollConfirmDialog.newInstance();
+        deleteBankRollConfirmDialog.show(getChildFragmentManager(), DeleteBankRollConfirmDialog.TAG);
+    }
+
+    @Override
+    public void onDeleteConfirmed() {
+        mPresenter.deleteBankRoll();
     }
 }
