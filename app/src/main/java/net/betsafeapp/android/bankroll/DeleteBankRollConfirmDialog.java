@@ -1,6 +1,7 @@
 package net.betsafeapp.android.bankroll;
 
 import android.content.DialogInterface;
+import android.support.annotation.CallSuper;
 import android.support.annotation.NonNull;
 import android.support.annotation.StringRes;
 
@@ -12,7 +13,7 @@ import net.betsafeapp.android.R;
  * Created by tyln on 14/03/2017.
  */
 
-public class DeleteBankRollConfirmDialog extends BaseDialogFragment {
+public final class DeleteBankRollConfirmDialog extends BaseDialogFragment {
     static final String TAG = "DeleteBankRollDialog";
 
     @NonNull
@@ -50,9 +51,11 @@ public class DeleteBankRollConfirmDialog extends BaseDialogFragment {
         return true;
     }
 
+    @CallSuper
     @Override
-    protected void onButtonClicked(int which) {
-        switch (which) {
+    public void onClick(DialogInterface dialogInterface, int i) {
+        super.onClick(dialogInterface, i);
+        switch (i) {
             case DialogInterface.BUTTON_POSITIVE:
                 // TODO implement deep search for parent
                 if (getParentFragment() instanceof DeleteConfirmationDialogListener) {
