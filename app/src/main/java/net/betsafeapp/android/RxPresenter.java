@@ -11,7 +11,7 @@ import rx.subscriptions.CompositeSubscription;
  */
 
 public abstract class RxPresenter<T extends BaseView> implements BasePresenter {
-    @Nullable
+    @NonNull
     protected T mView;
 
     @NonNull

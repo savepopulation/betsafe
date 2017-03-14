@@ -13,7 +13,7 @@ interface BankRollContract {
     interface View extends BaseView<Presenter> {
         void navigateToAddBet(@NonNull String defaultBankRollId);
 
-        void initToolbar();
+        void initToolbar(@NonNull String bankRollName);
     }
 
     interface Presenter extends BasePresenter {

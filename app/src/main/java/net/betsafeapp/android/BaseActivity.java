@@ -63,7 +63,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     @UiThread
-    protected final void setActionbarTitle(@Nullable CharSequence title) {
+    public final void setActionbarTitle(@Nullable CharSequence title) {
         if (!ValidationUtil.isNullOrEmpty(title)) {
             final ActionBar actionBar = getSupportActionBar();
             if (actionBar != null) {

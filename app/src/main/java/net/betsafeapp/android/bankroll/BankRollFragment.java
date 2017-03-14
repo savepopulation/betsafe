@@ -73,7 +73,7 @@ public final class BankRollFragment extends RxFragment<BankRollContract.Presente
     }
 
     @Override
-    public void initToolbar() {
-        //TODO set bankroll name to title
+    public void initToolbar(@NonNull String bankRollName) {
+        ((BaseActivity) getActivity()).setActionbarTitle(bankRollName);
     }
 }

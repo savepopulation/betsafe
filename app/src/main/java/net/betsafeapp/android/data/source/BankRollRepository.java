@@ -79,6 +79,29 @@ public final class BankRollRepository implements BankRollDataSource {
     }
 
     @Override
+    public Observable<BankRoll> getBankRoll(@NonNull String bankRollId) {
+        if (mBankrollCache != null && mBankrollCache.containsKey(bankRollId)) {
+            final BankRoll bankRoll = mBankrollCache.get(bankRollId);
+            if (bankRoll == null) {
+                return Observable.empty();
+            }
+            return Observable.just(mBankrollCache.get(bankRollId));
+        }
+
+        return mBankRollLocalDataSource.getBankRoll(bankRollId)
+                .map(new Func1<BankRoll, BankRoll>() {
+                    @Override
+                    public BankRoll call(BankRoll bankRoll) {
+                        if (bankRoll == null) {
+                            throw new IllegalArgumentException("UnKnown Error!");
+                        }
+
+                        return bankRoll;
+                    }
+                });
+    }
+
+    @Override
     @NonNull
     public Observable<Pick> getPicks() {
         return mBankRollLocalDataSource.getPicks();

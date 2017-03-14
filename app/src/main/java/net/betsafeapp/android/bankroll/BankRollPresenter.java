@@ -10,6 +10,11 @@ import net.betsafeapp.android.util.ValidationUtil;
 
 import javax.inject.Inject;
 
+import rx.Subscriber;
+import rx.Subscription;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
+
 /**
  * Created by tyln on 02/03/2017.
  */
@@ -44,7 +49,7 @@ final class BankRollPresenter extends RxPresenter<BankRollContract.View> impleme
 
     @Override
     public void subscribe() {
-        // Empty method
+        getBankRoll();
     }
 
     @Override
@@ -54,5 +59,34 @@ final class BankRollPresenter extends RxPresenter<BankRollContract.View> impleme
         }
 
         mView.navigateToAddBet(mBankRollId);
+    }
+
+    private void getBankRoll() {
+        final Subscription bankRollSubscription = mBankRollRepository.getBankRoll(mBankRollId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<BankRoll>() {
+                    @Override
+                    public void onCompleted() {
+                        showBankRollName();
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        mView.alert(e.getMessage());
+                    }
+
+                    @Override
+                    public void onNext(BankRoll bankRoll) {
+                        mBankRoll = bankRoll;
+                    }
+                });
+        addSubscription(bankRollSubscription);
+    }
+
+    private void showBankRollName() {
+        if (!ValidationUtil.isNullOrEmpty(mBankRoll.getName())) {
+            mView.initToolbar(mBankRoll.getName());
+        }
     }
 }

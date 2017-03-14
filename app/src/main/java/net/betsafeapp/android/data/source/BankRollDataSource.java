@@ -21,5 +21,7 @@ public interface BankRollDataSource {
 
     Observable<BankRoll> searchBankroll(@Nullable String query);
 
+    Observable<BankRoll> getBankRoll(@NonNull String bankRollId);
+
     Observable<Pick> getPicks();
 }

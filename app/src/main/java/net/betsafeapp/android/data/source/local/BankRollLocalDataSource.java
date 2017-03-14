@@ -61,6 +61,12 @@ public class BankRollLocalDataSource implements BankRollDataSource {
     }
 
     @Override
+    public Observable<BankRoll> getBankRoll(@NonNull String bankRollId) {
+        final Realm realm = Realm.getInstance(mRealmConfiguration);
+        return realm.where(BankRoll.class).equalTo("id", bankRollId).findFirst().asObservable();
+    }
+
+    @Override
     public Observable<Pick> getPicks() {
         return Observable.create(new Observable.OnSubscribe<Pick>() {
             @Override
