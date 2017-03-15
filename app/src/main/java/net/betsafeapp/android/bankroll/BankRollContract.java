@@ -1,6 +1,7 @@
 package net.betsafeapp.android.bankroll;
 
 import android.support.annotation.NonNull;
+import android.support.annotation.StringRes;
 
 import net.betsafeapp.android.BasePresenter;
 import net.betsafeapp.android.BaseView;
@@ -18,6 +19,10 @@ interface BankRollContract {
         void bankRollDeleted(@NonNull String bankRollName);
 
         void showBankRollDeleteConfirmDialog();
+
+        void showBankRollCloseConfirmDialog();
+
+        void bankRollClosed(@NonNull String bankRollName);
     }
 
     interface Presenter extends BasePresenter {
@@ -26,5 +31,9 @@ interface BankRollContract {
         void deleteBankRollRequested();
 
         void deleteBankRoll();
+
+        void closeBankRollRequested();
+
+        void closeBankRoll();
     }
 }

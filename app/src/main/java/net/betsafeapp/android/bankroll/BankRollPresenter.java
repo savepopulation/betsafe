@@ -1,7 +1,9 @@
 package net.betsafeapp.android.bankroll;
 
 import android.support.annotation.NonNull;
+import android.support.annotation.StringRes;
 
+import net.betsafeapp.android.Constants;
 import net.betsafeapp.android.RxPresenter;
 import net.betsafeapp.android.addbet.AddBetActivity;
 import net.betsafeapp.android.data.BankRoll;
@@ -73,6 +75,21 @@ final class BankRollPresenter extends RxPresenter<BankRollContract.View> impleme
         final String bankRollName = mBankRoll.getName();
         mBankRollRepository.deleteBankRoll(mBankRollId);
         mView.bankRollDeleted(bankRollName);
+    }
+
+    @Override
+    public void closeBankRollRequested() {
+        if (mBankRoll.getStatus() == Constants.BANKROLL_STATUS_CLOSED ||
+                mBankRoll.getStatus() == Constants.BANKROLL_STATUS_COMPLETED) {
+            return;
+        }
+        mView.showBankRollCloseConfirmDialog();
+    }
+
+    @Override
+    public void closeBankRoll() {
+        mBankRollRepository.closeBankRoll(mBankRollId);
+        mView.bankRollClosed(mBankRoll.getName());
     }
 
     private void getBankRoll() {

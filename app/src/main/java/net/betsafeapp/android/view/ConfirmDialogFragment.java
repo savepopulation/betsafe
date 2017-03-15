@@ -112,19 +112,19 @@ public class ConfirmDialogFragment extends DialogFragment implements DialogInter
 
     private void confirm() {
         if (getParentFragment() != null && getParentFragment() instanceof ConfirmListener) {
-            ((ConfirmListener) getParentFragment()).onConfirm();
+            ((ConfirmListener) getParentFragment()).onConfirm(getTag());
         }
     }
 
     private void cancel() {
         if (getParentFragment() != null && getParentFragment() instanceof ConfirmListener) {
-            ((ConfirmListener) getParentFragment()).onCancel();
+            ((ConfirmListener) getParentFragment()).onCancel(getTag());
         }
     }
 
     public interface ConfirmListener {
-        void onConfirm();
+        void onConfirm(@NonNull String tag);
 
-        void onCancel();
+        void onCancel(@NonNull String tag);
     }
 }

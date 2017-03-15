@@ -2,11 +2,14 @@ package net.betsafeapp.android.data.source;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.StringRes;
 import android.support.v4.util.ArrayMap;
 
+import net.betsafeapp.android.Constants;
 import net.betsafeapp.android.data.BankRoll;
 import net.betsafeapp.android.data.Bet;
 import net.betsafeapp.android.data.Pick;
+import net.betsafeapp.android.data.factory.BankRollFactory;
 import net.betsafeapp.android.data.source.local.BankRollLocalDataSource;
 import net.betsafeapp.android.util.ValidationUtil;
 
@@ -90,7 +93,7 @@ public final class BankRollRepository implements BankRollDataSource {
                     @Override
                     public BankRoll call(BankRoll bankRoll) {
                         if (bankRoll == null) {
-                            throw new IllegalArgumentException("UnKnown Error!");
+                            throw new IllegalArgumentException("Unknown Error!");
                         }
 
                         return bankRoll;
@@ -141,10 +144,6 @@ public final class BankRollRepository implements BankRollDataSource {
     }
 
     private BankRoll getBankRollFromCache(@NonNull String bankRollId) {
-        if (ValidationUtil.isNullOrEmpty(bankRollId)) {
-            return null;
-        }
-
         if (!isCacheHasBankkRoll(bankRollId)) {
             return null;
         }
@@ -162,5 +161,16 @@ public final class BankRollRepository implements BankRollDataSource {
         }
 
         mBankrollCache.remove(bankRollId);
+    }
+
+    @Override
+    public void closeBankRoll(@NonNull String bankRollId) {
+        final BankRoll bankRoll = getBankRollFromCache(bankRollId);
+        if (bankRoll == null) {
+            return;
+        }
+
+        bankRoll.setStatus(Constants.BANKROLL_STATUS_CLOSED);
+        mBankRollLocalDataSource.closeBankRoll(bankRollId);
     }
 }

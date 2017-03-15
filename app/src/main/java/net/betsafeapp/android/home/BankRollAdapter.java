@@ -10,9 +10,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import net.betsafeapp.android.Constants;
 import net.betsafeapp.android.R;
 import net.betsafeapp.android.data.BankRoll;
 import net.betsafeapp.android.util.DateUtil;
+import net.betsafeapp.android.util.UiUtil;
 import net.betsafeapp.android.util.ValidationUtil;
 
 import java.util.List;
@@ -68,6 +70,8 @@ final class BankRollAdapter extends RecyclerView.Adapter<BankRollAdapter.ViewHol
         }
         holder.mImageViewBankroll.setBackground(ContextCompat.getDrawable(holder.itemView.getContext(), backgroundDrawableId));
         holder.mImageViewBankroll.setImageResource(imageResId);
+        holder.mViewGroupRow.setBackgroundColor(ContextCompat.getColor(holder.itemView.getContext(),
+                UiUtil.getColorResByBetStatus(bankRoll.getStatus())));
 
         if (mItemClickListener != null) {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -85,6 +89,7 @@ final class BankRollAdapter extends RecyclerView.Adapter<BankRollAdapter.ViewHol
     }
 
     final class ViewHolder extends RecyclerView.ViewHolder {
+        private final ViewGroup mViewGroupRow;
         private final TextView mTextViewBankrollName;
         private final TextView mTextViewCreateDate;
         private final TextView mTextViewBalance;
@@ -93,6 +98,7 @@ final class BankRollAdapter extends RecyclerView.Adapter<BankRollAdapter.ViewHol
 
         ViewHolder(View itemView) {
             super(itemView);
+            mViewGroupRow = (ViewGroup) itemView.findViewById(R.id.row);
             mTextViewBankrollName = (TextView) itemView.findViewById(R.id.textview_bankroll_name);
             mTextViewCreateDate = (TextView) itemView.findViewById(R.id.textview_create_date);
             mTextViewBalance = (TextView) itemView.findViewById(R.id.textview_balance);

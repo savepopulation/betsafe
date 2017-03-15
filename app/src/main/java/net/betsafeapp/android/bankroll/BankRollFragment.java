@@ -3,6 +3,7 @@ package net.betsafeapp.android.bankroll;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.StringRes;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
@@ -64,6 +65,10 @@ public final class BankRollFragment extends RxFragment<BankRollContract.Presente
             case R.id.action_delete:
                 mPresenter.deleteBankRollRequested();
                 break;
+
+            case R.id.action_close:
+                mPresenter.closeBankRollRequested();
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -95,12 +100,35 @@ public final class BankRollFragment extends RxFragment<BankRollContract.Presente
     }
 
     @Override
-    public void onConfirm() {
-        mPresenter.deleteBankRoll();
+    public void showBankRollCloseConfirmDialog() {
+        final ConfirmDialogFragment deleteBankRollDialogFragment = ConfirmDialogFragment.newInstance(null,
+                getString(R.string.dialog_message_close_bankroll),
+                getString(R.string.button_continue),
+                getString(R.string.button_cancel),
+                true);
+        deleteBankRollDialogFragment.show(getChildFragmentManager(), ConfirmDialogFragment.TAG_DIALOG_BANKROLL_CLOSE);
     }
 
     @Override
-    public void onCancel() {
+    public void bankRollClosed(@NonNull StringRes bankRollName) {
+        alert(getString(R.string.success_message_bakroll_closed, bankRollName));
+    }
+
+    @Override
+    public void onConfirm(@NonNull String tag) {
+        switch (tag) {
+            case ConfirmDialogFragment.TAG_DIALOG_BAKNROLL_DELETE:
+                mPresenter.deleteBankRoll();
+                break;
+
+            case ConfirmDialogFragment.TAG_DIALOG_BANKROLL_CLOSE:
+                mPresenter.closeBankRoll();
+                break;
+        }
+    }
+
+    @Override
+    public void onCancel(@NonNull String tag) {
         // Empty method
     }
 }

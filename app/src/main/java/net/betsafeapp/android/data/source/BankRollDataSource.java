@@ -3,6 +3,7 @@ package net.betsafeapp.android.data.source;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringDef;
+import android.support.annotation.StringRes;
 
 import net.betsafeapp.android.data.BankRoll;
 import net.betsafeapp.android.data.Bet;
@@ -24,6 +25,8 @@ public interface BankRollDataSource {
     Observable<BankRoll> getBankRoll(@NonNull String bankRollId);
 
     void deleteBankRoll(@NonNull String bankRollId);
+
+    void closeBankRoll(@NonNull String bankRollId);
 
     Observable<Pick> getPicks();
 }

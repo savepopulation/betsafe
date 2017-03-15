@@ -6,11 +6,13 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.WorkerThread;
 
+import net.betsafeapp.android.Constants;
 import net.betsafeapp.android.R;
 import net.betsafeapp.android.data.BankRoll;
 import net.betsafeapp.android.data.Bet;
 import net.betsafeapp.android.data.Pick;
 import net.betsafeapp.android.data.source.BankRollDataSource;
+import net.betsafeapp.android.util.ValidationUtil;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -21,6 +23,7 @@ import javax.inject.Singleton;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
+import io.realm.RealmQuery;
 import io.realm.RealmResults;
 import io.realm.Sort;
 import rx.Observable;
@@ -46,7 +49,18 @@ public class BankRollLocalDataSource implements BankRollDataSource {
 
     @Override
     public Observable<BankRoll> getBankRolls() {
-        return Observable.from(getAllBankRolls());
+        return Observable.create(new Observable.OnSubscribe<BankRoll>() {
+            @Override
+            public void call(Subscriber<? super BankRoll> subscriber) {
+                final List<BankRoll> bankRolls = getAllBankRolls();
+                if (!ValidationUtil.isNullOrEmpty(bankRolls)) {
+                    for (final BankRoll bankRoll : bankRolls) {
+                        subscriber.onNext(bankRoll);
+                    }
+                }
+                subscriber.onCompleted();
+            }
+        });
     }
 
     @Override
@@ -62,20 +76,39 @@ public class BankRollLocalDataSource implements BankRollDataSource {
 
     @Override
     public Observable<BankRoll> getBankRoll(@NonNull String bankRollId) {
-        final Realm realm = Realm.getInstance(mRealmConfiguration);
-        return realm.where(BankRoll.class).equalTo("id", bankRollId).findFirst().asObservable();
+        return Realm.getInstance(mRealmConfiguration)
+                .where(BankRoll.class)
+                .equalTo("id", bankRollId).findFirst()
+                .asObservable();
     }
 
     @Override
     public void deleteBankRoll(@NonNull final String bankRollId) {
-        final Realm realm = Realm.getInstance(mRealmConfiguration);
-        realm.executeTransaction(new Realm.Transaction() {
-            @Override
-            public void execute(Realm realm) {
-                final RealmResults<BankRoll> bankRolls = realm.where(BankRoll.class).equalTo("id", bankRollId).findAll();
-                bankRolls.deleteAllFromRealm();
-            }
-        });
+        Realm.getInstance(mRealmConfiguration)
+                .executeTransactionAsync(new Realm.Transaction() {
+                    @Override
+                    public void execute(Realm realm) {
+                        final RealmResults<BankRoll> bankRolls = realm.where(BankRoll.class)
+                                .equalTo("id", bankRollId)
+                                .findAll();
+                        bankRolls.deleteAllFromRealm();
+                    }
+                });
+    }
+
+    @Override
+    public void closeBankRoll(@NonNull final String bankRollId) {
+        Realm.getInstance(mRealmConfiguration)
+                .executeTransactionAsync(new Realm.Transaction() {
+                    @Override
+                    public void execute(Realm realm) {
+                        final BankRoll bankRoll = realm.where(BankRoll.class)
+                                .equalTo("id", bankRollId)
+                                .findFirst();
+                        bankRoll.setStatus(Constants.BANKROLL_STATUS_CLOSED);
+                        realm.commitTransaction();
+                    }
+                });
     }
 
     @Override
@@ -94,21 +127,16 @@ public class BankRollLocalDataSource implements BankRollDataSource {
 
     @WorkerThread
     public void saveBankroll(@NonNull final BankRoll bankRoll) {
-        // TODO implement Realm async
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                final Realm realm = Realm.getInstance(mRealmConfiguration);
-                realm.beginTransaction();
-
-                final BankRoll realmBankRoll = new BankRoll();
-                fillBankRoll(realmBankRoll, bankRoll);
-
-                realm.copyToRealmOrUpdate(realmBankRoll);
-                realm.commitTransaction();
-                realm.close();
-            }
-        }).start();
+        Realm.getInstance(mRealmConfiguration)
+                .executeTransactionAsync(new Realm.Transaction() {
+                    @Override
+                    public void execute(Realm realm) {
+                        final BankRoll realmBankRoll = new BankRoll();
+                        fillBankRoll(realmBankRoll, bankRoll);
+                        realm.copyToRealmOrUpdate(realmBankRoll);
+                        realm.commitTransaction();
+                    }
+                });
     }
 
     @WorkerThread
