@@ -65,7 +65,7 @@ public final class AddBetActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        String bankrollId = "";
+        String bankrollId = null;
         final Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             bankrollId = bundle.getString(BUNDLE_BANKROLL_ID);

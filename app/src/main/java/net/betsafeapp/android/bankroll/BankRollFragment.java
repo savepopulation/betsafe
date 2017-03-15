@@ -10,11 +10,10 @@ import android.view.MenuItem;
 import android.view.View;
 
 import net.betsafeapp.android.BaseActivity;
-import net.betsafeapp.android.BaseFragment;
 import net.betsafeapp.android.R;
 import net.betsafeapp.android.RxFragment;
 import net.betsafeapp.android.addbet.AddBetActivity;
-import net.betsafeapp.android.util.AlertUtil;
+import net.betsafeapp.android.view.ConfirmDialogFragment;
 
 /**
  * Created by tyln on 02/03/2017.
@@ -22,7 +21,7 @@ import net.betsafeapp.android.util.AlertUtil;
 
 public final class BankRollFragment extends RxFragment<BankRollContract.Presenter> implements
         BankRollContract.View,
-        DeleteBankRollConfirmDialog.DeleteConfirmationDialogListener {
+        ConfirmDialogFragment.ConfirmListener {
 
     @NonNull
     public static BankRollFragment newInstance() {
@@ -87,12 +86,21 @@ public final class BankRollFragment extends RxFragment<BankRollContract.Presente
 
     @Override
     public void showBankRollDeleteConfirmDialog() {
-        final DeleteBankRollConfirmDialog deleteBankRollConfirmDialog = DeleteBankRollConfirmDialog.newInstance();
-        deleteBankRollConfirmDialog.show(getChildFragmentManager(), DeleteBankRollConfirmDialog.TAG);
+        final ConfirmDialogFragment deleteBankRollDialogFragment = ConfirmDialogFragment.newInstance(null,
+                getString(R.string.dialog_message_delete_bankroll),
+                getString(R.string.button_continue),
+                getString(R.string.button_cancel),
+                true);
+        deleteBankRollDialogFragment.show(getChildFragmentManager(), ConfirmDialogFragment.TAG_DIALOG_BAKNROLL_DELETE);
     }
 
     @Override
-    public void onDeleteConfirmed() {
+    public void onConfirm() {
         mPresenter.deleteBankRoll();
+    }
+
+    @Override
+    public void onCancel() {
+        // Empty method
     }
 }
