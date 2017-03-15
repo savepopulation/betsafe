@@ -134,7 +134,6 @@ public class BankRollLocalDataSource implements BankRollDataSource {
                         final BankRoll realmBankRoll = new BankRoll();
                         fillBankRoll(realmBankRoll, bankRoll);
                         realm.copyToRealmOrUpdate(realmBankRoll);
-                        realm.commitTransaction();
                     }
                 });
     }

@@ -110,7 +110,7 @@ public final class BankRollFragment extends RxFragment<BankRollContract.Presente
     }
 
     @Override
-    public void bankRollClosed(@NonNull StringRes bankRollName) {
+    public void bankRollClosed(@NonNull String bankRollName) {
         alert(getString(R.string.success_message_bakroll_closed, bankRollName));
     }
 
