@@ -1,4 +1,4 @@
-package net.betsafeapp.android.home;
+package net.betsafeapp.android.bankrolls;
 
 import android.support.annotation.NonNull;
 
@@ -10,17 +10,17 @@ import dagger.Provides;
  */
 
 @Module
-final class MainPresenterModule {
+final class BankRollsPresenterModule {
     @NonNull
-    private MainContract.View mView;
+    private BankRollsContract.View mView;
 
-    MainPresenterModule(@NonNull MainContract.View view) {
+    BankRollsPresenterModule(@NonNull BankRollsContract.View view) {
         this.mView = view;
     }
 
     @NonNull
     @Provides
-    MainContract.View provideMainView() {
+    BankRollsContract.View provideBankRollsView() {
         return mView;
     }
 }

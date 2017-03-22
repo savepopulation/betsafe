@@ -1,4 +1,4 @@
-package net.betsafeapp.android.home;
+package net.betsafeapp.android.bankrolls;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import net.betsafeapp.android.Constants;
 import net.betsafeapp.android.R;
 import net.betsafeapp.android.data.BankRoll;
 import net.betsafeapp.android.util.DateUtil;

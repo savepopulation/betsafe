@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="net.betsafeapp.android.home.MainActivity">
+    tools:context="net.betsafeapp.android.bankrolls.BankRollsActivity">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerview_bankrolls"

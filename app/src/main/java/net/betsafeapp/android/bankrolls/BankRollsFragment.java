@@ -1,4 +1,4 @@
-package net.betsafeapp.android.home;
+package net.betsafeapp.android.bankrolls;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -14,8 +14,6 @@ import android.view.View;
 
 import com.getbase.floatingactionbutton.FloatingActionsMenu;
 
-import net.betsafeapp.android.BaseFragment;
-import net.betsafeapp.android.Constants;
 import net.betsafeapp.android.R;
 import net.betsafeapp.android.RxFragment;
 import net.betsafeapp.android.addbankroll.AddBankRollActivity;
@@ -23,7 +21,6 @@ import net.betsafeapp.android.addbet.AddBetActivity;
 import net.betsafeapp.android.bankroll.BankRollActivity;
 import net.betsafeapp.android.data.BankRoll;
 import net.betsafeapp.android.settings.SettingsActivity;
-import net.betsafeapp.android.util.AlertUtil;
 import net.betsafeapp.android.view.DividerDecorator;
 
 import java.util.List;
@@ -32,8 +29,8 @@ import java.util.List;
  * Created by tyln on 19/01/2017.
  */
 
-public final class MainFragment extends RxFragment<MainContract.Presenter> implements
-        MainContract.View,
+public final class BankRollsFragment extends RxFragment<BankRollsContract.Presenter> implements
+        BankRollsContract.View,
         View.OnClickListener,
         BankRollAdapter.ItemClickListener {
 
@@ -50,19 +47,19 @@ public final class MainFragment extends RxFragment<MainContract.Presenter> imple
     private FloatingActionsMenu mFloatingActionsMenu;
 
     @NonNull
-    public static MainFragment newInstance() {
-        return new MainFragment();
+    public static BankRollsFragment newInstance() {
+        return new BankRollsFragment();
     }
 
     @Override
     protected int getLayoutRes() {
-        return R.layout.fragment_main;
+        return R.layout.fragment_bankrolls;
     }
 
     @Override
     protected int getMenuRes() {
         // TODO add xxxhdpi for settings and search icon
-        return R.menu.menu_main;
+        return R.menu.menu_bankrolls;
     }
 
     @Override

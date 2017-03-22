@@ -1,9 +1,8 @@
-package net.betsafeapp.android.home;
+package net.betsafeapp.android.bankrolls;
 
 import android.support.annotation.CallSuper;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.util.Log;
 
 import net.betsafeapp.android.RxPresenter;
 import net.betsafeapp.android.data.BankRoll;
@@ -18,16 +17,14 @@ import javax.inject.Inject;
 import rx.Observer;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Func1;
 import rx.schedulers.Schedulers;
-import rx.subscriptions.CompositeSubscription;
 
 /**
  * Created by tyln on 17/01/2017.
  */
 
-final class MainPresenter extends RxPresenter<MainContract.View> implements
-        MainContract.Presenter {
+final class BankRollsPresenter extends RxPresenter<BankRollsContract.View> implements
+        BankRollsContract.Presenter {
 
     @NonNull
     private final BankRollRepository mBankRollRepository;
@@ -39,8 +36,8 @@ final class MainPresenter extends RxPresenter<MainContract.View> implements
     private String mQuery;
 
     @Inject
-    MainPresenter(@NonNull MainContract.View view,
-                  @NonNull BankRollRepository safeRepository) {
+    BankRollsPresenter(@NonNull BankRollsContract.View view,
+                       @NonNull BankRollRepository safeRepository) {
         super(view);
         mView = view;
         this.mBankRollRepository = safeRepository;

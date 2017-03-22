@@ -1,17 +1,10 @@
-package net.betsafeapp.android.home;
+package net.betsafeapp.android.bankrolls;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
 
 import net.betsafeapp.android.BaseActivity;
 import net.betsafeapp.android.BetSafeApp;
@@ -20,18 +13,18 @@ import net.betsafeapp.android.R;
 
 import javax.inject.Inject;
 
-public final class MainActivity extends BaseActivity {
+public final class BankRollsActivity extends BaseActivity {
     @Inject
-    MainPresenter mMainPresenter;
+    BankRollsPresenter mBankRollsPresenter;
 
     @NonNull
     public static Intent newIntent(@NonNull Context context) {
-        return new Intent(context, MainActivity.class);
+        return new Intent(context, BankRollsActivity.class);
     }
 
     @Override
     protected int getLayoutRes() {
-        return R.layout.activity_main;
+        return R.layout.activity_bankrolls;
     }
 
     @Override
@@ -57,19 +50,19 @@ public final class MainActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        MainFragment mainFragment = (MainFragment) getSupportFragmentManager()
+        BankRollsFragment bankRollsFragment = (BankRollsFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.framelayout_main);
 
-        if (mainFragment == null) {
-            mainFragment = MainFragment.newInstance();
+        if (bankRollsFragment == null) {
+            bankRollsFragment = BankRollsFragment.newInstance();
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.framelayout_main, mainFragment)
+                    .replace(R.id.framelayout_main, bankRollsFragment)
                     .commit();
         }
 
-        DaggerMainComponent.builder()
+        DaggerBankRollsComponent.builder()
                 .bankRollRepositoryComponent(((BetSafeApp) getApplication()).getBankRollRepositoryComponent())
-                .mainPresenterModule(new MainPresenterModule(mainFragment))
+                .mainPresenterModule(new BankRollsPresenterModule(bankRollsFragment))
                 .build()
                 .inject(this);
     }

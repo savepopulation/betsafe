@@ -1,4 +1,4 @@
-package net.betsafeapp.android.home;
+package net.betsafeapp.android.bankrolls;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -13,7 +13,7 @@ import java.util.List;
  * Created by tyln on 17/01/2017.
  */
 
-interface MainContract {
+interface BankRollsContract {
     interface View extends BaseView<Presenter> {
         void initBankRollsAdapter(@NonNull List<BankRoll> bankrolls);
 

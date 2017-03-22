@@ -1,4 +1,4 @@
-package net.betsafeapp.android.home;
+package net.betsafeapp.android.bankrolls;
 
 import android.support.annotation.NonNull;
 
@@ -12,7 +12,7 @@ import dagger.Component;
  */
 
 @FragmentScoped
-@Component(dependencies = BankRollRepositoryComponent.class, modules = MainPresenterModule.class)
-interface MainComponent {
-    void inject(@NonNull MainActivity activity);
+@Component(dependencies = BankRollRepositoryComponent.class, modules = BankRollsPresenterModule.class)
+interface BankRollsComponent {
+    void inject(@NonNull BankRollsActivity activity);
 }
