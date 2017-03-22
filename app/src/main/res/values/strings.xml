@@ -18,6 +18,7 @@
     <string name="screen_title_add_bankroll">Add Bankroll</string>
     <string name="screen_title_add_bet">Add Bet</string>
     <string name="screen_title_settings">Settings</string>
+    <string name="screen_title_edit_bankroll">Edit Bankroll</string>
 
     <!-- Hints -->
     <string name="hint_bankroll_name">Bankroll Name</string>

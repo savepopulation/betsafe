@@ -23,6 +23,8 @@ interface BankRollContract {
         void showBankRollCloseConfirmDialog();
 
         void bankRollClosed(@NonNull String bankRollName);
+
+        void showEditBankRoll(@NonNull String bankRollId);
     }
 
     interface Presenter extends BasePresenter {
@@ -35,5 +37,7 @@ interface BankRollContract {
         void closeBankRollRequested();
 
         void closeBankRoll();
+
+        void editBankRoll();
     }
 }

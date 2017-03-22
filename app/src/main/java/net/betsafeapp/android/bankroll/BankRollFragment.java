@@ -14,6 +14,7 @@ import net.betsafeapp.android.BaseActivity;
 import net.betsafeapp.android.R;
 import net.betsafeapp.android.RxFragment;
 import net.betsafeapp.android.addbet.AddBetActivity;
+import net.betsafeapp.android.editbankroll.EditBankRollActivity;
 import net.betsafeapp.android.view.ConfirmDialogFragment;
 
 /**
@@ -69,6 +70,10 @@ public final class BankRollFragment extends RxFragment<BankRollContract.Presente
             case R.id.action_close:
                 mPresenter.closeBankRollRequested();
                 break;
+
+            case R.id.action_edit:
+                mPresenter.editBankRoll();
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -112,6 +117,11 @@ public final class BankRollFragment extends RxFragment<BankRollContract.Presente
     @Override
     public void bankRollClosed(@NonNull String bankRollName) {
         alert(getString(R.string.success_message_bakroll_closed, bankRollName));
+    }
+
+    @Override
+    public void showEditBankRoll(@NonNull String bankRollId) {
+        startActivity(EditBankRollActivity.newIntent(getActivity(), bankRollId));
     }
 
     @Override

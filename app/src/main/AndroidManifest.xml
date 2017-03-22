@@ -28,6 +28,7 @@
             android:theme="@style/AppThemeNoActionBar" />
 
         <activity android:name=".settings.SettingsActivity" />
+        <activity android:name=".editbankroll.EditBankRollActivity" />
 
     </application>
 

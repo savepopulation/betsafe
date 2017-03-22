@@ -92,6 +92,11 @@ final class BankRollPresenter extends RxPresenter<BankRollContract.View> impleme
         mView.bankRollClosed(mBankRoll.getName());
     }
 
+    @Override
+    public void editBankRoll() {
+        mView.showEditBankRoll(mBankRollId);
+    }
+
     private void getBankRoll() {
         final Subscription bankRollSubscription = mBankRollRepository.getBankRoll(mBankRollId)
                 .subscribeOn(Schedulers.io())
