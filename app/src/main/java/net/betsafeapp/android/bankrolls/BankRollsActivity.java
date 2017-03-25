@@ -62,7 +62,7 @@ public final class BankRollsActivity extends BaseActivity {
 
         DaggerBankRollsComponent.builder()
                 .bankRollRepositoryComponent(((BetSafeApp) getApplication()).getBankRollRepositoryComponent())
-                .mainPresenterModule(new BankRollsPresenterModule(bankRollsFragment))
+                .bankRollsPresenterModule(new BankRollsPresenterModule(bankRollsFragment))
                 .build()
                 .inject(this);
     }
