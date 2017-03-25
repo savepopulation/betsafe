@@ -1,4 +1,4 @@
-package net.betsafeapp.android.bankroll;
+package net.betsafeapp.android.bankroll.detail;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.StringRes;
@@ -10,7 +10,7 @@ import net.betsafeapp.android.BaseView;
  * Created by tyln on 02/03/2017.
  */
 
-interface BankRollContract {
+public interface BankRollDetailContract {
     interface View extends BaseView<Presenter> {
         void navigateToAddBet(@NonNull String defaultBankRollId);
 

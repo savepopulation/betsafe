@@ -1,11 +1,10 @@
-package net.betsafeapp.android.bankroll;
+package net.betsafeapp.android.bankroll.detail;
 
 import android.support.annotation.NonNull;
-import android.support.annotation.StringRes;
+import android.util.Log;
 
 import net.betsafeapp.android.Constants;
 import net.betsafeapp.android.RxPresenter;
-import net.betsafeapp.android.addbet.AddBetActivity;
 import net.betsafeapp.android.data.BankRoll;
 import net.betsafeapp.android.data.source.BankRollRepository;
 import net.betsafeapp.android.util.ValidationUtil;
@@ -21,7 +20,8 @@ import rx.schedulers.Schedulers;
  * Created by tyln on 02/03/2017.
  */
 
-final class BankRollPresenter extends RxPresenter<BankRollContract.View> implements BankRollContract.Presenter {
+public final class BankRollDetailPresenter extends RxPresenter<BankRollDetailContract.View>
+        implements BankRollDetailContract.Presenter {
 
     @NonNull
     private BankRollRepository mBankRollRepository;
@@ -33,9 +33,9 @@ final class BankRollPresenter extends RxPresenter<BankRollContract.View> impleme
     private BankRoll mBankRoll;
 
     @Inject
-    BankRollPresenter(@NonNull BankRollContract.View view,
-                      @NonNull BankRollRepository bankRollRepository,
-                      @NonNull String bankRollId) {
+    BankRollDetailPresenter(@NonNull BankRollDetailContract.View view,
+                            @NonNull BankRollRepository bankRollRepository,
+                            @NonNull String bankRollId) {
         super(view);
         this.mView = view;
         this.mBankRollRepository = bankRollRepository;
@@ -105,6 +105,7 @@ final class BankRollPresenter extends RxPresenter<BankRollContract.View> impleme
                     @Override
                     public void onCompleted() {
                         showBankRollName();
+                        Log.e("got bankroll", "yes");
                     }
 
                     @Override

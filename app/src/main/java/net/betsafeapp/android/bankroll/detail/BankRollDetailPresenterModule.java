@@ -1,8 +1,6 @@
-package net.betsafeapp.android.bankroll;
+package net.betsafeapp.android.bankroll.detail;
 
 import android.support.annotation.NonNull;
-
-import net.betsafeapp.android.data.BankRoll;
 
 import dagger.Module;
 import dagger.Provides;
@@ -12,21 +10,21 @@ import dagger.Provides;
  */
 
 @Module
-final class BankRollPresenterModule {
+public final class BankRollDetailPresenterModule {
     @NonNull
-    private final BankRollContract.View mView;
+    private final BankRollDetailContract.View mView;
 
     @NonNull
     private final String mBankRollId;
 
-    BankRollPresenterModule(@NonNull BankRollContract.View view, @NonNull String bankRollId) {
+    public BankRollDetailPresenterModule(@NonNull BankRollDetailContract.View view, @NonNull String bankRollId) {
         this.mView = view;
         this.mBankRollId = bankRollId;
     }
 
     @NonNull
     @Provides
-    BankRollContract.View provideBankRollView() {
+    BankRollDetailContract.View provideBankRollView() {
         return this.mView;
     }
 

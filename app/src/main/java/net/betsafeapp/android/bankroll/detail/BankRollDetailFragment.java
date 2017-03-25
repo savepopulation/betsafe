@@ -1,12 +1,8 @@
-package net.betsafeapp.android.bankroll;
+package net.betsafeapp.android.bankroll.detail;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.annotation.StringRes;
-import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
-import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -21,13 +17,13 @@ import net.betsafeapp.android.view.ConfirmDialogFragment;
  * Created by tyln on 02/03/2017.
  */
 
-public final class BankRollFragment extends RxFragment<BankRollContract.Presenter> implements
-        BankRollContract.View,
+public final class BankRollDetailFragment extends RxFragment<BankRollDetailContract.Presenter> implements
+        BankRollDetailContract.View,
         ConfirmDialogFragment.ConfirmListener {
 
     @NonNull
-    public static BankRollFragment newInstance() {
-        return new BankRollFragment();
+    public static BankRollDetailFragment newInstance() {
+        return new BankRollDetailFragment();
     }
 
     @Override
@@ -38,22 +34,6 @@ public final class BankRollFragment extends RxFragment<BankRollContract.Presente
     @Override
     protected int getMenuRes() {
         return R.menu.menu_bankroll;
-    }
-
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-        final Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar_main);
-        toolbar.setNavigationIcon(R.mipmap.ic_arrow_back_white_24dp);
-        ((BaseActivity) getActivity()).setSupportActionBar(toolbar);
-
-        final ViewPager viewPagerBankRollTabs = (ViewPager) view.findViewById(R.id.viewpager_bankroll);
-        final TabLayout tabLayout = (TabLayout) view.findViewById(R.id.tabs);
-        final BankRollTabsAdapter bankRollTabsAdapter = new BankRollTabsAdapter(getChildFragmentManager(),
-                getResources().getStringArray(R.array.tabs_bankroll));
-        viewPagerBankRollTabs.setAdapter(bankRollTabsAdapter);
-        tabLayout.setupWithViewPager(viewPagerBankRollTabs);
     }
 
     @Override
