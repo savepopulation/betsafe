@@ -1,4 +1,4 @@
-package net.betsafeapp.android.bankroll.history;
+package net.betsafeapp.android.bankroll.bets;
 
 import android.support.annotation.NonNull;
 
@@ -12,8 +12,8 @@ import javax.inject.Inject;
  * Created by tyln on 25/03/2017.
  */
 
-public class BankRollHistoryPresenter extends RxPresenter<BankRollHistoryContract.View>
-        implements BankRollHistoryContract.Presenter {
+public class BankRollBetsPresenter extends RxPresenter<BankRollBetsContract.View>
+        implements BankRollBetsContract.Presenter {
 
     @NonNull
     private BankRollRepository mBankRollRepository;
@@ -22,8 +22,8 @@ public class BankRollHistoryPresenter extends RxPresenter<BankRollHistoryContrac
     private BankRoll mBankRoll;
 
     @Inject
-    BankRollHistoryPresenter(@NonNull BankRollHistoryContract.View view,
-                             @NonNull BankRollRepository bankRollRepository) {
+    BankRollBetsPresenter(@NonNull BankRollBetsContract.View view,
+                          @NonNull BankRollRepository bankRollRepository) {
         super(view);
         this.mBankRollRepository = bankRollRepository;
 

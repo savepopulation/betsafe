@@ -64,7 +64,7 @@
     <!-- Tab Titles -->
     <string-array name="tabs_bankroll">
         <item>Details</item>
-        <item>History</item>
+        <item>Bets</item>
     </string-array>
 
     <!-- Banroll Privacy Types -->
