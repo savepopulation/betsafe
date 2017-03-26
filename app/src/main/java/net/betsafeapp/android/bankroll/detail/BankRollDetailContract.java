@@ -12,7 +12,6 @@ import net.betsafeapp.android.BaseView;
 
 public interface BankRollDetailContract {
     interface View extends BaseView<Presenter> {
-        void navigateToAddBet(@NonNull String defaultBankRollId);
 
         void initToolbar(@NonNull String bankRollName);
 
@@ -28,7 +27,6 @@ public interface BankRollDetailContract {
     }
 
     interface Presenter extends BasePresenter {
-        void addBet();
 
         void deleteBankRollRequested();
 

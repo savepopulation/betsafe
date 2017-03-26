@@ -55,15 +55,6 @@ public final class BankRollDetailPresenter extends RxPresenter<BankRollDetailCon
     }
 
     @Override
-    public void addBet() {
-        if (ValidationUtil.isNullOrEmpty(mBankRollId)) {
-            return;
-        }
-
-        mView.navigateToAddBet(mBankRollId);
-    }
-
-    @Override
     public void deleteBankRollRequested() {
         if (!ValidationUtil.isNullOrEmpty(mBankRollId)) {
             mView.showBankRollDeleteConfirmDialog();

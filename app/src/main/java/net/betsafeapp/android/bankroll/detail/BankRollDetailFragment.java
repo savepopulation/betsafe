@@ -39,10 +39,6 @@ public final class BankRollDetailFragment extends RxFragment<BankRollDetailContr
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.action_add_bet:
-                mPresenter.addBet();
-                return true;
-
             case R.id.action_delete:
                 mPresenter.deleteBankRollRequested();
                 break;
@@ -56,11 +52,6 @@ public final class BankRollDetailFragment extends RxFragment<BankRollDetailContr
                 break;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void navigateToAddBet(@NonNull String defaultBankRollId) {
-        startActivity(AddBetActivity.newIntent(getActivity(), defaultBankRollId));
     }
 
     @Override
