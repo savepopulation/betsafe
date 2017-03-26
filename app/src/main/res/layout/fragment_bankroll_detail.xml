@@ -1,11 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/textview_bankroll_current_amount"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="this is bankroll detail screen!"/>
+        android:layout_marginTop="8dp"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/textview_bankroll_init_amount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textSize="24sp" />
+
+
+    <TextView
+        android:id="@+id/textview_bankroll_status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/textview_total_bets_count"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textSize="24sp" />
+
 
 </LinearLayout>

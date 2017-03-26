@@ -96,7 +96,10 @@ public final class BankRollDetailPresenter extends RxPresenter<BankRollDetailCon
                     @Override
                     public void onCompleted() {
                         showBankRollName();
-                        Log.e("got bankroll", "yes");
+                        mView.showBankRollCurrentAmount(mBankRoll.getCurrentCapital());
+                        mView.showBankRollInitialAmount(mBankRoll.getInitialCapital());
+                        mView.showBankRollStatus(mBankRoll.getStatus());
+                        mView.showBankRollBetCount(mBankRoll.getBets().size());
                     }
 
                     @Override

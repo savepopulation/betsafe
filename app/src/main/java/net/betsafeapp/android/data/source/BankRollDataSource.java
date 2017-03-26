@@ -29,4 +29,6 @@ public interface BankRollDataSource {
     void closeBankRoll(@NonNull String bankRollId);
 
     Observable<Pick> getPicks();
+
+    Observable<Bet> getBets(@NonNull String bankRollId);
 }

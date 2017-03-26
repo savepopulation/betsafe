@@ -5,10 +5,19 @@ import android.support.annotation.StringRes;
 
 import net.betsafeapp.android.RxPresenter;
 import net.betsafeapp.android.data.BankRoll;
+import net.betsafeapp.android.data.Bet;
 import net.betsafeapp.android.data.source.BankRollRepository;
 import net.betsafeapp.android.util.ValidationUtil;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.inject.Inject;
+
+import rx.Subscriber;
+import rx.Subscription;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 /**
  * Created by tyln on 25/03/2017.
@@ -21,10 +30,10 @@ public class BankRollBetsPresenter extends RxPresenter<BankRollBetsContract.View
     private BankRollRepository mBankRollRepository;
 
     @NonNull
-    private BankRoll mBankRoll;
+    private final String mBankRollId;
 
     @NonNull
-    private String mBankRollId;
+    private final List<Bet> mBets;
 
     @Inject
     BankRollBetsPresenter(@NonNull BankRollBetsContract.View view,
@@ -33,18 +42,19 @@ public class BankRollBetsPresenter extends RxPresenter<BankRollBetsContract.View
         super(view);
         this.mBankRollRepository = bankRollRepository;
         this.mBankRollId = bankRollId;
+        this.mBets = new ArrayList<>();
 
         mView.setPresenter(this);
     }
 
     @Override
     public void start() {
-        // empty
+        mView.initBets(mBets);
     }
 
     @Override
     public void subscribe() {
-        // Empty
+        getBets();
     }
 
     @Override
@@ -54,5 +64,29 @@ public class BankRollBetsPresenter extends RxPresenter<BankRollBetsContract.View
         }
 
         mView.navigateToAddBet(mBankRollId);
+    }
+
+    private void getBets() {
+        mBets.clear();
+        final Subscription betsSbuscription = mBankRollRepository.getBets(mBankRollId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<Bet>() {
+                    @Override
+                    public void onCompleted() {
+                        mView.notifyBetsReceived();
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        mView.alert(e.getMessage());
+                    }
+
+                    @Override
+                    public void onNext(Bet bet) {
+                        mBets.add(bet);
+                    }
+                });
+        addSubscription(betsSbuscription);
     }
 }

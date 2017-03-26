@@ -113,6 +113,22 @@ public final class BankRollRepository implements BankRollDataSource {
         return mBankRollLocalDataSource.getPicks();
     }
 
+    @Override
+    public Observable<Bet> getBets(@NonNull String bankRollId) {
+        final BankRoll bankRoll = getBankRollFromCache(bankRollId);
+        if (bankRoll != null) {
+            return Observable.from(bankRoll.getBets());
+        }
+
+        return mBankRollLocalDataSource.getBankRoll(bankRollId)
+                .flatMap(new Func1<BankRoll, Observable<Bet>>() {
+                    @Override
+                    public Observable<Bet> call(BankRoll bankRoll) {
+                        return Observable.from(bankRoll.getBets());
+                    }
+                });
+    }
+
     public void addBet(@Nullable String bankrollId, @Nullable Bet bet) {
         final BankRoll bankRoll = mBankrollCache.get(bankrollId);
         if (bankRoll == null || bet == null) {

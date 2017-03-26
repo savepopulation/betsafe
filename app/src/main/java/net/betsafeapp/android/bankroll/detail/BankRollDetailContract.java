@@ -24,6 +24,14 @@ public interface BankRollDetailContract {
         void bankRollClosed(@NonNull String bankRollName);
 
         void showEditBankRoll(@NonNull String bankRollId);
+
+        void showBankRollCurrentAmount(double currentAmount);
+
+        void showBankRollInitialAmount(double initialAmount);
+
+        void showBankRollStatus(int status);
+
+        void showBankRollBetCount(int count);
     }
 
     interface Presenter extends BasePresenter {

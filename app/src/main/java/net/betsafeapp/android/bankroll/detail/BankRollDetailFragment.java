@@ -3,8 +3,10 @@ package net.betsafeapp.android.bankroll.detail;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.TextViewCompat;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import net.betsafeapp.android.BaseActivity;
 import net.betsafeapp.android.R;
@@ -22,18 +24,40 @@ public final class BankRollDetailFragment extends RxFragment<BankRollDetailContr
         ConfirmDialogFragment.ConfirmListener {
 
     @NonNull
+    private TextView mTextViewCurrentAmount;
+
+    @NonNull
+    private TextView mTextViewInitialAmount;
+
+    @NonNull
+    private TextView mTextViewStatus;
+
+    @NonNull
+    private TextView mTextViewBetCount;
+
+    @NonNull
     public static BankRollDetailFragment newInstance() {
         return new BankRollDetailFragment();
     }
 
     @Override
     protected int getLayoutRes() {
-        return R.layout.fragment_bankroll;
+        return R.layout.fragment_bankroll_detail;
     }
 
     @Override
     protected int getMenuRes() {
         return R.menu.menu_bankroll;
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        mTextViewCurrentAmount = (TextView) view.findViewById(R.id.textview_bankroll_current_amount);
+        mTextViewInitialAmount = (TextView) view.findViewById(R.id.textview_bankroll_init_amount);
+        mTextViewStatus = (TextView) view.findViewById(R.id.textview_bankroll_status);
+        mTextViewBetCount = (TextView) view.findViewById(R.id.textview_total_bets_count);
     }
 
     @Override
@@ -93,6 +117,26 @@ public final class BankRollDetailFragment extends RxFragment<BankRollDetailContr
     @Override
     public void showEditBankRoll(@NonNull String bankRollId) {
         startActivity(EditBankRollActivity.newIntent(getActivity(), bankRollId));
+    }
+
+    @Override
+    public void showBankRollCurrentAmount(double currentAmount) {
+        mTextViewCurrentAmount.setText(String.valueOf(currentAmount));
+    }
+
+    @Override
+    public void showBankRollInitialAmount(double initialAmount) {
+        mTextViewInitialAmount.setText(String.valueOf(initialAmount));
+    }
+
+    @Override
+    public void showBankRollStatus(int status) {
+        mTextViewStatus.setText("status" + status);
+    }
+
+    @Override
+    public void showBankRollBetCount(int count) {
+        mTextViewBetCount.setText(String.valueOf(count));
     }
 
     @Override

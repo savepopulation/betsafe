@@ -125,6 +125,11 @@ public class BankRollLocalDataSource implements BankRollDataSource {
         });
     }
 
+    @Override
+    public Observable<Bet> getBets(@NonNull String bankRollId) {
+        return Observable.empty();
+    }
+
     @WorkerThread
     public void saveBankroll(@NonNull final BankRoll bankRoll) {
         Realm.getInstance(mRealmConfiguration)

@@ -81,4 +81,84 @@ public class Bet extends RealmObject {
     public void setId(String id) {
         this.id = id;
     }
+
+    public String getEvent() {
+        return event;
+    }
+
+    public void setEvent(String event) {
+        this.event = event;
+    }
+
+    public String getBankrollId() {
+        return bankrollId;
+    }
+
+    public void setBankrollId(String bankrollId) {
+        this.bankrollId = bankrollId;
+    }
+
+    public String getBookMaker() {
+        return bookMaker;
+    }
+
+    public void setBookMaker(String bookMaker) {
+        this.bookMaker = bookMaker;
+    }
+
+    public int getSport() {
+        return sport;
+    }
+
+    public void setSport(int sport) {
+        this.sport = sport;
+    }
+
+    public double getOdds() {
+        return odds;
+    }
+
+    public void setOdds(double odds) {
+        this.odds = odds;
+    }
+
+    public double getStake() {
+        return stake;
+    }
+
+    public void setStake(double stake) {
+        this.stake = stake;
+    }
+
+    public int getPick() {
+        return pick;
+    }
+
+    public void setPick(int pick) {
+        this.pick = pick;
+    }
+
+    public int getResult() {
+        return result;
+    }
+
+    public void setResult(int result) {
+        this.result = result;
+    }
+
+    public long getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(long createDate) {
+        this.createDate = createDate;
+    }
+
+    public long getUpdateDate() {
+        return updateDate;
+    }
+
+    public void setUpdateDate(long updateDate) {
+        this.updateDate = updateDate;
+    }
 }
