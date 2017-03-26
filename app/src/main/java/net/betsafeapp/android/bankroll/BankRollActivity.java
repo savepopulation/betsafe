@@ -23,6 +23,7 @@ import net.betsafeapp.android.bankroll.detail.BankRollDetailPresenterModule;
 import net.betsafeapp.android.bankroll.history.BankRollHistoryFragment;
 import net.betsafeapp.android.bankroll.history.BankRollHistoryPresenterModule;
 import net.betsafeapp.android.bankroll.history.BankRollHistoryPresenter;
+import net.betsafeapp.android.util.UiUtil;
 
 import javax.inject.Inject;
 
@@ -91,29 +92,22 @@ public final class BankRollActivity extends BaseActivity {
         toolbar.setNavigationIcon(R.mipmap.ic_arrow_back_white_24dp);
         setSupportActionBar(toolbar);
 
-        BankRollDetailFragment bankRollDetailFragment = BankRollDetailFragment.newInstance();
-        BankRollHistoryFragment bankRollHistoryFragment = BankRollHistoryFragment.newInstance();
 
-        final BankRollDetailFragment currentBankRollDetailFragment =
-                (BankRollDetailFragment) getSupportFragmentManager()
-                        .findFragmentByTag(
-                                "android:switcher:" + R.id.viewpager_bankroll + ":0");
-        if (currentBankRollDetailFragment != null) {
-            bankRollDetailFragment = currentBankRollDetailFragment;
+        BankRollDetailFragment bankRollDetailFragment = (BankRollDetailFragment) getSupportFragmentManager()
+                .findFragmentByTag(UiUtil.generateViewPagerFragmentTag(R.id.viewpager_bankroll, BankRollTabsAdapter.TAB_DETAIL));
+        if (bankRollDetailFragment == null) {
+            bankRollDetailFragment = BankRollDetailFragment.newInstance();
         }
 
-        final BankRollHistoryFragment currentBankRollHistoryFragment =
-                (BankRollHistoryFragment) getSupportFragmentManager()
-                        .findFragmentByTag(
-                                "android:switcher:" + R.id.viewpager_bankroll + ":1");
-        if (currentBankRollHistoryFragment != null) {
-            bankRollHistoryFragment = currentBankRollHistoryFragment;
+        BankRollHistoryFragment bankkRollHistoryFragment = (BankRollHistoryFragment) getSupportFragmentManager()
+                .findFragmentByTag(UiUtil.generateViewPagerFragmentTag(R.id.viewpager_bankroll, BankRollTabsAdapter.TAB_BETS));
+        if (bankkRollHistoryFragment == null) {
+            bankkRollHistoryFragment = BankRollHistoryFragment.newInstance();
         }
-
 
         final SparseArray<Fragment> fragments = new SparseArray<>();
         fragments.put(0, bankRollDetailFragment);
-        fragments.put(1, bankRollHistoryFragment);
+        fragments.put(1, bankkRollHistoryFragment);
 
         final ViewPager viewPagerBankRollTabs = (ViewPager) findViewById(R.id.viewpager_bankroll);
         final TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
@@ -125,7 +119,7 @@ public final class BankRollActivity extends BaseActivity {
 
         DaggerBankRollComponent.builder()
                 .bankRollDetailPresenterModule(new BankRollDetailPresenterModule(bankRollDetailFragment, bankrollId))
-                .bankRollHistoryPresenterModule(new BankRollHistoryPresenterModule(bankRollHistoryFragment))
+                .bankRollHistoryPresenterModule(new BankRollHistoryPresenterModule(bankkRollHistoryFragment))
                 .bankRollRepositoryComponent(((BetSafeApp) getApplication()).getBankRollRepositoryComponent())
                 .build()
                 .inject(this);

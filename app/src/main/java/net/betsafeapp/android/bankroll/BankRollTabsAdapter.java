@@ -16,6 +16,9 @@ import net.betsafeapp.android.data.BankRoll;
  */
 
 final class BankRollTabsAdapter extends FragmentPagerAdapter {
+    static final int TAB_DETAIL = 0;
+    static final int TAB_BETS = 1;
+
     @NonNull
     private String[] mTitles;
 
@@ -33,10 +36,10 @@ final class BankRollTabsAdapter extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int position) {
         switch (position) {
-            case 0:
+            case TAB_DETAIL:
                 return mFragments.get(0);
 
-            case 1:
+            case TAB_BETS:
                 return mFragments.get(1);
 
             default:
@@ -52,23 +55,5 @@ final class BankRollTabsAdapter extends FragmentPagerAdapter {
     @Override
     public CharSequence getPageTitle(int position) {
         return mTitles[position];
-    }
-
-    @Override
-    public Object instantiateItem(ViewGroup container, int position) {
-        final Fragment fragment = (Fragment) super.instantiateItem(container, position);
-        mFragments.put(position, fragment);
-        return fragment;
-    }
-
-    @Override
-    public void destroyItem(ViewGroup container, int position, Object object) {
-        mFragments.remove(position);
-        super.destroyItem(container, position, object);
-    }
-
-    @Nullable
-    public Fragment getRegistredItem(int key) {
-        return mFragments.get(key);
     }
 }

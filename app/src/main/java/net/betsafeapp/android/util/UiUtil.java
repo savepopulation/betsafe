@@ -1,6 +1,8 @@
 package net.betsafeapp.android.util;
 
 import android.support.annotation.ColorRes;
+import android.support.annotation.NonNull;
+import android.support.annotation.StringRes;
 
 import net.betsafeapp.android.Constants;
 import net.betsafeapp.android.R;
@@ -10,6 +12,7 @@ import net.betsafeapp.android.R;
  */
 
 public final class UiUtil {
+
     private UiUtil() {
         // Private emtpy constructor
     }
@@ -23,5 +26,15 @@ public final class UiUtil {
             default:
                 return android.R.color.white;
         }
+    }
+
+    @NonNull
+    public static String generateViewPagerFragmentTag(int viewPagerId, int position) {
+        final StringBuilder tagBuilder = new StringBuilder();
+        tagBuilder.append("android:switcher:");
+        tagBuilder.append(viewPagerId);
+        tagBuilder.append(":");
+        tagBuilder.append(position);
+        return tagBuilder.toString();
     }
 }
