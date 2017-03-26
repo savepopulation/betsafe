@@ -94,14 +94,20 @@ public final class BankRollActivity extends BaseActivity {
         BankRollDetailFragment bankRollDetailFragment = BankRollDetailFragment.newInstance();
         BankRollHistoryFragment bankRollHistoryFragment = BankRollHistoryFragment.newInstance();
 
+        final BankRollDetailFragment currentBankRollDetailFragment =
+                (BankRollDetailFragment) getSupportFragmentManager()
+                        .findFragmentByTag(
+                                "android:switcher:" + R.id.viewpager_bankroll + ":0");
+        if (currentBankRollDetailFragment != null) {
+            bankRollDetailFragment = currentBankRollDetailFragment;
+        }
 
-        Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.viewpager_bankroll);
-        if (currentFragment != null) {
-            if (currentFragment instanceof BankRollDetailFragment) {
-                bankRollDetailFragment = (BankRollDetailFragment) currentFragment;
-            } else if (currentFragment instanceof BankRollHistoryFragment) {
-                bankRollHistoryFragment = (BankRollHistoryFragment) currentFragment;
-            }
+        final BankRollHistoryFragment currentBankRollHistoryFragment =
+                (BankRollHistoryFragment) getSupportFragmentManager()
+                        .findFragmentByTag(
+                                "android:switcher:" + R.id.viewpager_bankroll + ":1");
+        if (currentBankRollHistoryFragment != null) {
+            bankRollHistoryFragment = currentBankRollHistoryFragment;
         }
 
 
