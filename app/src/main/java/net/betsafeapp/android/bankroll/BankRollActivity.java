@@ -116,6 +116,31 @@ public final class BankRollActivity extends BaseActivity {
         viewPagerBankRollTabs.setAdapter(bankRollTabsAdapter);
         tabLayout.setupWithViewPager(viewPagerBankRollTabs);
 
+        viewPagerBankRollTabs.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                // Empty method
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                switch (position) {
+                    case BankRollTabsAdapter.TAB_DETAIL:
+                        mBankRollDetailPresenter.subscribe();
+                        break;
+
+                    case BankRollTabsAdapter.TAB_BETS:
+                        mBankRollDetailPresenter.subscribe();
+                        break;
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+                // Empty method
+            }
+        });
+
         DaggerBankRollComponent.builder()
                 .bankRollDetailPresenterModule(new BankRollDetailPresenterModule(detailFragment, bankrollId))
                 .bankRollBetsPresenterModule(new BankRollBetsPresenterModule(betsFragment))

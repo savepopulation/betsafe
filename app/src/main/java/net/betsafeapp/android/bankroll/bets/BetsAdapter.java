@@ -1,5 +1,6 @@
 package net.betsafeapp.android.bankroll.bets;
 
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
@@ -7,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -51,6 +53,22 @@ final class BetsAdapter extends RecyclerView.Adapter<BetsAdapter.ViewHolder> {
         holder.mTextViewBetName.setText(bet.getEvent());
         holder.mTextViewBetStake.setText(String.valueOf(bet.getStake()));
         holder.mTextViewBetOdd.setText(String.valueOf(bet.getOdds()));
+
+        if (mItemClickListener != null) {
+            holder.mButtonDelete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    mItemClickListener.removeBet(bet);
+                }
+            });
+
+            holder.mButtonEdit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    mItemClickListener.editBet(bet);
+                }
+            });
+        }
     }
 
     @Override
@@ -62,16 +80,22 @@ final class BetsAdapter extends RecyclerView.Adapter<BetsAdapter.ViewHolder> {
         private final TextView mTextViewBetName;
         private final TextView mTextViewBetStake;
         private final TextView mTextViewBetOdd;
+        private final Button mButtonDelete;
+        private final Button mButtonEdit;
 
         ViewHolder(View itemView) {
             super(itemView);
             mTextViewBetName = (TextView) itemView.findViewById(R.id.textview_bet_name);
             mTextViewBetStake = (TextView) itemView.findViewById(R.id.textview_stake);
             mTextViewBetOdd = (TextView) itemView.findViewById(R.id.textview_odd);
+            mButtonDelete = (Button) itemView.findViewById(R.id.button_delete);
+            mButtonEdit = (Button) itemView.findViewById(R.id.button_edit);
         }
     }
 
     interface ItemClickListener {
-        void onItemClicked(@Nullable String bankRollId);
+        void editBet(@NonNull Bet bet);
+
+        void removeBet(@NonNull Bet bet);
     }
 }

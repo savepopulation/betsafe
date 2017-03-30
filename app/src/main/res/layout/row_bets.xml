@@ -20,13 +20,13 @@
         android:layout_height="wrap_content" />
 
     <Button
-        android:id="@+id/button_status"
+        android:id="@+id/button_edit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Edit" />
 
     <Button
-        android:id="@+id/button_remove"
+        android:id="@+id/button_delete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Delete" />

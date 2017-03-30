@@ -1,6 +1,7 @@
 package net.betsafeapp.android.bankroll.bets;
 
 import android.support.annotation.NonNull;
+import android.support.annotation.StringRes;
 
 import net.betsafeapp.android.BasePresenter;
 import net.betsafeapp.android.BaseView;
@@ -18,10 +19,16 @@ public interface BankRollBetsContract {
 
         void initBets(@NonNull List<Bet> bets);
 
-        void notifyBetsReceived();
+        void notifyUi();
+
+        void betRemoved(@NonNull String betName);
     }
 
     interface Presenter extends BasePresenter {
         void addBet();
+
+        void editBet(@NonNull Bet bet);
+
+        void removeBet(@NonNull Bet bet);
     }
 }

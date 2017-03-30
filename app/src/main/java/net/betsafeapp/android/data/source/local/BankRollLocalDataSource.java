@@ -23,6 +23,7 @@ import javax.inject.Singleton;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
+import io.realm.RealmObject;
 import io.realm.RealmQuery;
 import io.realm.RealmResults;
 import io.realm.Sort;
@@ -106,7 +107,7 @@ public class BankRollLocalDataSource implements BankRollDataSource {
                                 .equalTo("id", bankRollId)
                                 .findFirst();
                         bankRoll.setStatus(Constants.BANKROLL_STATUS_CLOSED);
-                        realm.commitTransaction();
+                        realm.copyToRealmOrUpdate(bankRoll);
                     }
                 });
     }
@@ -127,7 +128,22 @@ public class BankRollLocalDataSource implements BankRollDataSource {
 
     @Override
     public Observable<Bet> getBets(@NonNull String bankRollId) {
+        // TODO implement this
         return Observable.empty();
+    }
+
+    @Override
+    public void removeBetFromBankRoll(@NonNull final String bankRollId, @NonNull final Bet bet) {
+        Realm.getInstance(mRealmConfiguration)
+                .executeTransactionAsync(new Realm.Transaction() {
+                    @Override
+                    public void execute(Realm realm) {
+                        final RealmResults<Bet> bets = realm.where(Bet.class)
+                                .equalTo("id", bet.getId())
+                                .findAll();
+                        bets.deleteAllFromRealm();
+                    }
+                });
     }
 
     @WorkerThread

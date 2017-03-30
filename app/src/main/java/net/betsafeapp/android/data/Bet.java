@@ -74,6 +74,21 @@ public class Bet extends RealmObject {
         this.updateDate = updateDate;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Bet)) return false;
+
+        Bet bet = (Bet) o;
+
+        return id != null ? id.equals(bet.id) : bet.id == null;
+    }
+
+    @Override
+    public int hashCode() {
+        return id != null ? id.hashCode() : 0;
+    }
+
     public String getId() {
         return id;
     }

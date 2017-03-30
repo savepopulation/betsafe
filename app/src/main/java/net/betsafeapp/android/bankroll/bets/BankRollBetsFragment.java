@@ -21,7 +21,8 @@ import java.util.List;
  */
 
 public final class BankRollBetsFragment extends RxFragment<BankRollBetsContract.Presenter>
-        implements BankRollBetsContract.View {
+        implements BankRollBetsContract.View,
+        BetsAdapter.ItemClickListener {
 
     @NonNull
     private RecyclerView mRecyclerViewBets;
@@ -73,12 +74,27 @@ public final class BankRollBetsFragment extends RxFragment<BankRollBetsContract.
 
     @Override
     public void initBets(@NonNull List<Bet> bets) {
-        mBetsAdapter = new BetsAdapter(bets, null);
+        mBetsAdapter = new BetsAdapter(bets, this);
         mRecyclerViewBets.setAdapter(mBetsAdapter);
     }
 
     @Override
-    public void notifyBetsReceived() {
+    public void notifyUi() {
         mBetsAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void betRemoved(@NonNull String betName) {
+        alert(getString(R.string.success_message_bet_removed, betName));
+    }
+
+    @Override
+    public void editBet(@NonNull Bet bet) {
+        mPresenter.editBet(bet);
+    }
+
+    @Override
+    public void removeBet(@NonNull Bet bet) {
+        mPresenter.removeBet(bet);
     }
 }

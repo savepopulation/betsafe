@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.support.v4.util.ArrayMap;
+import android.text.TextUtils;
 
 import net.betsafeapp.android.Constants;
 import net.betsafeapp.android.data.BankRoll;
@@ -129,14 +130,29 @@ public final class BankRollRepository implements BankRollDataSource {
                 });
     }
 
+    @Override
+    public void removeBetFromBankRoll(@NonNull String bankRollId, @NonNull Bet bet) {
+        final BankRoll bankRoll = getBankRollFromCache(bankRollId);
+        if (bankRoll != null) {
+            final List<Bet> bets = bankRoll.getBets();
+            if (!ValidationUtil.isNullOrEmpty(bets) || bets.contains(bet)) {
+                bets.remove(bet);
+            }
+        }
+
+        mBankRollLocalDataSource.removeBetFromBankRoll(bankRollId, bet);
+    }
+
     public void addBet(@Nullable String bankrollId, @Nullable Bet bet) {
         final BankRoll bankRoll = mBankrollCache.get(bankrollId);
         if (bankRoll == null || bet == null) {
             return;
         }
+
         if (bankRoll.getBets() == null) {
             bankRoll.setBets(new RealmList<Bet>());
         }
+
         bankRoll.getBets().add(bet);
         mBankRollLocalDataSource.saveBankroll(bankRoll);
     }

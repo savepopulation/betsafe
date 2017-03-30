@@ -66,6 +66,23 @@ public class BankRollBetsPresenter extends RxPresenter<BankRollBetsContract.View
         mView.navigateToAddBet(mBankRollId);
     }
 
+    @Override
+    public void editBet(@NonNull Bet bet) {
+        // Edit Bet
+    }
+
+    @Override
+    public void removeBet(@NonNull Bet bet) {
+        if (bet == null) {
+            return;
+        }
+
+        mBets.remove(bet);
+        mBankRollRepository.removeBetFromBankRoll(mBankRollId, bet);
+        mView.betRemoved(bet.getEvent());
+        mView.notifyUi();
+    }
+
     private void getBets() {
         mBets.clear();
         final Subscription betsSbuscription = mBankRollRepository.getBets(mBankRollId)
@@ -74,7 +91,7 @@ public class BankRollBetsPresenter extends RxPresenter<BankRollBetsContract.View
                 .subscribe(new Subscriber<Bet>() {
                     @Override
                     public void onCompleted() {
-                        mView.notifyBetsReceived();
+                        mView.notifyUi();
                     }
 
                     @Override

@@ -31,4 +31,6 @@ public interface BankRollDataSource {
     Observable<Pick> getPicks();
 
     Observable<Bet> getBets(@NonNull String bankRollId);
+
+    void removeBetFromBankRoll(@NonNull String bankRollId, @NonNull Bet bet);
 }
