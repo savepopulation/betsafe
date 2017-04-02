@@ -1,5 +1,6 @@
 package net.betsafeapp.android.bankroll.bets;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import net.betsafeapp.android.R;
@@ -45,30 +47,39 @@ final class BetsAdapter extends RecyclerView.Adapter<BetsAdapter.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(BetsAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(final BetsAdapter.ViewHolder holder, int position) {
         final Bet bet = mItems.get(position);
 
         if (bet == null) return;
 
+        final Context context = holder.itemView.getContext();
+
         holder.mTextViewBetName.setText(bet.getEvent());
-        holder.mTextViewBetStake.setText(String.valueOf(bet.getStake()));
-        holder.mTextViewBetOdd.setText(String.valueOf(bet.getOdds()));
+        holder.mTextViewBetPick.setText(context.getString(R.string.label_bet_pick, bet.getPick().getName()));
+        holder.mTextViewStake.setText(context.getString(R.string.label_bet_stake, bet.getStake()));
 
-        if (mItemClickListener != null) {
-            holder.mButtonDelete.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    mItemClickListener.removeBet(bet);
-                }
-            });
+        final String resultString = context.getString(UiUtil.getStringResForBetStatus(bet.getResult()));
+        holder.mTextViewStatus.setText(context.getString(R.string.label_bet_status, resultString));
 
-            holder.mButtonEdit.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    mItemClickListener.editBet(bet);
+        holder.mTextViewDate.setText(context.getString(R.string.label_bet_date,
+                DateUtil.convertTime(bet.getCreateDate(), DateUtil.DATE_FORMAT_BET_ROW)));
+
+        holder.mTextViewOdd.setText(context.getString(R.string.label_bet_odd, bet.getOdds()));
+        holder.mTextViewBooker.setText(context.getString(R.string.label_bet_booker, bet.getBookMaker()));
+
+        // TODO convert stports to object
+        holder.mTextViewSport.setText(context.getString(R.string.label_bet_sport, String.valueOf(bet.getSport())));
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (holder.mLinearLayoutBetDetails.getVisibility() == View.VISIBLE) {
+                    holder.mLinearLayoutBetDetails.setVisibility(View.GONE);
+                } else {
+                    holder.mLinearLayoutBetDetails.setVisibility(View.VISIBLE);
                 }
-            });
-        }
+            }
+        });
     }
 
     @Override
@@ -78,18 +89,26 @@ final class BetsAdapter extends RecyclerView.Adapter<BetsAdapter.ViewHolder> {
 
     final class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView mTextViewBetName;
-        private final TextView mTextViewBetStake;
-        private final TextView mTextViewBetOdd;
-        private final Button mButtonDelete;
-        private final Button mButtonEdit;
+        private final TextView mTextViewStake;
+        private final TextView mTextViewBetPick;
+        private final TextView mTextViewStatus;
+        private final TextView mTextViewDate;
+        private final TextView mTextViewOdd;
+        private final TextView mTextViewBooker;
+        private final TextView mTextViewSport;
+        private final LinearLayout mLinearLayoutBetDetails;
 
         ViewHolder(View itemView) {
             super(itemView);
             mTextViewBetName = (TextView) itemView.findViewById(R.id.textview_bet_name);
-            mTextViewBetStake = (TextView) itemView.findViewById(R.id.textview_stake);
-            mTextViewBetOdd = (TextView) itemView.findViewById(R.id.textview_odd);
-            mButtonDelete = (Button) itemView.findViewById(R.id.button_delete);
-            mButtonEdit = (Button) itemView.findViewById(R.id.button_edit);
+            mTextViewStake = (TextView) itemView.findViewById(R.id.textview_bet_stake);
+            mTextViewBetPick = (TextView) itemView.findViewById(R.id.textview_bet_pick);
+            mTextViewStatus = (TextView) itemView.findViewById(R.id.textview_bet_status);
+            mTextViewDate = (TextView) itemView.findViewById(R.id.textview_bet_date);
+            mTextViewOdd = (TextView) itemView.findViewById(R.id.textview_bet_odd);
+            mTextViewBooker = (TextView) itemView.findViewById(R.id.textview_bet_booker);
+            mTextViewSport = (TextView) itemView.findViewById(R.id.textview_bet_sport);
+            mLinearLayoutBetDetails = (LinearLayout) itemView.findViewById(R.id.lienarlayout_bet_details);
         }
     }
 

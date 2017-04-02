@@ -16,7 +16,7 @@ public final class ValidationUtil {
     }
 
     public static boolean isNullOrEmpty(@Nullable String s) {
-        return TextUtils.isEmpty(s) || s.trim().length() == 0;
+        return s == null || s.length() == 0 || s.trim().length() == 0;
     }
 
     public static boolean isInitialAmountValid(double initialAmount) {

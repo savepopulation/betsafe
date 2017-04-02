@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 
 import net.betsafeapp.android.Constants;
 import net.betsafeapp.android.data.Bet;
+import net.betsafeapp.android.data.Pick;
 import net.betsafeapp.android.util.ValidationUtil;
 
 import java.util.UUID;
@@ -26,12 +27,12 @@ public final class BetFactory {
                                   double odd,
                                   double stake,
                                   int sport,
-                                  int pick) {
+                                  Pick pick) {
         if (ValidationUtil.isNullOrEmpty(eventName) || ValidationUtil.isNullOrEmpty(bookmaker)) {
             return null;
         }
 
-        if (odd <= 0 || stake <= 0) {
+        if (odd <= 0 || stake <= 0 || pick == null) {
             return null;
         }
 

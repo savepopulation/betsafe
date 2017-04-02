@@ -7,6 +7,7 @@ import net.betsafeapp.android.BasePresenter;
 import net.betsafeapp.android.RxPresenter;
 import net.betsafeapp.android.data.BankRoll;
 import net.betsafeapp.android.data.Bet;
+import net.betsafeapp.android.data.Pick;
 import net.betsafeapp.android.data.factory.BetFactory;
 import net.betsafeapp.android.data.source.BankRollRepository;
 import net.betsafeapp.android.util.ValidationUtil;
@@ -102,7 +103,7 @@ final class AddBetPresenter extends RxPresenter<AddBetContract.View> implements 
                        double odd,
                        double stake,
                        int sport,
-                       int pick) {
+                       Pick pick) {
         final Bet bet = BetFactory.newInstance(eventName, bookmaker, bankrollId, odd, stake, sport, pick);
         if (bet == null) {
             mView.addBetError();

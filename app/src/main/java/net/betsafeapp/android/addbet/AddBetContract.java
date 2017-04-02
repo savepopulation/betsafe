@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import net.betsafeapp.android.BasePresenter;
 import net.betsafeapp.android.BaseView;
 import net.betsafeapp.android.data.BankRoll;
+import net.betsafeapp.android.data.Pick;
 
 import java.util.List;
 
@@ -30,6 +31,6 @@ interface AddBetContract {
                     double odd,
                     double stake,
                     int sport,
-                    int pick);
+                    Pick pick);
     }
 }

@@ -1,6 +1,7 @@
 <resources>
     <!-- App Strings -->
     <string name="app_name">BetSafe</string>
+    <string name="unknown">Unknown</string>
 
     <!-- Action Strings -->
     <string name="action_settings">Settings</string>
@@ -35,6 +36,23 @@
     <string name="label_bankrolls">Bankroll</string>
     <string name="label_status">Status</string>
     <string name="label_pick">Pick</string>
+
+    <!-- Bet Labels -->
+    <string name="label_bet_pick"><b>Pick:</b> %1$s</string>
+    <string name="label_bet_stake"><b>Stake:</b> %1$f</string>
+    <string name="label_bet_status"><b>Status:</b> %1$s</string>
+    <string name="label_bet_date"><b>Date:</b> %1$s</string>
+    <string name="label_bet_odd"><b>Odd:</b> %1$f</string>
+    <string name="label_bet_booker"><b>Booker:</b> %1$s</string>
+    <string name="label_bet_sport"><b>Sport:</b> %1$s</string>
+
+    <!-- Bet Status -->
+    <string name="text_bet_status_pending">Pending</string>
+    <string name="text_bet_status_won">Won</string>
+    <string name="text_bet_status_lost">Lost</string>
+    <string name="text_bet_status_draw">Draw</string>
+    <string name="text_bet_status_cancel">Cancelled</string>
+    <string name="text_bet_status_postponed">Postponed</string>
 
     <!-- Button Names -->
     <string name="button_name_add_bankroll">Create Bankroll</string>
@@ -84,12 +102,12 @@
 
     <!-- Bet Status -->
     <string-array name="bet_status">
-        <item>Pending</item>
-        <item>Won</item>
-        <item>Lost</item>
-        <item>Draw</item>
-        <item>Cancelled</item>
-        <item>Postponed</item>
+        <item>@string/text_bet_status_pending</item>
+        <item>@string/text_bet_status_won</item>
+        <item>@string/text_bet_status_lost</item>
+        <item>@string/text_bet_status_draw</item>
+        <item>@string/text_bet_status_cancel</item>
+        <item>@string/text_bet_status_postponed</item>
     </string-array>
 
     <!-- Picks -->

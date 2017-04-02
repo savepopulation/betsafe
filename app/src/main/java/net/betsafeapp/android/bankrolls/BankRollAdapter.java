@@ -70,7 +70,7 @@ final class BankRollAdapter extends RecyclerView.Adapter<BankRollAdapter.ViewHol
         holder.mImageViewBankroll.setBackground(ContextCompat.getDrawable(holder.itemView.getContext(), backgroundDrawableId));
         holder.mImageViewBankroll.setImageResource(imageResId);
         holder.mViewGroupRow.setBackgroundColor(ContextCompat.getColor(holder.itemView.getContext(),
-                UiUtil.getColorResByBetStatus(bankRoll.getStatus())));
+                UiUtil.getColorResByBankRollStatus(bankRoll.getStatus())));
 
         if (mItemClickListener != null) {
             holder.itemView.setOnClickListener(new View.OnClickListener() {

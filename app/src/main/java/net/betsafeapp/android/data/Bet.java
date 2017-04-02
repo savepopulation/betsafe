@@ -35,7 +35,7 @@ public class Bet extends RealmObject {
     private double stake;
 
     @SerializedName("pick")
-    private int pick;
+    private Pick pick;
 
     @SerializedName("result")
     private int result;
@@ -57,7 +57,7 @@ public class Bet extends RealmObject {
                int sport,
                double odds,
                double stake,
-               int pick,
+               Pick pick,
                int result,
                long createDate,
                long updateDate) {
@@ -145,11 +145,11 @@ public class Bet extends RealmObject {
         this.stake = stake;
     }
 
-    public int getPick() {
+    public Pick getPick() {
         return pick;
     }
 
-    public void setPick(int pick) {
+    public void setPick(Pick pick) {
         this.pick = pick;
     }
 

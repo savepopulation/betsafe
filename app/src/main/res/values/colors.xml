@@ -11,4 +11,7 @@
     <color name="colorNegativeRed">#F44336</color>
     <color name="colorNotrYellow">#FFC107</color>
     <color name="colorClosed">#f1f1f1</color>
+    <color name="colorWonGreen">#4CAF50</color>
+    <color name="colorLooseRed">#F44336</color>
+    <color name="colorPendingYellow">#FFC107</color>
 </resources>

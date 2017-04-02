@@ -2,15 +2,21 @@ package net.betsafeapp.android.data;
 
 import com.google.gson.annotations.SerializedName;
 
+import io.realm.RealmObject;
+
 /**
  * Created by tyln on 28/02/2017.
  */
 
-public final class Pick {
+public class Pick extends RealmObject {
     @SerializedName("id")
     private int id;
     @SerializedName("name")
     private String name;
+
+    public Pick() {
+        // Defaiul Empty Constructor
+    }
 
     public Pick(int id, String name) {
         this.id = id;

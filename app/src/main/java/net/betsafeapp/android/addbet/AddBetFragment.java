@@ -12,6 +12,7 @@ import net.betsafeapp.android.BaseFragment;
 import net.betsafeapp.android.R;
 import net.betsafeapp.android.RxFragment;
 import net.betsafeapp.android.data.BankRoll;
+import net.betsafeapp.android.data.Pick;
 import net.betsafeapp.android.util.AlertUtil;
 import net.betsafeapp.android.util.Utils;
 
@@ -74,7 +75,7 @@ public final class AddBetFragment extends RxFragment<AddBetContract.Presenter>
                         Utils.convertStringToDouble(mEditTextBetOdd.getText().toString().trim()),
                         Utils.convertStringToDouble(mEditTextStake.getText().toString().trim()),
                         mSpinnerSports.getSelectedItemPosition(),
-                        mSpinnerPicks.getSelectedItemPosition());
+                        new Pick(mSpinnerPicks.getSelectedItemPosition(), (String) mSpinnerPicks.getSelectedItem()));
                 return true;
         }
         return super.onOptionsItemSelected(item);
