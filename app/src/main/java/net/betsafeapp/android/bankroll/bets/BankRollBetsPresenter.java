@@ -67,8 +67,10 @@ public class BankRollBetsPresenter extends RxPresenter<BankRollBetsContract.View
     }
 
     @Override
-    public void editBet(@NonNull Bet bet) {
-        // Edit Bet
+    public void editBet(@NonNull String betId) {
+        if (!ValidationUtil.isNullOrEmpty(betId)) {
+            mView.showEditBet();
+        }
     }
 
     @Override

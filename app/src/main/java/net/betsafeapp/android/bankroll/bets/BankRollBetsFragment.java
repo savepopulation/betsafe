@@ -11,6 +11,7 @@ import android.view.View;
 import net.betsafeapp.android.R;
 import net.betsafeapp.android.RxFragment;
 import net.betsafeapp.android.addbet.AddBetActivity;
+import net.betsafeapp.android.bankroll.detail.EditBetBottomSheetDialogFragment;
 import net.betsafeapp.android.data.Bet;
 import net.betsafeapp.android.view.DividerDecorator;
 
@@ -89,8 +90,14 @@ public final class BankRollBetsFragment extends RxFragment<BankRollBetsContract.
     }
 
     @Override
-    public void editBet(@NonNull Bet bet) {
-        mPresenter.editBet(bet);
+    public void showEditBet() {
+        final EditBetBottomSheetDialogFragment editBetBottomSheetDialogFragment = EditBetBottomSheetDialogFragment.newInstance();
+        editBetBottomSheetDialogFragment.show(getChildFragmentManager(), EditBetBottomSheetDialogFragment.TAG);
+    }
+
+    @Override
+    public void editBet(@NonNull String betId) {
+        mPresenter.editBet(betId);
     }
 
     @Override

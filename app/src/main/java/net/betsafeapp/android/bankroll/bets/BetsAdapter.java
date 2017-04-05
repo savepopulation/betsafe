@@ -67,9 +67,20 @@ final class BetsAdapter extends RecyclerView.Adapter<BetsAdapter.ViewHolder> {
         holder.mTextViewOdd.setText(context.getString(R.string.label_bet_odd, bet.getOdds()));
         holder.mTextViewBooker.setText(context.getString(R.string.label_bet_booker, bet.getBookMaker()));
 
-        // TODO convert stports to object
+        // TODO convert sports to object
         holder.mTextViewSport.setText(context.getString(R.string.label_bet_sport, String.valueOf(bet.getSport())));
 
+        if (mItemClickListener != null) {
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    mItemClickListener.editBet(bet.getId());
+                }
+            });
+        }
+
+        // TODO set this option to an image
+        /*
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -79,7 +90,7 @@ final class BetsAdapter extends RecyclerView.Adapter<BetsAdapter.ViewHolder> {
                     holder.mLinearLayoutBetDetails.setVisibility(View.VISIBLE);
                 }
             }
-        });
+        }); */
     }
 
     @Override
@@ -113,7 +124,7 @@ final class BetsAdapter extends RecyclerView.Adapter<BetsAdapter.ViewHolder> {
     }
 
     interface ItemClickListener {
-        void editBet(@NonNull Bet bet);
+        void editBet(@NonNull String betId);
 
         void removeBet(@NonNull Bet bet);
     }

@@ -22,12 +22,14 @@ public interface BankRollBetsContract {
         void notifyUi();
 
         void betRemoved(@NonNull String betName);
+
+        void showEditBet();
     }
 
     interface Presenter extends BasePresenter {
         void addBet();
 
-        void editBet(@NonNull Bet bet);
+        void editBet(@NonNull String betId);
 
         void removeBet(@NonNull Bet bet);
     }

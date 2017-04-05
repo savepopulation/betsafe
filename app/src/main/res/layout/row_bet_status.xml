@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="@dimen/default_padding">
+
+    <ImageView
+        android:id="@+id/imageview_icon"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_gravity="center_vertical"
+        android:src="@mipmap/ic_account_balance_grey600_18dp" />
+
+    <TextView
+        android:id="@+id/textview_title"
+        style="@style/TextViewTitle"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="@dimen/default_margin"
+        android:maxLines="1" />
+
+</LinearLayout>
