@@ -25,9 +25,4 @@ public final class SettingsFragment extends RxFragment<SettingsContract.Presente
     protected int getLayoutRes() {
         return R.layout.fragment_settings;
     }
-
-    @Override
-    protected int getMenuRes() {
-        return Constants.NO_RES;
-    }
 }

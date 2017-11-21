@@ -35,7 +35,7 @@ public final class SettingsActivity extends BaseActivity {
     protected int getTitleRes() {
         return R.string.screen_title_settings;
     }
-    
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

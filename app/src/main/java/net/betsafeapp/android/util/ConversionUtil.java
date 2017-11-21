@@ -7,8 +7,8 @@ import android.support.annotation.Nullable;
  * Created by tyln on 02/02/2017.
  */
 
-public final class Utils {
-    private Utils() {
+public final class ConversionUtil {
+    private ConversionUtil() {
         // Empty Private Constructor
     }
 

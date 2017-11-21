@@ -21,9 +21,6 @@ public abstract class BaseFragment extends Fragment {
     @LayoutRes
     protected abstract int getLayoutRes();
 
-    @MenuRes
-    protected abstract int getMenuRes();
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,5 +46,10 @@ public abstract class BaseFragment extends Fragment {
     @NonNull
     protected final Context getApplicationContext() {
         return getActivity().getApplicationContext();
+    }
+
+    @MenuRes
+    protected int getMenuRes() {
+        return Constants.NO_RES;
     }
 }

@@ -23,9 +23,4 @@ public final class EditBankRollFragment extends RxFragment<EditBankRollContract.
     protected int getLayoutRes() {
         return R.layout.fragment_edit_bankroll;
     }
-
-    @Override
-    protected int getMenuRes() {
-        return Constants.NO_RES;
-    }
 }

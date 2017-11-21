@@ -3,7 +3,6 @@ package net.betsafeapp.android.addbankroll;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -11,12 +10,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
-import net.betsafeapp.android.BaseFragment;
 import net.betsafeapp.android.Constants;
 import net.betsafeapp.android.R;
 import net.betsafeapp.android.RxFragment;
 import net.betsafeapp.android.util.AlertUtil;
-import net.betsafeapp.android.util.Utils;
+import net.betsafeapp.android.util.ConversionUtil;
 
 /**
  * Created by tyln on 19/01/2017.
@@ -39,11 +37,6 @@ public final class AddBankRollFragment extends RxFragment<AddBankRollContract.Pr
     @Override
     protected int getLayoutRes() {
         return R.layout.fragment_add_bankroll;
-    }
-
-    @Override
-    protected int getMenuRes() {
-        return Constants.NO_RES;
     }
 
     @Override
@@ -83,7 +76,7 @@ public final class AddBankRollFragment extends RxFragment<AddBankRollContract.Pr
 
             @Override
             public void afterTextChanged(Editable editable) {
-                mPresenter.checkBankRollInitialCapital(Utils.convertStringToDouble(editable.toString()));
+                mPresenter.checkBankRollInitialCapital(ConversionUtil.convertStringToDouble(editable.toString()));
             }
         });
 

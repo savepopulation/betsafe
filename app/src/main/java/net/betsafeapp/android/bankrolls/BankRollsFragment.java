@@ -58,7 +58,6 @@ public final class BankRollsFragment extends RxFragment<BankRollsContract.Presen
 
     @Override
     protected int getMenuRes() {
-        // TODO add xxxhdpi for settings and search icon
         return R.menu.menu_bankrolls;
     }
 
