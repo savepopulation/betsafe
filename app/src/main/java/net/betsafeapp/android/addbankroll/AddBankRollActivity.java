@@ -33,26 +33,6 @@ public final class AddBankRollActivity extends BaseActivity {
     }
 
     @Override
-    protected int getMenuRes() {
-        return Constants.NO_RES;
-    }
-
-    @Override
-    protected int getScreenName() {
-        return Constants.NO_RES;
-    }
-
-    @Override
-    protected int getTitleRes() {
-        return R.string.screen_title_add_bankroll;
-    }
-
-    @Override
-    protected int getNavigationType() {
-        return NAVIGATION_BACK;
-    }
-
-    @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -71,5 +51,10 @@ public final class AddBankRollActivity extends BaseActivity {
                 .addBankRollPresenterModule(new AddBankRollPresenterModule(addBankRollFragment))
                 .build()
                 .inject(this);
+    }
+
+    @Override
+    protected int getTitleRes() {
+        return R.string.screen_title_add_bankroll;
     }
 }

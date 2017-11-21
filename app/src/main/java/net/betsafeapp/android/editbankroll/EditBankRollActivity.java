@@ -43,23 +43,8 @@ public final class EditBankRollActivity extends BaseActivity {
     }
 
     @Override
-    protected int getMenuRes() {
-        return Constants.NO_RES;
-    }
-
-    @Override
-    protected int getScreenName() {
-        return Constants.NO_RES;
-    }
-
-    @Override
     protected int getTitleRes() {
         return R.string.screen_title_edit_bankroll;
-    }
-
-    @Override
-    protected int getNavigationType() {
-        return NAVIGATION_BACK;
     }
 
     @Override

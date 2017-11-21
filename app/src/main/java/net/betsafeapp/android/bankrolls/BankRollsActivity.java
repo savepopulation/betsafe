@@ -28,16 +28,6 @@ public final class BankRollsActivity extends BaseActivity {
     }
 
     @Override
-    protected int getMenuRes() {
-        return Constants.NO_RES;
-    }
-
-    @Override
-    protected int getScreenName() {
-        return Constants.NO_RES;
-    }
-
-    @Override
     protected int getTitleRes() {
         return R.string.app_name;
     }

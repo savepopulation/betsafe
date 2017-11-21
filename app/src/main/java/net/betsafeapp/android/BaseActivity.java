@@ -15,6 +15,8 @@ import android.view.MenuItem;
 
 import net.betsafeapp.android.util.ValidationUtil;
 
+import static net.betsafeapp.android.Constants.NO_RES;
+
 /**
  * Created by tyln on 16/01/2017.
  */
@@ -26,17 +28,6 @@ public abstract class BaseActivity extends AppCompatActivity {
     @LayoutRes
     protected abstract int getLayoutRes();
 
-    @MenuRes
-    protected abstract int getMenuRes();
-
-    @StringRes
-    protected abstract int getScreenName();
-
-    @StringRes
-    protected abstract int getTitleRes();
-
-    protected abstract int getNavigationType();
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +37,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        if (getMenuRes() != Constants.NO_RES) {
+        if (getMenuRes() != NO_RES) {
             getMenuInflater().inflate(getMenuRes(), menu);
         }
         return super.onCreateOptionsMenu(menu);
@@ -76,7 +67,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     private void setupActionBar() {
         final ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
-            if (getTitleRes() != Constants.NO_RES) {
+            if (getTitleRes() != NO_RES) {
                 final String title = getString(getTitleRes());
                 setActionbarTitle(title);
             }
@@ -92,5 +83,19 @@ public abstract class BaseActivity extends AppCompatActivity {
             }
 
         }
+    }
+
+    @StringRes
+    protected int getTitleRes() {
+        return R.string.app_name;
+    }
+
+    protected int getNavigationType() {
+        return NAVIGATION_BACK;
+    }
+
+    @MenuRes
+    protected int getMenuRes() {
+        return NO_RES;
     }
 }
