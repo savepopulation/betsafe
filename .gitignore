@@ -9,3 +9,5 @@ gradle.properties
 gradlew
 gradlew.bat
 .idea
+*.key
+/gradle
