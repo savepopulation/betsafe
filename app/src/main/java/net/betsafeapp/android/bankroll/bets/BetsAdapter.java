@@ -107,7 +107,6 @@ final class BetsAdapter extends RecyclerView.Adapter<BetsAdapter.ViewHolder> {
         private final TextView mTextViewOdd;
         private final TextView mTextViewBooker;
         private final TextView mTextViewSport;
-        private final LinearLayout mLinearLayoutBetDetails;
 
         ViewHolder(View itemView) {
             super(itemView);
@@ -119,7 +118,6 @@ final class BetsAdapter extends RecyclerView.Adapter<BetsAdapter.ViewHolder> {
             mTextViewOdd = (TextView) itemView.findViewById(R.id.textview_bet_odd);
             mTextViewBooker = (TextView) itemView.findViewById(R.id.textview_bet_booker);
             mTextViewSport = (TextView) itemView.findViewById(R.id.textview_bet_sport);
-            mLinearLayoutBetDetails = (LinearLayout) itemView.findViewById(R.id.lienarlayout_bet_details);
         }
     }
 
